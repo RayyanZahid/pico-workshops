@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* The window's own backplate. translucent = PICO's glass instead of an opaque slab.
+   Ignored by desktop browsers. */
+html {
+  --xr-background-material: translucent;
+}
+
+body {
+  background: var(--pico-grad-hero);
+  color: var(--pico-ink);
+  font-family: var(--pico-font-body);
+}
+
+/* In the headset, let the material show instead of painting over it. */
+html.is-spatial body {
+  background: transparent;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--pico-gap);
+  height: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--pico-pad);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+}
+
+.lede {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--pico-ink-dim);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* The spatial part. --xr-back only works on positioned elements, and only takes px. */
+.lifted {
+  position: relative;
+  --xr-back: 80;
+  --xr-background-material: translucent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: var(--pico-gap);
+  max-width: 440px;
+  border-radius: var(--pico-radius-lg);
+}
+
+.lifted-copy {
+  margin: 0;
+  font-family: var(--pico-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.lifted-hint {
+  margin: 0;
+  color: var(--pico-ink-dim);
+}

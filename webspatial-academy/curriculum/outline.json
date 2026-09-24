@@ -1,0 +1,300 @@
+[
+  {
+    "level": 0,
+    "id": "L0",
+    "title": "Setup: Claude Code, Node, pico-cli, and the PICO OS 6 emulator",
+    "objectives": [
+      "Clone https://github.com/RayyanZahid/pico-workshops, cd into webspatial-academy/, run npm run labs:install and npm run doctor",
+      "Install Node 20.19+ or 22.12+ and Claude Code (native installer), and confirm both from a terminal",
+      "Run `npm run doctor` (node setup/doctor.mjs) and read your track: emulator or web-only",
+      "Install pico-cli and run `pico-cli doctor` to a clean or explained result",
+      "Wire the PICO plugin skills and knowledge MCP into Claude Code with `pico-cli setup --agent-tool claude-code --platform spatial`",
+      "Get the PICO OS 6 emulator installed (Android Studio 2025.1.x + PICO Spatial plugin) and boot it with `pico-cli emulator start`",
+      "Reach your dev server from the emulator with adb reverse + http://localhost:<port>/, and explain why (secure context), not 10.0.2.2"
+    ],
+    "concepts": [
+      "pico-cli as the one command line for emulator, device, app, log, capture, perf, knowledge, web",
+      "PICO OS 6 (Project Swan) vs PICO 4 Ultra on OS 5.x: WebSpatial needs OS 6",
+      "adb reverse tcp:<port> tcp:<port> + http://localhost:<port>/ is a secure context; 10.0.2.2 loads but was not a secure context in our test (no install); use localhost (VERIFIED 2026-09-24)",
+      "Host budget: 16 GB RAM, 40 GB disk, GTX 1060 or better; the guest alone takes ~6 GB. Under that, the web-only track",
+      "Agent Host setup: plugin skills + pico-dev-knowledge MCP",
+      "pico-cli web launch sideloads PicoBrowser.apk and rewrites localhost to 10.0.2.2 (flat): don't use it to open labs; never on a headset",
+      "The PICO Emulator is PICO-licensed; this workshop's attendees are cleared by PICO. Check with PICO before publishing OS screenshots outside the workshop.",
+      "Real PICO OS 6 device: HTTP dev URLs need adb shell am broadcast -p com.picoxr.webappservice -a com.picoxr.webappservice.action.TOGGLE_DEBUG_MODE --ez enable true",
+      "npx @webspatial/starter (0.1.0) scaffolds an SDK ^1.5.0 (1.x) project: use the labs (2.0.0) instead",
+      "Windows PowerShell 5.1 rejects && and has no grep: run commands on separate lines; after any winget install, close and reopen the terminal"
+    ],
+    "lab": "setup/",
+    "commands": [
+      "winget install --id OpenJS.NodeJS.LTS -e",
+      "winget install --id Git.Git -e",
+      "git clone https://github.com/RayyanZahid/pico-workshops.git",
+      "cd pico-workshops/webspatial-academy",
+      "npm run labs:install",
+      "npm run doctor",
+      "node --version",
+      "claude --version",
+      "claude doctor",
+      "pico-cli --version",
+      "pico-cli doctor",
+      "pico-cli doctor --format json",
+      "pico-cli setup --agent-tool claude-code --platform spatial --scope global --yes",
+      "pico-cli emulator doctor",
+      "pico-cli emulator setup",
+      "pico-cli emulator install",
+      "pico-cli emulator start",
+      "pico-cli emulator status",
+      "node setup/launch.mjs 1 --dry-run"
+    ],
+    "prompts": [
+      "Run `pico-cli doctor --format json`, group every failing check by module, and give me the exact fix command for each one. Do not run any --fix yet.",
+      "Check whether this machine can run the PICO Emulator: free RAM and commit headroom, free disk, GPU (PICO names a GTX 1060 or better), Windows virtualization. Tell me plainly if it will struggle and what to close first.",
+      "Start the PICO emulator with `pico-cli emulator start`, wait for adb readiness, then run `pico-cli emulator status` and `pico-cli device list` and tell me the device id to use for the rest of the day."
+    ],
+    "duration_min": 25,
+    "duration_self_paced_min": 120,
+    "examples": []
+  },
+  {
+    "level": 1,
+    "id": "L1",
+    "title": "Hello Spatial: your first WebSpatial app in the emulator",
+    "objectives": [
+      "Explain what WebSpatial is: HTML/CSS elements that become native spatial content, not a WebXR canvas",
+      "Tell a window scene from a volume scene",
+      "State plainly that the WebSpatial SDK requires React today (no plain-HTML path), and why: the JSX runtime adds the spatial props",
+      "Set up a React + Vite app with @webspatial/react-sdk + @webspatial/core-sdk, jsxImportSource, <SpatialBoot>, and a minimal PWA manifest",
+      "Open lab p1 in the emulator (node setup/launch.mjs 1 → http://localhost:5301/), install it via the Install app icon (monitor icon left of the star), and wait up to 60 s; if panels are still missing, close and reopen the app once"
+    ],
+    "concepts": [
+      "Browser tab = flat (UA lacks WebSpatial/); installed Web App = PICO OS 6 Web App Runtime, where WebSpatial activates (DOC + VERIFIED)",
+      "WebSpatial vs WebXR: spatialized DOM in the OS's shared space vs an immersive canvas session",
+      "Scenes: window (GUI, constant apparent size) and volume (real-world object, has depth)",
+      "React is required: tsconfig jsxImportSource @webspatial/react-sdk",
+      "<SpatialBoot> loads the spatial chunk only inside a WebSpatial runtime; without it enable-xr is inert (mistake #1)",
+      "Minimal PWA manifest: name, start_url, display standalone|minimal-ui, icons incl. 1024x1024 maskable",
+      "PICO OS 6 ships the WebSpatial runtime: no packaging (visionOS needs @webspatial/builder)",
+      "navigator.userAgent contains PicoWebApp/ inside the PICO OS 6 Web App Runtime",
+      "SDK 2.0: no WebSpatial build plugin, no XR_ENV, one bundle; runtime detected from the user agent",
+      "jsxImportSource in tsconfig AND react({ jsxImportSource: '@webspatial/react-sdk' }) in vite.config.ts; without the vite line enable-xr silently does nothing",
+      "Web App URLs must be a secure context: adb reverse + http://localhost:<port>/ is THE path; 10.0.2.2 loads but was not a secure context in our test (no install); use localhost (VERIFIED 2026-09-24)",
+      "PICO manifest: name|short_name, icons, start_url, display (required), served with a JSON MIME type; scope decides where the button appears",
+      "Detect the runtime: matchMedia('(display-mode: standalone|minimal-ui)') vs '(display-mode: browser)'",
+      "Proof you're in the runtime: UA gains WebSpatial/ (measured: PicoWebApp/0.4.0 ... WebSpatial/1.5.0); a plain tab has no WebSpatial/ token",
+      "Install flow on the OS 6.0.0 emulator: monitor icon, titled Install app on OS 6.0.0 (PICO's docs call it Open as standalone app) → Install → glass window; wait up to 60 s; if panels are still missing, close and reopen the app once; relaunch from the launcher tile",
+      "node setup/launch.mjs <n> = adb reverse tcp:<port> tcp:<port> (verified via adb reverse --list) + am start -d http://localhost:<port>/",
+      "Manifest changed? The installed app keeps the old one: adb -s emulator-5554 shell pm list packages picoxr.webapp, adb uninstall <pkg>, reinstall. Code hot-reloads",
+      "If launch.mjs / pico-cli web launch fails with INSTALL_FAILED_UID_CHANGED, open the URL by hand (adb reverse + am start, or type it)"
+    ],
+    "lab": "labs/p1-hello-spatial",
+    "commands": [
+      "npm run labs:install",
+      "pico-cli emulator status",
+      "node setup/launch.mjs 1 --serve",
+      "node setup/snap.mjs"
+    ],
+    "prompts": [
+      "Scaffold a Vite + React + TypeScript app in ./hello-spatial wired for WebSpatial 2.x: install @webspatial/react-sdk@2.0.0 and @webspatial/core-sdk@2.0.0 with --save-exact, set jsxImportSource to @webspatial/react-sdk in tsconfig.app.json, wrap the root in <SpatialBoot>, add public/app.webmanifest (name, start_url /, display minimal-ui, a 512 any icon and a 1024 maskable icon) linked from index.html, set react({ jsxImportSource: '@webspatial/react-sdk' }) in vite.config.ts, and make sure npm run dev:xr binds 0.0.0.0. Run the dev server and tell me the URL the emulator should open.",
+      "Start lab p1 and open it in the running PICO emulator with `node setup/launch.mjs 1 --serve` from the kit root (dev server on 5301, then adb reverse + http://localhost:5301/), install it with the Install app icon (monitor icon left of the star), wait up to 60 seconds (if panels are still missing, close and reopen the app once), take a screenshot with `node setup/snap.mjs`, and tell me what loaded. If the frame is mostly black, take a burst before concluding anything.",
+      "Add a small badge to the page that shows the display-mode (browser vs standalone/minimal-ui via matchMedia) and whether navigator.userAgent matches /PicoWebApp\\// and /WebSpatial\\//. Tell me what it should say in a desktop browser, in a PICO Browser tab, and after installing it as a Web App."
+    ],
+    "duration_min": 25,
+    "duration_self_paced_min": 90,
+    "examples": [
+      "examples/webspatial-vite-min/ (index: SpatialBoot + 3x3 enable-xr grid; cd examples/webspatial-vite-min, then npm run dev:xr, port 5501; then node setup/launch.mjs --url http://localhost:5501/)"
+    ]
+  },
+  {
+    "level": 2,
+    "id": "L2",
+    "title": "Spatialize a website: enable-xr, depth, materials, and a second window",
+    "objectives": [
+      "Mark an element spatial with the enable-xr marker and explain what changes",
+      "Lift elements toward the viewer with --xr-back (px) and reason about which plane is 'behind' them",
+      "Make the window glass transparent and give cards a translucent material with --xr-background-material",
+      "Open a second window scene with initScene + window.open(url, name)",
+      "Keep the plain web build working as a 2D fallback"
+    ],
+    "concepts": [
+      "Progressive enhancement: every WebSpatial style is ignored in an ordinary browser",
+      "enable-xr marker: attribute, __enableXr__ class, or style enableXr: true",
+      "--xr-back (px only) needs position relative|absolute|fixed",
+      "--xr-background-material: translucent | transparent | none (on html for the window, on enable-xr elements)",
+      "Spatial transform: translateZ / rotateX / rotateY on enable-xr elements (no CSS animations; animate with JS)",
+      "enable-xr-monitor on a parent whose children change layout",
+      "Second window: initScene(name, cfg => ({...cfg, defaultSize}), { type: 'window' }) then window.open(url, name); URL must be inside the manifest scope",
+      "initScene before boot is a silent no-op in SDK 2.0: register scenes in <SpatialBoot onReady={registerScenes}> (VERIFIED: p3 volume opened flat 1280x720 otherwise)",
+      "Never nest enable-xr inside enable-xr: on PICO OS 6.0.0 nested spatial elements never rendered; give each an absolute --xr-back",
+      "In a second window, don't wrap the page in enable-xr (it came up blank on PICO OS 6.0.0); the window is already glass. Keep floating panels small and few. Observed: second windows open at main-window size regardless of defaultSize"
+    ],
+    "lab": "labs/p2-spatialize-site",
+    "commands": [
+      "node setup/launch.mjs 2 --serve",
+      "pico-cli capture screenshot -o shots/spatialized.png",
+      "pico-cli log -n 200 -l W"
+    ],
+    "prompts": [
+      "Here is an ordinary landing page. Spatialize it with WebSpatial without breaking the desktop version: mark the nav and the three feature cards enable-xr, give each card position: relative, --xr-back: 40 and --xr-background-material: translucent, set html { --xr-background-material: transparent } so the window glass disappears, and list every file you changed and why.",
+      "Add a second window scene called 'details' with initScene (defaultSize 480 x 600), registered in <SpatialBoot onReady={registerScenes}> (not at module load), open it from the Learn more button with window.open('/?scene=details', 'details'), route ?scene=details to a Details component in main.tsx, and make sure it still opens as a normal tab in a desktop browser.",
+      "Take a before and after screenshot in the emulator with pico-cli capture screenshot and describe exactly which elements now float and which stayed flat. Then open the page in desktop Chrome and confirm nothing broke."
+    ],
+    "duration_min": 45,
+    "duration_self_paced_min": 180,
+    "examples": [
+      "https://github.com/webspatial/sample-techshop (1.x, read only)",
+      "https://github.com/webspatial/WebSpatialPlayground (1.x, read only)"
+    ]
+  },
+  {
+    "level": 3,
+    "id": "L3",
+    "title": "3D and volumes: models, entities, and interaction",
+    "objectives": [
+      "Register and open a volume scene (initScene third argument { type: 'volume' }) with a size in metres",
+      "Show a GLB/USDZ model with <Model enable-xr> plus poster, onLoad and onError",
+      "Build a scene from SDK primitives: <Reality> > <World> > <Box>/<Sphere>/<Cylinder> with metres and radians",
+      "Handle spatial gestures (onSpatialTap, onSpatialDrag, onSpatialRotate, onSpatialMagnify) and feature-detect with WebSpatialRuntime.supports",
+      "Keep assets small enough to load quickly in the headset"
+    ],
+    "concepts": [
+      "Volume scenes: defaultSize with depth, worldScaling automatic|dynamic, baseplateVisibility",
+      "<Model enable-xr src> with <source type=model/gltf-binary|model/vnd.usdz+zip>",
+      "--xr-depth (px) on <Model>/<Reality> only",
+      "<Reality>: assets (Material, ModelAsset, AttachmentAsset) outside <World>, entities inside",
+      "Entity transforms: position in metres, rotation in radians, right-handed, Y up, Z toward the user",
+      "Spatial events and payloads; useMetrics for px<->m (only after SpatialBoot)",
+      "adb input cannot drive a 3D gesture on the emulator: test gestures by hand in the emulator window",
+      "initScene before boot is a silent no-op in SDK 2.0: register scenes in <SpatialBoot onReady={registerScenes}> (VERIFIED: p3 volume opened flat 1280x720 otherwise)",
+      "Empty volume? <Reality>/<Model> at height:100% of an auto-height parent is 0 px: use 100vw/100vh or give html/body/#root a height",
+      "Inside a volume, keep 2D UI flat; put the depth in the 3D content (an enable-xr panel in a volume failed to create on PICO OS 6.0.0: createSpatialized2DElement failed)"
+    ],
+    "lab": "labs/p3-volume-model",
+    "commands": [
+      "node setup/launch.mjs 3 --serve",
+      "pico-cli capture record -t 15 -o shots/volume.mp4",
+      "pico-cli log -l W -n 200",
+      "npx @gltf-transform/cli inspect public/model.glb"
+    ],
+    "prompts": [
+      "Add a volume scene called 'viewer' (defaultSize 0.6m on all three axes, registered in <SpatialBoot onReady={registerScenes}>, not at module load) that shows public/model.glb with <Model enable-xr> plus a poster image, onLoad and onError handlers. Open it from a button on the main page with window.open('/?scene=viewer', 'viewer'). In a desktop browser the button should still open a normal tab.",
+      "Make the model follow a spatial drag: on onSpatialDragStart remember the start, on onSpatialDrag apply translationX/Y/Z (px) through a style transform, and on onSpatialTap reset. Tell me which event carries which field and what I have to test by hand because adb cannot inject a spatial ray.",
+      "Check the GLB file size and triangle count with gltf-transform inspect and tell me if it is too heavy for a headset. If it is, give me the gltf-transform command to simplify and compress it, run it, and compare before and after."
+    ],
+    "duration_min": 30,
+    "duration_self_paced_min": 150,
+    "examples": [
+      "examples/webspatial-vite-min/ (index: Reality scene graph + Model)",
+      "https://github.com/webspatial/sample-solarsystem (1.6, read only)"
+    ]
+  },
+  {
+    "level": 4,
+    "id": "L4",
+    "title": "Depth as gameplay: Space Invaders in space, with a second window",
+    "objectives": [
+      "Use depth to carry meaning: rows at absolute depths (5 + y*0.08) + row*20, no spatial nesting, shields 100, ship 120, shots travelling in Z both ways, hit rows flinching +24",
+      "Budget spatial layers: one enable-xr per container, plain divs for sprites and shield blocks, pooled shots and bombs: 11 planes (12 with the overlay) instead of 230+",
+      "Animate depth from a requestAnimationFrame loop through refs with writeBack (one decimal, >= 0, skip unchanged); no CSS animations on spatial elements",
+      "Add HUD (360x480) and hall-of-fame (420x560) windows with initScene(name, cfg, { type: 'window' }) + window.open(url, name); the start scene is sized in the manifest",
+      "Sync over BroadcastChannel 'invaders': authoritative game, hello handshake, pause/restart intents, gameover; defer window.open after a post (setTimeout 100)"
+    ],
+    "concepts": [
+      "Depth as gameplay: Z encodes threat and feedback, collision stays 2D",
+      "git diff --no-index start/src solution/src is the lesson: start/ is solution/ minus every SPATIAL line",
+      "Depth map (src/depth.ts): BASE 5, APPROACH 0.08, ROW_STEP 20 (0/20/40/60/80, back row deepest), SHIELD_Z 100, SHIP_Z 120, OVERLAY_Z 150, POP 24 (buttons flat), POP_DECAY 0.85",
+      "Don't nest enable-xr: on PICO OS 6.0.0 nested spatial elements never rendered (0x0), so each row gets ABSOLUTE depth formationZ(y) + row*20 + flinch; front row at wave start (START_Y 80) = 5 + 80*0.08 + 4*20 = 91.4 px",
+      "Layer budget: 11 planes while playing (5 rows, shields, ship, 2 shots, 2 bombs), 12 with the overlay; the buttons are flat; the playfield is a plain div, the UFO rides the page plane",
+      "writeBack(el, z): round to one decimal, clamp at 0, skip unchanged, el.style['--xr-back']; no CSS transitions; no querySelector",
+      "Player shots recede 120 -> front row depth; enemy shots come row depth -> 120",
+      "Buttons use plain onClick (a pinch on a spatial button arrives as a click); never onSpatialTap on a <button>: it logs 'Unknown event handler property' even in the PICO runtime. Spatial events are for <Model>, <Reality> entities and enable-xr divs",
+      "Scenes: 'hud' 360x480 and 'halloffame' 420x560 via initScene(..., { type: 'window' }); game sized by manifest xr_main_scene 900x1000",
+      "BroadcastChannel 'invaders': hello / state / gameover / intent(pause|restart); HUD-level state on change only",
+      "Gotcha (reproduced in this lab): a post in the same task as window.open of a new window is dropped for open windows in Chrome; setTimeout(() => openScene('halloffame'), 100)",
+      "initScene before boot is a silent no-op in SDK 2.0: register scenes in <SpatialBoot onReady={registerScenes}> (VERIFIED: p3 volume opened flat 1280x720 otherwise)",
+      "Cold launch can time out (createSpatialized2DElement failed after 30 s): close and reopen the app; lab solutions reload once (spatialRetry.ts)",
+      "Keep depths modest: a plane lifted far toward you, low in the window, projects below the window's bottom edge in the default view (ship at 260 vanished; the lab now tops out at 150)",
+      "In a second window, don't wrap the page in enable-xr (it came up blank on PICO OS 6.0.0); the window is already glass. Keep floating panels small and few. Observed: second windows open at main-window size regardless of defaultSize"
+    ],
+    "lab": "labs/p4-space-invaders",
+    "commands": [
+      "git diff --no-index labs/p4-space-invaders/start/src labs/p4-space-invaders/solution/src",
+      "node setup/launch.mjs 4 --serve",
+      "node setup/snap.mjs",
+      "pico-cli capture record -t 15 -o captures/invaders.mp4"
+    ],
+    "prompts": [
+      "Run git diff --no-index labs/p4-space-invaders/start/src labs/p4-space-invaders/solution/src and walk me through every SPATIAL change in order: which elements became planes, what depth each gets from src/depth.ts, and why the invaders and shield blocks did not.",
+      "Step 2: Make each .row, the shields line, the ship, the pooled shots and bombs enable-xr, all top-level (no spatial parent: leave the playfield a plain div), and leave every invader and shield block a plain div. Put the depth constants from the depth map in a new src/depth.ts (ROW_STEP = 20, row 0 deepest). Then count the enable-xr elements and tell me the number (expect 11 while playing).",
+      "Step 3: Tie the formation's depth to its descent (5 + y * 0.08), set each row's ABSOLUTE depth to formationZ(y) + row * 20 + flinch, and write every depth from the requestAnimationFrame loop through refs with a writeBack helper that rounds to one decimal, clamps at 0 and skips unchanged values. No CSS transitions on spatial elements.",
+      "Step 4: Make player shots recede from SHIP_Z (120) to the front-most live row's absolute depth, enemy shots come from their row's depth to 120, and a hit row flinch by POP (24) with POP_DECAY 0.85 per 60 fps frame. Keep collisions 2D. Keep the on-screen buttons on plain onClick (no onSpatialTap on a <button>).",
+      "Step 5: Add 'hud' (360x480) and 'halloffame' (420x560) scenes with initScene(..., { type: 'window' }) in a registerScenes() called from <SpatialBoot onReady={registerScenes}>, open them with window.open(url, name), and sync over a BroadcastChannel named 'invaders': the game is authoritative, answers hello, applies pause/restart intents, and broadcasts HUD state only when it changes. Prove in desktop Chrome that a HUD opened mid-game shows the live score.",
+      "Step 6: At game over, post 'gameover' and open the hall of fame. Show me that opening it in the same task makes the HUD miss 'gameover', then fix it with setTimeout(() => openScene('halloffame'), 100) and prove the HUD now shows Game over.",
+      "Step 7: Launch the game in the PICO emulator with node setup/launch.mjs 4 --serve, install it as a web app, open the HUD, take a burst of screenshots with node setup/snap.mjs, then close the HUD and reopen it. Tell me whether it showed the right score immediately after reopening."
+    ],
+    "duration_min": 30,
+    "duration_self_paced_min": 150,
+    "steps": [
+      "Wire WebSpatial",
+      "Rows get depth",
+      "Depth tied to descent",
+      "Shots travel in Z; hits flinch",
+      "The HUD window",
+      "Gotcha: a message posted just before window.open can vanish",
+      "In the emulator"
+    ],
+    "examples": [
+      "https://github.com/webspatial/widget-generator (1.x multi-scene, read only); lab p4 is the 2.0 reference"
+    ]
+  },
+  {
+    "level": 5,
+    "id": "L5",
+    "title": "Expert and agentic: Claude Code runs the loop, performance, shipping",
+    "objectives": [
+      "Let Claude Code run build, launch, screenshot, log and fix without you touching the emulator",
+      "Use the PICO plugin skills and the pico-dev-knowledge MCP to ground answers in PICO docs",
+      "Record and read a performance trace with pico-cli perf and act on the result",
+      "Ship: deploy over HTTPS, launch as a Web App via manifest, and know the visionOS packaging path",
+      "Capstone: spatialize your own site end to end"
+    ],
+    "concepts": [
+      "The agent loop: edit -> dev server -> web launch -> capture -> log -> judge -> edit",
+      "Evidence over claims: every 'it works' backed by a screenshot, a log line, or a DevTools read",
+      "Remote debug with chrome://inspect over adb (Android-based runtime)",
+      "pico-cli perf live / perf trace record / analysis",
+      "pico-cli web launch --manifest-url launches as a Web App on a device you control (manifest needs name, start_url, icons); it fails on the OS 6.0.0 emulator with INSTALL_FAILED_UID_CHANGED",
+      "Shipping: an HTTPS URL is the distribution on PICO OS 6; PICO store web-app listing is partner-channel only today; visionOS needs @webspatial/builder + Xcode",
+      "npx @webspatial/starter ai (v0.1.0, VERIFIED): writes .webspatial/docs, .claude/ + CLAUDE.md block, .codex/skills, AGENTS.md block. Its docs predate SDK 2.0 (no SpatialBoot) and claim precedence: never run it in the labs; in your own project add \"SDK 2.0: wrap the app in <SpatialBoot>; labs/VERSIONS.md overrides .webspatial/docs\"",
+      "p5 Lanterns empty volume: <Reality style={{height:'100%'}}> under an auto-height #root is 0 px (not StrictMode); give <Reality>/<Model> a real size (100vw/100vh) or give html/body/#root a height"
+    ],
+    "lab": "labs/p5-capstone",
+    "commands": [
+      "node setup/launch.mjs 5 --serve",
+      "pico-cli knowledge doctor",
+      "pico-cli knowledge pull",
+      "pico-cli plugin doctor",
+      "npx @webspatial/starter ai   # your own project only, then add the SDK 2.0 override line",
+      "pico-cli perf doctor",
+      "pico-cli perf live run",
+      "pico-cli perf trace record",
+      "pico-cli perf trace analysis",
+      "pico-cli capture record -t 30 -o shots/demo.mp4"
+    ],
+    "prompts": [
+      "Run the whole loop on this repo without asking me: start the dev server, launch it in the PICO emulator, screenshot every scene, read the last 200 log lines at warning or above, fix anything broken, and repeat until the screenshots match SPEC.md. Stop after 5 iterations either way and show me the evidence for each claim.",
+      "Use the pico-dev-knowledge MCP to find what PICO recommends for window sizes and text legibility in spatial apps, cite the source file for each rule, then audit my scenes against it.",
+      "Record a 10 second perf trace while the volume scene is open, run the built-in analysis, and tell me the top three costs and one change for each. Say which of them are the browser's cost and which are mine.",
+      "Here is my site: <url or repo>. Plan how to spatialize it with WebSpatial in four steps (enable-xr pass, materials and depth, one extra scene, one volume), then do step one and show me a screenshot."
+    ],
+    "duration_min": 25,
+    "duration_self_paced_min": 240,
+    "examples": [
+      "examples/webspatial-vite-min/xr-monitor.html",
+      "examples/webspatial-vite-min/eager-lean.html",
+      "https://github.com/webspatial/webspatial-sdk/tree/main/apps/spatial-next-min",
+      "https://github.com/webspatial/webspatial-sdk/tree/main/apps/spatial-remix-min",
+      "https://github.com/webspatial/webspatial-sdk/tree/main/apps/spatial-rspack-min",
+      "https://github.com/webspatial/webspatial-sdk/tree/main/apps/test-server"
+    ]
+  }
+]

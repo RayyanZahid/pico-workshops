@@ -1,0 +1,204 @@
+/* pico.css : PICO WebSpatial Academy theme, extracted from https://www.picoxr.com/global
+ * (fetched 2026-09-24: HTML + 7 linked stylesheets from lf16-statics.picovr.com, plus computed
+ * styles and screenshots in headless Chrome).
+ *
+ * What the site actually looks like: LIGHT chrome (white nav, #f7f8fa panels, 16px-radius cards)
+ * wrapped around DARK full-bleed product imagery (black hero video, violet/neon game art) and a
+ * near-black footer. One electric violet (#4200ff) does every call to action, always as a pill.
+ * Type is PICO Sans for headlines and Inter for UI copy, set in medium/bold, never condensed.
+ *
+ * So this theme ships both treatments:
+ *   :root / [data-theme="dark"]  the hero + footer + card register. Default, because slides are
+ *                                projected and headsets read dark better.
+ *   [data-theme="light"]         the site chrome register (nav, spec panels, cookie sheet).
+ *
+ * Every value is tagged:
+ *   [SOURCE sel]  seen in PICO's CSS or computed style, with the selector (hashed class suffixes
+ *                 trimmed; e.g. `.button-container` is `.button-container-OiQcll` on the live site)
+ *   [DERIVED]     our choice, with the reason
+ *   [PICO-SDK]    a number from the PICO Spatial SDK design docs (window radius, hotspot size)
+ */
+
+/* Fonts. The site's headline face is "PICO Regular" = PICO-Sans-VFS.ttf, a proprietary
+ * face licensed for the PICO platform, so we do NOT hotlink it. Figtree is the closest Google
+ * Font (compared side by side at 40px: same round geometric O, two-storey a, similar width;
+ * PICO Sans runs about 3% wider). Inter IS the site's own UI face and is OFL, so it loads as-is. */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --pico-bg:        #000000;                    /* [SOURCE] #000 in main.css (4 uses) + .footer-container rgba(0,0,0,.92); the hero video letterbox renders black */
+  --pico-surface:   rgba(255, 255, 255, 0.06);  /* [DERIVED] glass tier over black; opaque twin #0f0f0f */
+  --pico-surface-2: #232526;                    /* [SOURCE .media-modal-container background-color:#232526] */
+  --pico-footer:    rgba(0, 0, 0, 0.92);        /* [SOURCE .footer-container] */
+
+  /* Text */
+  --pico-ink:       #ffffff;                    /* [SOURCE .title / hero h2 computed rgb(255,255,255)] 21:1 on bg */
+  --pico-ink-dim:   rgba(255, 255, 255, 0.70);  /* [SOURCE card .desc computed rgba(255,255,255,.7)] ~12:1 */
+  --pico-ink-faint: rgba(255, 255, 255, 0.40);  /* [SOURCE .footer-container .card-area .item color:hsla(0,0%,100%,.4)] labels only */
+
+  /* Brand + semantic */
+  --pico-accent:    #7458ff;                    /* [DERIVED] #4200ff lifted so it reads as TEXT on black (4.6:1) and still carries white text as a fill (4.6:1). Raw #4200ff is 2.6:1 on black */
+  --pico-accent-fill: #4200ff;                  /* [SOURCE .button-container background] the Buy Now pill; white on it is 7.9:1 */
+  --pico-accent-2:  #3d8bff;                    /* [SOURCE .switch-button:checked+label] PICO's second blue; 6.2:1 on black */
+  --pico-glow:      #a393ff;                    /* [DERIVED] light tint of #4200ff for rims, focus rings, emissive 3D; matches the violet halo in the site's game art */
+  --pico-danger:    #ff4d4f;                    /* [SOURCE .field-error / .field-input--error] */
+  --pico-ok:        #b8f000;                    /* [DERIVED] PICO Motion Tracker strap lime, sampled from the product shot; the site has no success colour in CSS */
+  --pico-warn:      #ffb020;                    /* [DERIVED] amber; the site has no warning colour */
+  --pico-rule:      rgba(255, 255, 255, 0.20);  /* [SOURCE .video-switch-area .side-line background:hsla(0,0%,100%,.2)] */
+
+  /* Gradients: PICO paints on imagery, not on flat gradients. These two are the only
+     gradient treatments in its CSS, used as button hover/press over #4200ff. */
+  --pico-grad-hover: linear-gradient(0deg, rgba(0,0,0,.12), rgba(0,0,0,.12)), #4200ff; /* [SOURCE .button-container:hover] */
+  --pico-grad-press: linear-gradient(0deg, rgba(0,0,0,.24), rgba(0,0,0,.24)), #4200ff; /* [SOURCE .button-container:active] */
+  --pico-grad-hero:  radial-gradient(120% 90% at 20% 10%, rgba(66,0,255,.55), transparent 60%),
+                     radial-gradient(90% 70% at 90% 100%, rgba(61,139,255,.35), transparent 60%),
+                     #000;                       /* [DERIVED] stand-in for the hero video when no image is available */
+  --pico-scrim:      linear-gradient(0deg, rgba(0,0,0,.5), transparent); /* [SOURCE swiper edge scrims] text over imagery */
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --pico-bg:        #ffffff;                    /* [SOURCE header + page white] */
+  --pico-surface:   #f7f8fa;                    /* [SOURCE .wrapper / .list / .video-container bg] */
+  --pico-surface-2: #f2f3f5;                    /* [SOURCE .menu-user inset rule #f2f3f5; computed rgb(242,243,244) panels] */
+  --pico-footer:    rgba(0, 0, 0, 0.92);        /* [SOURCE .footer-container] */
+  --pico-ink:       rgba(0, 0, 0, 0.92);        /* [SOURCE .learn-more color] */
+  --pico-ink-dim:   rgba(0, 0, 0, 0.70);        /* [SOURCE cookie .desc computed rgba(0,0,0,.7)] */
+  --pico-ink-faint: #999999;                    /* [SOURCE nav items computed rgb(153,153,153)] */
+  --pico-accent:    #4200ff;                    /* [SOURCE .button-container] 7.4:1 on #f7f8fa */
+  --pico-accent-fill: #4200ff;                  /* [SOURCE .button-container] */
+  --pico-accent-2:  #3f00f2;                    /* [SOURCE .btn-container border, active tab .item.active] */
+  --pico-glow:      #3d8bff;                    /* [SOURCE .switch-button:checked+label] focus ring on white */
+  --pico-danger:    #ff4d4f;                    /* [SOURCE .field-error] */
+  --pico-ok:        #1f9d55;                    /* [DERIVED] lime is unreadable on white (1.3:1); a green that is 4.5:1 */
+  --pico-warn:      #b86e00;                    /* [DERIVED] amber darkened to 4.5:1 on white */
+  --pico-rule:      rgba(0, 0, 0, 0.12);        /* [SOURCE rgba(0,0,0,.12), most frequent rgba in main.css] */
+  --pico-grad-hero: linear-gradient(180deg, #f7f8fa, #ffffff);
+}
+
+:root {
+  /* Type. */
+  --pico-font-display: "Figtree", "Inter", ui-sans-serif, system-ui, "Segoe UI", sans-serif;  /* [DERIVED] PICO Sans substitute, see header */
+  --pico-font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* [SOURCE body font-family] */
+  --pico-font-mono:    "JetBrains Mono", Monaco, Menlo, ui-monospace, Consolas, monospace;    /* [DERIVED] site stack is Monaco,Menlo; JB Mono for Windows parity */
+
+  /* Slide type scale. The site's own ramp is 14 / 16 / 18 / 30 / 32 / 44 px (nav, body, subtitle,
+     tagline, section title, hero title) [SOURCE computed]. Slides are read from across a room, so
+     the ramp keeps PICO's ratio (~1.4) but scales with the viewport: at 1920 wide, step-5 is 128px. */
+  --pico-step--1: clamp(0.875rem, 0.80rem + 0.35vw, 1.25rem);   /* captions, chips (site 14px) */
+  --pico-step-0:  clamp(1rem,     0.90rem + 0.55vw, 1.625rem);  /* body (site 16px) */
+  --pico-step-1:  clamp(1.125rem, 0.95rem + 0.90vw, 2.25rem);   /* subtitle (site 18px) */
+  --pico-step-2:  clamp(1.5rem,   1.15rem + 1.60vw, 3.25rem);   /* tagline (site 30px) */
+  --pico-step-3:  clamp(2rem,     1.40rem + 2.60vw, 4.5rem);    /* section title (site 32px) */
+  --pico-step-4:  clamp(2.75rem,  1.80rem + 4.00vw, 6rem);      /* hero title (site 44px) */
+  --pico-step-5:  clamp(3.5rem,   2.20rem + 5.60vw, 8rem);      /* cover slide */
+
+  /* Shape and size. */
+  --pico-radius:      16px;   /* [SOURCE .wrapper / .video-container border-radius:16px, the most used radius] */
+  --pico-radius-lg:   32px;   /* [PICO-SDK] window corner radius 32 dp; site hero cards are 16, so -lg is for window-sized panels */
+  --pico-radius-pill: 100px;  /* [SOURCE .button-container border-radius:100px] */
+  --pico-target:      56px;   /* [PICO-SDK] 56 x 56 dp hotspot; also [SOURCE .triggerButton 56px] */
+  --pico-btn-h:       48px;   /* [SOURCE .btn-container height:48px] */
+  --pico-pad:         32px;   /* [PICO-SDK] Padding Large 32 dp */
+  --pico-gap:         16px;   /* [PICO-SDK] Padding Regular 16 dp; also [SOURCE .wrapper padding:16px] */
+  --pico-ease:        cubic-bezier(.2, .8, .2, 1);  /* [DERIVED] */
+}
+
+/* Utilities. Plain CSS, no build step. */
+
+.pico-panel {
+  background: var(--pico-surface);
+  color: var(--pico-ink);
+  border: 1px solid var(--pico-rule);
+  border-radius: var(--pico-radius);
+  padding: var(--pico-pad);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  font-family: var(--pico-font-body);
+}
+
+/* The Buy Now pill: violet fill, white text, no border, full radius. */
+.pico-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: var(--pico-target);
+  min-height: var(--pico-btn-h);
+  padding: 11px 24px;                           /* [SOURCE .button-container padding:11px 20px] +4 for slide scale */
+  border: 0;
+  border-radius: var(--pico-radius-pill);
+  background: var(--pico-accent-fill);
+  color: #fff;
+  font: 500 var(--pico-step-0)/1.5 var(--pico-font-body);   /* [SOURCE] site buttons are Inter 16/24, weight 400-500 */
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 160ms var(--pico-ease), box-shadow 160ms var(--pico-ease), transform 160ms var(--pico-ease);
+}
+.pico-btn:hover { background: var(--pico-grad-hover); }
+.pico-btn:active { background: var(--pico-grad-press); transform: translateY(0); }
+.pico-btn:focus-visible { outline: 2px solid var(--pico-glow); outline-offset: 3px; }
+
+/* The Decline All / Accept All outline pill. */
+.pico-btn--ghost {
+  background: transparent;
+  color: var(--pico-accent);
+  box-shadow: inset 0 0 0 1px var(--pico-accent);  /* [SOURCE .btn-container border:1px solid #3f00f2] */
+}
+.pico-btn--ghost:hover { background: color-mix(in srgb, var(--pico-accent) 12%, transparent); }  /* [SOURCE rgba(63,0,242,.1)] */
+.pico-btn--ghost:active { background: color-mix(in srgb, var(--pico-accent) 20%, transparent); }
+
+/* The "Learn More >" text link, the site's most common CTA. */
+.pico-link {
+  color: var(--pico-ink);
+  font: 500 var(--pico-step-0)/1 var(--pico-font-body);
+  text-decoration: none;
+}
+.pico-link::after { content: " \203A"; }
+.pico-link:hover { color: var(--pico-accent); }
+
+.pico-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--pico-radius-pill);
+  border: 1px solid var(--pico-rule);           /* [SOURCE .product-badge border:1px solid; radius 100px] */
+  background: transparent;
+  color: var(--pico-ink-dim);
+  font: 500 var(--pico-step--1)/1.4 var(--pico-font-body);
+}
+.pico-chip--accent { color: var(--pico-accent); border-color: currentColor; }
+.pico-chip--ok     { color: var(--pico-ok); border-color: currentColor; }
+.pico-chip--warn   { color: var(--pico-warn); border-color: currentColor; }
+.pico-chip--danger { color: var(--pico-danger); border-color: currentColor; }
+
+.pico-kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--pico-surface-2);
+  border: 1px solid var(--pico-rule);
+  border-bottom-width: 2px;
+  color: var(--pico-ink);
+  font: 500 0.9em/1.4 var(--pico-font-mono);
+}
+
+.pico-display {
+  font-family: var(--pico-font-display);
+  font-weight: 700;                             /* [SOURCE hero h2 44px/700, section titles 32px/700] */
+  line-height: 1.15;
+  letter-spacing: -0.01em;                      /* [DERIVED] Figtree sets slightly looser than PICO Sans */
+  color: var(--pico-ink);
+}
+
+.pico-eyebrow {
+  font: 600 var(--pico-step--1)/1.2 var(--pico-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;                    /* [DERIVED] the site has no eyebrow; kept quiet so the violet stays the only accent */
+  color: var(--pico-accent);
+}

@@ -1,0 +1,22 @@
+# PICO WebSpatial Academy: slide deck
+
+> Beginner-to-expert workshop deck: spatialize a website with WebSpatial (React SDK 2.x), run it in the PICO OS 6 emulator, and let Claude Code do the work. Levels L0 Setup, L1 Hello Spatial, L2 Spatialize a website (headline), L3 3D + volumes, L4 Multi-window, L5 Agentic expert + capstone.
+
+The three files below hold the same slides, built from one source (`src/*.md`) by `build.mjs`, so they can't drift. Slide ids match across all three.
+
+- [deck.json](deck.json): structured. `slides[]` with id, level, step, kind (concept | step | checkpoint | lab), title, action, body, commands[], prompts[], code[], text[], diagrams[], expect, media[] ({type: image|video, src, poster, alt, caption, credit}), notes, todos[]. Top level also has `logistics` (venue Wi-Fi) and `links[]` (every link the deck uses, with whether it exists). `levels[]` maps each level to its first slide and its lab folder.
+- [slides.md](slides.md): the full deck as clean markdown. Headings carry `{#id}` anchors.
+- [index.html](index.html): the projected deck. Each slide is `<section class="slide" id="L2-s3" data-level data-step data-kind>`. Commands are `<pre><code data-cmd>`, Claude Code prompts `<pre><code data-prompt>`, code snippets `<pre><code data-code>`, plain text to paste `<pre><code data-text>`, expected results `<pre data-expect>`, speaker notes `<aside class="notes">`. Open-TODO items are `[data-todo]` chips.
+
+## Conventions
+
+- Slide id `L{level}-s{n}`: s1 is the level's concept slide, then the steps, then a checkpoint, then the lab handoff. Intro slides are `intro-s*`, closing slides `close-s*` (their data-level is "intro" / "close").
+- Every command was checked at build time against the course sources (`../curriculum/`, `../labs/**/README.md`, `../setup/`, `../assets/emulator/WALKTHROUGH.md`) or the real `pico-cli --help` tree (`src/pico-cli-help.txt`, pico-cli 0.5.0). An unsourced command gets a TODO chip.
+- Placeholders in angle brackets (`<pkg>`, `<url or repo>`) are for you to fill in.
+- `todos[]` lists what isn't verified or hasn't landed yet. Treat those slides as provisional.
+
+## Related
+
+- [../curriculum/SYLLABUS.md](../curriculum/SYLLABUS.md): the syllabus and run of show
+- [../curriculum/outline.json](../curriculum/outline.json): machine-readable curriculum
+- [../labs/README.md](../labs/README.md): hands-on labs p1 to p5

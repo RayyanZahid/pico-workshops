@@ -1,0 +1,59 @@
+/* spatial.css: every style that makes Swanfest spatial lives here. Desktop browsers
+   ignore the --xr-* properties entirely, so this file changes nothing on a laptop.
+
+   Two rules the SDK enforces:
+   - --xr-back only moves elements that are positioned (relative / absolute / fixed).
+     app.css already gives .nav, .hero-card and .feature position: relative.
+   - --xr-back takes px only; a bare number means px.  */
+
+/* STEP 3: the window itself. translucent swaps the opaque backplate for PICO's glass. */
+html {
+  --xr-background-material: translucent;
+}
+
+/* ...and in the headset, stop painting over that glass. */
+html.is-spatial body {
+  background: transparent;
+}
+
+/* STEP 4: feature cards float 40px out, each on its own glass. */
+.feature {
+  --xr-back: 40;
+  --xr-background-material: translucent;
+  border-radius: var(--pico-radius-lg);
+}
+
+/* STEP 5: the nav sits a little forward; the hero sits furthest forward. */
+.nav {
+  --xr-back: 24;
+  --xr-background-material: translucent;
+}
+
+.hero-card {
+  --xr-back: 120;
+}
+
+/* In the headset the glass does the job the flat surface colour did on the web. */
+html.is-spatial .feature,
+html.is-spatial .nav {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+/* STEP 6: the schedule window. */
+.scene-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 100vh;
+  padding: var(--pico-pad);
+}
+
+.scene-schedule .schedule-list li {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.scene-schedule .schedule-list .pico-chip {
+  grid-column: 2;
+  justify-self: start;
+}

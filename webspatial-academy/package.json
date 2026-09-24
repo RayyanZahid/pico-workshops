@@ -1,0 +1,22 @@
+{
+  "name": "pico-webspatial-academy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Spatialize websites with WebSpatial and run them in the PICO OS 6 emulator, with Claude Code doing the work. Beginner to expert, L0 to L5.",
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "doctor": "node setup/doctor.mjs",
+    "doctor:web": "node setup/doctor.mjs --web-only",
+    "doctor:json": "node setup/doctor.mjs --json",
+    "labs:install": "cd labs && npm install",
+    "emulator:start": "pico-cli emulator start",
+    "emulator:status": "pico-cli emulator status",
+    "emulator:stop": "pico-cli emulator stop",
+    "launch": "node setup/launch.mjs",
+    "snap": "node setup/snap.mjs"
+  },
+  "license": "MIT"
+}

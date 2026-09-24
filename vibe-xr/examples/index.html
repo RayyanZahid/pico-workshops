@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- Launcher for the five example scenes. Each example is its own folder: index.html + main.js. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%234d7cff%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2215%22 fill=%22none%22 stroke=%22%236ee7ff%22 stroke-width=%222%22/%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Vibe XR Examples</title>
+  <meta name="description" content="Five WebXR scenes for the PICO browser to try, then remix with Claude Code." />
+  <link rel="stylesheet" href="../theme/pico.css" />
+  <style>
+    html { background: var(--pico-bg); }
+    body {
+      margin: 0; min-height: 100vh; color: var(--pico-ink); font-family: var(--pico-font-body);
+      background:
+        radial-gradient(900px 500px at 15% -10%, color-mix(in srgb, var(--pico-accent) 22%, transparent), transparent 70%),
+        radial-gradient(700px 500px at 100% 10%, color-mix(in srgb, var(--pico-accent-2) 16%, transparent), transparent 70%),
+        var(--pico-bg);
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 48px 16px 64px; box-sizing: border-box; }
+    header { display: grid; gap: 12px; margin-bottom: 32px; }
+    .kicker { margin: 0; font: 600 12px/1 var(--pico-font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--pico-glow); }
+    h1 { margin: 0; font-size: clamp(34px, 6vw, 56px); line-height: 1.02; }
+    .lede { margin: 0; max-width: 62ch; color: var(--pico-ink-dim); font-size: 16px; line-height: 1.55; }
+    .support { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: var(--pico-gap); }
+    .card {
+      display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px;
+      padding: 24px; border-radius: var(--pico-radius-lg); text-decoration: none; color: inherit;
+      background: var(--pico-surface); border: 1px solid var(--pico-rule);
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .card:hover, .card:focus-visible {
+      transform: translateY(-3px); border-color: var(--pico-glow); outline: none;
+      box-shadow: 0 0 0 1px var(--pico-glow), 0 12px 40px color-mix(in srgb, var(--pico-glow) 18%, transparent);
+    }
+    .card .num { font: 600 12px/1 var(--pico-font-mono); color: var(--pico-ink-dim); letter-spacing: .12em; }
+    .card h2 { margin: 0; font-size: 26px; }
+    .card p { margin: 0; color: var(--pico-ink-dim); line-height: 1.5; font-size: 15px; }
+    .card .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .card .mode-ar { color: var(--pico-ok); }
+    .card .mode-vr { color: var(--pico-glow); }
+    footer { margin-top: 32px; color: var(--pico-ink-dim); font-size: 14px; line-height: 1.6; }
+    footer code { font-family: var(--pico-font-mono); color: var(--pico-ink); }
+    footer a { color: var(--pico-glow); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="kicker">Vibe XR with PICO &middot; examples</p>
+      <h1 class="pico-display">Five scenes to steal from</h1>
+      <p class="lede">Open one here, then in the PICO browser. Each is a single <code>main.js</code> with three remix prompts at the top: paste one into Claude Code and reload.</p>
+      <ul class="support" id="support" aria-live="polite">
+        <li class="pico-chip">Checking this browser for WebXR...</li>
+      </ul>
+    </header>
+
+    <section class="grid">
+      <a class="card" href="hand-garden/index.html">
+        <span class="num">01 &middot; <span class="mode-vr">VR</span></span>
+        <h2 class="pico-display">Hand Garden</h2>
+        <p>Pinch the air to grow glowing orbs that float up and hum a note where they hang.</p>
+        <ul class="chips"><li class="pico-chip">immersive-vr</li><li class="pico-chip">hand-tracking</li><li class="pico-chip">WebAudio</li></ul>
+      </a>
+      <a class="card" href="ar-placer/index.html">
+        <span class="num">02 &middot; <span class="mode-ar">AR</span></span>
+        <h2 class="pico-display">AR Placer</h2>
+        <p>A reticle sticks to your real floor and tables; each drop is pinned to the room.</p>
+        <ul class="chips"><li class="pico-chip">immersive-ar</li><li class="pico-chip">hit-test</li><li class="pico-chip">anchors</li></ul>
+      </a>
+      <a class="card" href="beat-room/index.html">
+        <span class="num">03 &middot; <span class="mode-vr">VR</span></span>
+        <h2 class="pico-display">Beat Room</h2>
+        <p>A live-synthesized beat played from four speakers you grab and carry around your head.</p>
+        <ul class="chips"><li class="pico-chip">immersive-vr</li><li class="pico-chip">PositionalAudio</li><li class="pico-chip">hand-tracking</li></ul>
+      </a>
+      <a class="card" href="portal/index.html">
+        <span class="num">04 &middot; <span class="mode-ar">AR</span></span>
+        <h2 class="pico-display">Portal</h2>
+        <p>A doorway in your real room opens onto another world. Walk through it and look back.</p>
+        <ul class="chips"><li class="pico-chip">immersive-ar</li><li class="pico-chip">passthrough</li><li class="pico-chip">stencil</li><li class="pico-chip">hit-test</li></ul>
+      </a>
+      <a class="card" href="gallery/index.html">
+        <span class="num">05 &middot; <span class="mode-vr">VR</span></span>
+        <h2 class="pico-display">Gallery</h2>
+        <p>A GLB on a plinth you grab and turn in your hands. Swap in your own Meshy or Blender model.</p>
+        <ul class="chips"><li class="pico-chip">immersive-vr</li><li class="pico-chip">GLTFLoader</li><li class="pico-chip">grab-to-rotate</li></ul>
+      </a>
+    </section>
+
+    <footer>
+      Runs in the PICO browser over <code>https://</code> or <code>localhost</code> only; a plain LAN IP shows the page but no Enter VR/AR button.
+      Not in the PICO browser: camera access, depth, meshes, light estimation, DOM overlay. <a href="../index.html">Back to the starter scene</a>.
+    </footer>
+  </main>
+
+  <script type="module">
+    // Tell people up front what this browser can do, so a missing Enter VR button is not a mystery.
+    const list = document.getElementById('support');
+    const chip = (text, kind) => `<li class="pico-chip pico-chip--${kind}">${text}</li>`;
+    if (!window.isSecureContext) {
+      list.innerHTML = chip('Not a secure context: open over https:// or localhost to enter VR/AR', 'warn');
+    } else if (!navigator.xr) {
+      list.innerHTML = chip('No WebXR in this browser: desktop preview only', 'warn');
+    } else {
+      const [vr, ar] = await Promise.all(['immersive-vr', 'immersive-ar'].map((m) => navigator.xr.isSessionSupported(m).catch(() => false)));
+      list.innerHTML = chip(`immersive-vr ${vr ? 'ready' : 'not supported'}`, vr ? 'ok' : 'warn') + chip(`immersive-ar ${ar ? 'ready' : 'not supported'}`, ar ? 'ok' : 'warn');
+    }
+  </script>
+</body>
+</html>

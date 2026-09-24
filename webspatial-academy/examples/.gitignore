@@ -1,0 +1,4 @@
+node_modules
+dist
+# the life repo root ignores *.png; the example icons and screenshot must ship
+!*.png

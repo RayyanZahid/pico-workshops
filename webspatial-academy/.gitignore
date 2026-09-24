@@ -1,0 +1,6 @@
+node_modules/
+dist/
+# Emulator screenshots and recordings: PICO-licensed OS, keep them local unless PICO OKs publishing
+captures/
+# Dev-server logs written by setup/launch.mjs --serve
+.academy/

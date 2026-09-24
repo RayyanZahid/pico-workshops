@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- Gallery. All the logic lives in main.js; start remixing there. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%234d7cff%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2215%22 fill=%22none%22 stroke=%22%236ee7ff%22 stroke-width=%222%22/%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Gallery</title>
+  <meta name="description" content="A small gallery that loads a GLB onto a plinth. Grab it to turn it over in your hands. Swap in your own model." />
+  <link rel="stylesheet" href="../../theme/pico.css" />
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: var(--pico-bg); color: var(--pico-ink); font-family: var(--pico-font-body); }
+    canvas { display: block; touch-action: none; }
+    .hud { position: fixed; top: 16px; left: 16px; max-width: min(360px, calc(100vw - 32px)); box-sizing: border-box; padding: 20px; display: grid; gap: 12px; }
+    .hud h1 { margin: 0; font-size: 26px; }
+    .hud p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--pico-ink-dim); }
+    .hud a.back { color: var(--pico-ink-dim); font-size: 13px; text-decoration: none; }
+    .hud a.back:hover { color: var(--pico-glow); }
+    .chips, .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .status { font: 500 12px/1.4 var(--pico-font-mono); color: var(--pico-ink-dim); }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="hud pico-panel">
+    <a class="back" href="../index.html">&larr; All examples</a>
+    <h1 class="pico-display">Gallery</h1>
+    <p>Grab the model (trigger, or pinch near it) and twist your wrist to rotate it. Squeeze or press Next to swap models. Drop your own .glb onto this page.</p>
+    <ul class="chips">
+      <li class="pico-chip">immersive-vr</li>
+      <li class="pico-chip">GLTFLoader</li>
+      <li class="pico-chip">hand-tracking</li>
+      <li class="pico-chip">grab-to-rotate</li>
+    </ul>
+    <div class="actions" id="xr-actions"></div>
+    <p class="status" id="status">Desktop: drag to orbit, drag a .glb file onto the page, or add ?model=URL.</p>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

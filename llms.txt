@@ -1,0 +1,43 @@
+# PICO Workshops
+
+> Claude for Spatial Computing, Homebrew Club SF, 2026-09-24. Three pieces: PICO's own PICO CLI
+> Quickstart deck, the Vibe XR workshop (WebXR scenes in the PICO browser on PICO 4 Ultra
+> headsets), and the PICO WebSpatial Academy (spatialize a React website with WebSpatial SDK 2.0
+> and run it in the PICO OS 6 emulator, levels L0 to L5). Paths are relative to this file.
+> Serve with `node serve.mjs` (http://localhost:5180/).
+
+## From PICO
+
+- [PICO CLI Quickstart, text](webspatial-academy/partner/pico-cli-quickstart-david-oh/slides.md): David Oh's 12-slide deck, verbatim. Do not edit anything under `partner/`.
+- [PICO CLI Quickstart, viewer](webspatial-academy/partner/pico-cli-quickstart-david-oh/index.html)
+
+## Vibe XR with PICO CLI (WebXR, headsets)
+
+- [Starter CLAUDE.md](vibe-xr/CLAUDE.md): read first to edit the starter scene (`vibe-xr/src/main.js`, REMIX markers).
+- [Starter README](vibe-xr/README.md): 5-step quickstart and starter prompts.
+- [PICO CLI cheatsheet](vibe-xr/docs/PICO-CLI.md): headset helpers in `vibe-xr/scripts/*.mjs`.
+- [WebSpatial on PICO, short](vibe-xr/docs/WEBSPATIAL.md): Vibe XR's headset notes, written before the Academy. Its SDK pin (1.7.0 + vite-plugin) is superseded: for any WebSpatial work follow webspatial-academy/CLAUDE.md (SDK 2.0.0, no vite-plugin).
+- [Workshop guide](vibe-xr/workshop/index.html) and [run of show](vibe-xr/workshop/RUN-OF-SHOW.md)
+- [Examples](vibe-xr/examples/index.html): five scenes, each `main.js` opens with three remix prompts.
+
+## PICO WebSpatial Academy (WebSpatial 2.0, emulator)
+
+- [Academy CLAUDE.md](webspatial-academy/CLAUDE.md): the loop, WebSpatial 2.0 rules, emulator rules. Read first.
+- [Deck as JSON](webspatial-academy/slides/deck.json): slides[] with id, level, kind, commands[], prompts[], text[], expect, notes; plus links[] and logistics.
+- [Deck as markdown](webspatial-academy/slides/slides.md) and [deck llms.txt](webspatial-academy/slides/llms.txt)
+- [Curriculum outline](webspatial-academy/curriculum/outline.json): levels, objectives, concepts, commands, prompts.
+- [Syllabus](webspatial-academy/curriculum/SYLLABUS.md), levels [L0](webspatial-academy/curriculum/L0.md) … [L5](webspatial-academy/curriculum/L5.md)
+- [Setup](webspatial-academy/setup/SETUP.md) and [dependencies](webspatial-academy/setup/DEPENDENCIES.md); check a machine with `npm run doctor` in `webspatial-academy/`.
+- [Versions](webspatial-academy/labs/VERSIONS.md): exact pins. Never add `@webspatial/vite-plugin`.
+- [Why pages look flat](webspatial-academy/labs/SPATIAL-CRACK.md): the measured root cause and attendee recipe.
+- [Troubleshooting](webspatial-academy/curriculum/TROUBLESHOOTING.md)
+- [Emulator results](webspatial-academy/labs/EMULATOR-RESULTS.md): per-lab pass/fail with evidence.
+- Labs: `webspatial-academy/labs/p1-hello-spatial`, `p2-spatialize-site`, `p3-volume-model`, `p4-space-invaders`, `p5-capstone`; each has README.md, `start/` (edit this) and `solution/`.
+- [PICO docs, rendered](webspatial-academy/assets/pico-docs/WEB-APP-RUNTIME.md): PICO's Web App Runtime pages, with where our measurements differ.
+
+## Key facts an agent must not get wrong
+
+- A PICO Browser tab is never spatial. Install the page as a Web App (address-bar monitor icon, "Install app"), then wait up to 60 s; if the panels are still missing, close and reopen the app once.
+- In the emulator, open `http://localhost:<port>/` via `adb reverse`, not `10.0.2.2` (not a secure context in our test).
+- Wrap the app in `<SpatialBoot>`; register scenes in `onReady`, never at module load.
+- `pico-cli web launch` must never target a physical loaner headset.

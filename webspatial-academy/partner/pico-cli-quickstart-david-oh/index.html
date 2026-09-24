@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PICO CLI Quickstart</title>
+<meta name="description" content="PICO CLI Quickstart by David Oh (PICO), shown unmodified. Text version: slides.md. Original: PICO CLI Quickstart.pptx.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%234200ff%22/%3E%3C/svg%3E">
+<link rel="alternate" type="text/markdown" href="slides.md">
+<style>
+  /* Viewer chrome only. The slides themselves are PICO's unmodified renders. */
+  :root { --bg:#000; --ink:#fff; --dim:rgba(255,255,255,.6); }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:14px/1.4 Inter,system-ui,sans-serif; }
+  main { height:100%; display:grid; place-items:center; }
+  figure { margin:0; width:min(100vw, calc(100vh * 16 / 9)); }
+  img { display:block; width:100%; height:auto; }
+  figcaption { position:fixed; bottom:12px; right:16px; color:var(--dim); }
+  nav { position:fixed; bottom:12px; left:16px; display:flex; gap:8px; }
+  button, a { background:rgba(255,255,255,.08); color:var(--ink); border:1px solid rgba(255,255,255,.2); border-radius:100px; padding:6px 14px; font:inherit; cursor:pointer; text-decoration:none; }
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+</style>
+</head>
+<body>
+<main>
+  <figure>
+    <img id="slide" src="slides/slide-01.png" alt="Slide 1 of PICO CLI Quickstart">
+    <figcaption><span id="n">1</span> / 12 · PICO CLI Quickstart · David Oh, PICO</figcaption>
+  </figure>
+</main>
+<nav aria-label="Slide controls">
+  <button id="prev" aria-label="Previous slide">‹</button>
+  <button id="next" aria-label="Next slide">›</button>
+  <a href="PICO CLI Quickstart.pptx" download>.pptx</a>
+  <a href="PICO CLI Quickstart.pdf">PDF</a>
+  <a href="slides.md">Text</a>
+</nav>
+<p class="sr">Full slide text for screen readers and agents is in slides.md.</p>
+<script>
+  const total = 12, img = document.getElementById('slide'), n = document.getElementById('n');
+  let i = Math.min(total, Math.max(1, parseInt(location.hash.slice(1)) || 1));
+  const pad = k => String(k).padStart(2, '0');
+  function show(k) {
+    i = Math.min(total, Math.max(1, k));
+    img.src = 'slides/slide-' + pad(i) + '.png';
+    img.alt = 'Slide ' + i + ' of PICO CLI Quickstart';
+    n.textContent = i;
+    history.replaceState(null, '', '#' + i);
+  }
+  document.getElementById('prev').onclick = () => show(i - 1);
+  document.getElementById('next').onclick = () => show(i + 1);
+  addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(1);
+    if (e.key === 'End') show(total);
+  });
+  show(i);
+</script>
+</body>
+</html>

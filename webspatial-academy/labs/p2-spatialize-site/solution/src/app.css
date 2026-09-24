@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background: var(--pico-grad-hero);
+  background-attachment: fixed;
+  color: var(--pico-ink);
+  font-family: var(--pico-font-body);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--pico-pad) * 1.5);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--pico-gap) var(--pico-pad) calc(var(--pico-pad) * 2);
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pico-gap);
+  padding: 10px 12px 10px 20px;
+  border: 1px solid var(--pico-rule);
+  border-radius: var(--pico-radius-pill);
+  background: var(--pico-surface);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--pico-font-display);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.brand-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--pico-glow), var(--pico-accent-fill) 70%);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 500;
+}
+
+.nav-links a:not(.pico-btn) {
+  color: var(--pico-ink-dim);
+  text-decoration: none;
+}
+
+.nav-links a:not(.pico-btn):hover {
+  color: var(--pico-ink);
+}
+
+.nav-cta {
+  min-height: 40px;
+  padding: 6px 18px;
+  font-size: 0.95rem;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--pico-pad);
+  padding-top: var(--pico-pad);
+}
+
+.hero-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pico-gap);
+}
+
+.hero-title {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.75rem);
+}
+
+.hero-lede {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--pico-ink-dim);
+  font-size: 1.15rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stats {
+  display: flex;
+  gap: var(--pico-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 96px;
+  padding: 14px 16px;
+  border: 1px solid var(--pico-rule);
+  border-radius: var(--pico-radius);
+}
+
+.stat-value {
+  font-family: var(--pico-font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--pico-glow);
+}
+
+.stat-label {
+  color: var(--pico-ink-dim);
+  font-size: 0.9rem;
+}
+
+/* ---------- feature cards ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pico-gap);
+}
+
+.feature {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.feature-title {
+  margin: 0;
+  font-family: var(--pico-font-display);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.feature-body {
+  margin: 0;
+  color: var(--pico-ink-dim);
+}
+
+/* ---------- schedule ---------- */
+
+.schedule {
+  position: relative;
+}
+
+.section-title {
+  margin: 0 0 var(--pico-gap);
+  font-size: 1.75rem;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schedule-list li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--pico-gap);
+  padding: 12px 0;
+  border-top: 1px solid var(--pico-rule);
+}
+
+.slot-time {
+  font-family: var(--pico-font-mono);
+  color: var(--pico-glow);
+}
+
+.slot-title {
+  font-weight: 500;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pico-gap);
+  padding-top: var(--pico-pad);
+  border-top: 1px solid var(--pico-rule);
+}
+
+.footer-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .nav-links a:not(.pico-btn) {
+    display: none;
+  }
+}

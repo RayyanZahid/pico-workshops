@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%234d7cff%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2215%22 fill=%22none%22 stroke=%22%236ee7ff%22 stroke-width=%222%22/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe XR Workshop</title>
+<meta name="description" content="Follow-along guide for Vibe XR with PICO CLI: describe a WebXR scene, Claude Code writes it, you open it in a PICO 4 Ultra.">
+<link rel="stylesheet" href="../theme/pico.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--pico-bg);
+    color: var(--pico-ink);
+    font-family: var(--pico-font-body);
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  a { color: var(--pico-accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--pico-accent); outline-offset: 3px; }
+  code, pre, kbd { font-family: var(--pico-font-mono); }
+
+  /* ---------- rail (projector + laptop) ---------- */
+  .rail {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 88px;
+    display: flex; flex-direction: column; justify-content: center; gap: 4px;
+    padding: 16px 12px; z-index: 5;
+  }
+  .rail a {
+    display: flex; align-items: center; gap: 8px; text-decoration: none;
+    color: var(--pico-ink-dim); font-family: var(--pico-font-mono); font-size: 13px;
+    padding: 4px 8px; border-radius: var(--pico-radius);
+    font-variant-numeric: tabular-nums;
+  }
+  .rail a::before {
+    content: ""; width: 14px; height: 2px; background: currentColor; opacity: .5;
+    transition: width .2s;
+  }
+  .rail a.on { color: var(--pico-accent); }
+  .rail a.on::before { width: 26px; opacity: 1; }
+  .rail .hint { display: flex; gap: 4px; margin-top: 18px; font-size: 11px; color: var(--pico-ink-dim); line-height: 1.4; padding: 0 8px; }
+
+  main { margin-left: 88px; }
+  section {
+    min-height: 100vh;
+    padding: 56px clamp(24px, 6vw, 112px);
+    display: flex; flex-direction: column; justify-content: center;
+    border-bottom: 1px solid var(--pico-surface-2);
+    scroll-margin-top: 0;
+  }
+  .wrap { max-width: 1180px; width: 100%; }
+  .eyebrow {
+    font-family: var(--pico-font-mono); font-size: 14px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--pico-accent);
+    display: flex; gap: 14px; align-items: baseline; margin: 0 0 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .eyebrow b { color: var(--pico-ink-dim); font-weight: 400; }
+  h1, h2, h3 { font-family: var(--pico-font-display); margin: 0; line-height: 1.05; }
+  h1 { font-size: clamp(48px, 8.5vw, 132px); letter-spacing: -.02em; }
+  h2 { font-size: clamp(34px, 5vw, 72px); letter-spacing: -.015em; margin-bottom: 28px; }
+  h3 { font-size: 22px; margin-bottom: 8px; line-height: 1.2; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: clamp(20px, 2.1vw, 28px); color: var(--pico-ink-dim); max-width: 44ch; }
+  .dim { color: var(--pico-ink-dim); }
+  .small { font-size: 15px; }
+
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+  .grid-2 { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }
+  .pico-panel { padding: 22px 24px; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+
+  /* placeholders Ray fills in (or pass ?wifi=..&pw=..&repo=.. in the URL) */
+  .fill {
+    font-family: var(--pico-font-mono); color: var(--pico-accent-2);
+    border: 1px dashed var(--pico-accent-2); border-radius: var(--pico-radius);
+    padding: 1px 8px; white-space: nowrap;
+  }
+  .fill.done { border-color: transparent; color: var(--pico-ink); padding: 0; white-space: normal; }
+
+  /* ---------- title ---------- */
+  #s0 h1 .accent { color: var(--pico-accent); text-shadow: 0 0 40px var(--pico-glow); }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 40px; }
+  .connect { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+  @media (min-width: 761px) { .connect { grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); } }
+  .connect .big { font-family: var(--pico-font-mono); font-size: clamp(20px, 2.4vw, 32px); overflow-wrap: anywhere; }
+  .connect .label { font-family: var(--pico-font-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--pico-ink-dim); margin-bottom: 6px; }
+
+  /* ---------- three lines ---------- */
+  .three { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 22px; }
+  .three li { font-size: clamp(24px, 3.2vw, 44px); font-family: var(--pico-font-display); line-height: 1.15; }
+  .three li span { color: var(--pico-accent); }
+
+  /* ---------- checklist ---------- */
+  .check { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .check li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+  .check input { width: 22px; height: 22px; margin: 4px 0 0; accent-color: var(--pico-accent); }
+  .check .opt { font-family: var(--pico-font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--pico-ink-dim); margin-left: 6px; }
+
+  /* ---------- code rows with copy ---------- */
+  .cmd {
+    display: flex; align-items: stretch; gap: 0;
+    background: var(--pico-surface-2); border-radius: var(--pico-radius);
+    margin: 8px 0 0; max-width: 100%;
+  }
+  .cmd pre {
+    margin: 0; padding: 10px 14px; flex: 1; min-width: 0; overflow-x: auto;
+    font-size: 15px; line-height: 1.5; white-space: pre;
+  }
+  .cmd .pico-btn { flex: none; border-radius: 0 var(--pico-radius) var(--pico-radius) 0; }
+  button.copy { cursor: pointer; font-family: var(--pico-font-mono); font-size: 13px; min-width: 76px; min-height: 44px; }
+
+  /* ---------- loop diagram ---------- */
+  .loop { display: grid; gap: 28px; grid-template-columns: repeat(6, minmax(0, 1fr)); position: relative; }
+  .loop .step {
+    position: relative; padding: 18px 16px 16px; min-height: 176px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .loop .n { font-family: var(--pico-font-mono); color: var(--pico-accent); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .loop .what { font-family: var(--pico-font-display); font-size: 21px; line-height: 1.15; }
+  .loop code { font-size: 13px; color: var(--pico-ink-dim); overflow-wrap: anywhere; }
+  .loop .step:not(:last-child)::after {
+    content: "\2192"; position: absolute; right: -14px; top: 50%; transform: translate(50%, -50%);
+    color: var(--pico-accent); font-size: 20px; z-index: 1;
+  }
+  .return {
+    margin-top: 14px; display: flex; align-items: center; gap: 14px;
+    font-family: var(--pico-font-mono); font-size: 14px; color: var(--pico-accent);
+  }
+  .return .line { flex: 1; height: 2px; background: linear-gradient(90deg, var(--pico-accent), var(--pico-accent-2)); border-radius: 2px; }
+  .loop-foot { margin-top: 26px; }
+
+  /* ---------- prompts ---------- */
+  .prompt { display: flex; flex-direction: column; gap: 12px; }
+  .prompt blockquote {
+    margin: 0; font-size: 19px; line-height: 1.45; flex: 1;
+    padding-left: 14px; border-left: 2px solid var(--pico-accent);
+  }
+  .prompt .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+
+  /* ---------- tables ---------- */
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 17px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--pico-surface-2); vertical-align: top; }
+  th { font-family: var(--pico-font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--pico-ink-dim); font-weight: 400; }
+  .yes { color: var(--pico-accent); font-family: var(--pico-font-mono); white-space: nowrap; }
+  .no { color: var(--pico-danger); font-family: var(--pico-font-mono); white-space: nowrap; }
+
+  /* ---------- gallery ---------- */
+  .remix { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px; transition: transform .15s; }
+  .remix:hover { transform: translateY(-2px); }
+  .remix .path { font-family: var(--pico-font-mono); font-size: 13px; color: var(--pico-accent); }
+
+  /* media: desktop-preview captures from media/ */
+  .shot { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .shot img, .shot video {
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover;
+    border-radius: var(--pico-radius); border: 1px solid var(--pico-rule); background: var(--pico-surface);
+  }
+  .shot figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--pico-ink-dim); }
+  .gallery { grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
+  .remix .shot img { aspect-ratio: 2 / 1; object-position: 60% 60%;
+    border-radius: calc(var(--pico-radius) - 4px); }
+  .split { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .loop-media { margin-top: 26px; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); }
+  .prompts-lead { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); align-items: center; margin-bottom: 22px; }
+  .prompts-lead h2 { margin-bottom: 0; }
+
+  .note { border-left: 2px solid var(--pico-accent-2); padding: 4px 0 4px 14px; color: var(--pico-ink-dim); margin-top: 22px; max-width: 70ch; }
+  .warn { border-left-color: var(--pico-danger); }
+
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px);
+    background: var(--pico-surface-2); color: var(--pico-ink); padding: 10px 18px;
+    border-radius: var(--pico-radius); font-family: var(--pico-font-mono); font-size: 14px;
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 10;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (min-width: 1000px) {
+    html { scroll-snap-type: y proximity; }
+    section { scroll-snap-align: start; }
+  }
+  @media (max-width: 1100px) {
+    .split { grid-template-columns: minmax(0, 1fr); }
+    .loop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .loop .step:nth-child(3)::after { display: none; }
+  }
+  @media (max-width: 760px) {
+    body { font-size: 17px; }
+    .rail { display: none; }
+    main { margin-left: 0; }
+    section { min-height: 0; padding: 48px 16px; }
+    .grid-2, .split, .prompts-lead { grid-template-columns: minmax(0, 1fr); }
+    .pico-panel { padding: 18px; }
+    .stack > div, .prompt { min-width: 0; }
+    .loop { grid-template-columns: 1fr; gap: 28px; }
+    .loop .step { min-height: 0; }
+    .loop .step:not(:last-child)::after { content: "\2193"; right: 50%; top: auto; bottom: -14px; transform: translate(50%, 50%); display: block; }
+    .fill { white-space: normal; }
+    .cmd pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    table, tbody, tr, td { display: block; width: 100%; }
+    thead { display: none; }
+    tr { padding: 12px 0; border-bottom: 1px solid var(--pico-surface-2); }
+    td { border: 0; padding: 2px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Sections">
+  <a href="#s0">00</a><a href="#s1">01</a><a href="#s2">02</a><a href="#s3">03</a>
+  <a href="#s4">04</a><a href="#s5">05</a><a href="#s6">06</a><a href="#s7">07</a>
+  <a href="#s8">08</a><a href="#s9">09</a><a href="#s10">10</a>
+  <div class="hint"><span class="pico-kbd">&larr;</span><span class="pico-kbd">&rarr;</span></div>
+</nav>
+
+<main>
+
+<!-- 00 TITLE -->
+<section id="s0" data-title="Welcome">
+  <div class="wrap">
+    <p class="eyebrow">00 <b>Claude for Spatial Computing &middot; Homebrew Club SF</b></p>
+    <h1>Vibe XR<br>with <span class="accent">PICO CLI</span></h1>
+    <div class="meta-row">
+      <span class="pico-chip">Thu Sep 24 &middot; 5:30 to 9:00 PM</span>
+      <span class="pico-chip">Claude Code &rarr; WebXR &rarr; PICO 4 Ultra</span>
+      <span class="pico-chip">Rich Lira &middot; Rayyan Zahid &middot; Devinder Sodhi</span>
+    </div>
+    <div class="connect">
+      <div class="pico-panel">
+        <div class="label">Wifi</div>
+        <div class="big"><span class="fill" data-fill="wifi">Homebrew-Club</span></div>
+        <div class="dim small" style="margin-top:6px">Password: <span class="fill" data-fill="pw">homebrew</span></div>
+      </div>
+      <div class="pico-panel">
+        <div class="label">Starter repo &middot; the <code>vibe-xr/</code> folder</div>
+        <div class="big"><span class="fill" data-fill="repo">github.com/RayyanZahid/pico-workshops</span></div>
+        <div class="cmd"><pre id="c-clone">git clone https://github.com/RayyanZahid/pico-workshops.git
+cd pico-workshops/vibe-xr</pre><button class="pico-btn copy" data-copy="c-clone">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 WHAT -->
+<section id="s1" data-title="What vibe XR is">
+  <div class="wrap">
+    <p class="eyebrow">01 <b>What vibe XR is</b></p>
+    <div class="split">
+    <ul class="three">
+      <li>You <span>describe</span> a 3D scene in plain English.</li>
+      <li>Claude Code <span>writes</span> it: one HTML page, three.js, no build step.</li>
+      <li>You <span>walk into it</span> in the PICO browser, then ask for the next change.</li>
+    </ul>
+    <figure class="shot">
+      <video src="media/hand-garden-spawn.webm" poster="media/hand-garden-spawn-poster.png" width="1280" height="800" autoplay muted loop playsinline preload="metadata" aria-label="Hand Garden example: clicks plant glowing orbs that float upward">Hand Garden example: clicks plant glowing orbs that float upward.</video>
+      <figcaption><span class="pico-chip">Desktop preview</span>Hand Garden in desktop Chrome. In the headset, a pinch plants each orb.</figcaption>
+    </figure>
+    </div>
+    <p class="note">This is WebXR: a website you step into. It runs in the PICO browser on the headsets on our table. It is not a native PICO app.</p>
+  </div>
+</section>
+
+<!-- 02 SETUP -->
+<section id="s2" data-title="Setup checklist">
+  <div class="wrap">
+    <p class="eyebrow">02 <b>Setup checklist &middot; 5 minutes</b></p>
+    <h2>Before you type a prompt</h2>
+    <div class="grid-2">
+      <ul class="check pico-panel">
+        <li><input type="checkbox" id="k1" aria-label="Claude Code"><div><label for="k1"><strong>Claude Code, signed in</strong></label>
+          <div class="cmd"><pre id="c-claude">claude --version</pre><button class="pico-btn copy" data-copy="c-claude">Copy</button></div></div></li>
+        <li><input type="checkbox" id="k2" aria-label="Node"><div><label for="k2"><strong>Node 20 or newer</strong></label>
+          <div class="cmd"><pre id="c-node">node -v</pre><button class="pico-btn copy" data-copy="c-node">Copy</button></div></div></li>
+        <li><input type="checkbox" id="k3" aria-label="git"><div><label for="k3"><strong>git</strong></label>
+          <div class="cmd"><pre id="c-git">git --version</pre><button class="pico-btn copy" data-copy="c-git">Copy</button></div></div></li>
+      </ul>
+      <ul class="check pico-panel">
+        <li><input type="checkbox" id="k4" aria-label="Tailscale"><div><label for="k4"><strong>Tailscale</strong><span class="opt">optional</span></label>
+          <p class="dim small" style="margin:4px 0 0">Free account, app on your laptop. Gives you an HTTPS URL a headset can open. <a href="https://tailscale.com/download">tailscale.com/download</a></p></div></li>
+        <li><input type="checkbox" id="k5" aria-label="adb"><div><label for="k5"><strong>adb</strong><span class="opt">optional</span></label>
+          <p class="dim small" style="margin:4px 0 0">Android platform tools, for the USB path and PICO CLI.</p>
+          <div class="cmd"><pre id="c-adb">adb version</pre><button class="pico-btn copy" data-copy="c-adb">Copy</button></div></div></li>
+        <li><input type="checkbox" id="k6" aria-label="PICO CLI"><div><label for="k6"><strong>PICO CLI</strong><span class="opt">optional</span></label>
+          <p class="dim small" style="margin:4px 0 0">The package is scoped. Plain <code>pico-cli</code> on npm is someone else&rsquo;s tool.</p>
+          <div class="cmd"><pre id="c-pico">npm i -g @picoxr/pico-cli</pre><button class="pico-btn copy" data-copy="c-pico">Copy</button></div></div></li>
+      </ul>
+    </div>
+    <p class="note">No headset of your own? You do not need one. Build on your laptop, then borrow one of ours at the table (section 09).</p>
+  </div>
+</section>
+
+<!-- 03 LOOP -->
+<section id="s3" data-title="The loop">
+  <div class="wrap">
+    <p class="eyebrow">03 <b>The loop</b></p>
+    <h2>Prompt, look, repeat</h2>
+    <ol class="loop" style="list-style:none;padding:0;margin:0">
+      <li class="step pico-panel"><span class="n">1</span><span class="what">Prompt</span><span class="dim small">Say what you want in the scene.</span><code>claude</code></li>
+      <li class="step pico-panel"><span class="n">2</span><span class="what">Claude edits</span><span class="dim small">The whole scene lives in one file.</span><code>src/main.js</code></li>
+      <li class="step pico-panel"><span class="n">3</span><span class="what">Desktop preview</span><span class="dim small">Refresh the tab. Drag to look around.</span><code>localhost:5173</code></li>
+      <li class="step pico-panel"><span class="n">4</span><span class="what">Serve over HTTPS</span><span class="dim small">The headset needs a secure URL.</span><code>npm run serve</code></li>
+      <li class="step pico-panel"><span class="n">5</span><span class="what">Open on headset</span><span class="dim small">The PICO browser loads your URL.</span><code>node scripts/open-on-headset.mjs &lt;url&gt;</code></li>
+      <li class="step pico-panel"><span class="n">6</span><span class="what">Snap</span><span class="dim small">Screenshot what the wearer sees.</span><code>node scripts/snap.mjs</code></li>
+    </ol>
+    <div class="return"><span>iterate</span><span class="line"></span><span>back to 1</span></div>
+    <div class="split loop-media">
+    <figure class="shot">
+      <video src="media/starter-orb-click.webm" poster="media/starter-orb-click-poster.png" width="1280" height="800" autoplay muted loop playsinline preload="metadata" aria-label="The starter scene in desktop Chrome: clicking the orb spins it, dragging orbits the camera">The starter scene: click the orb to spin it, drag to orbit.</video>
+      <figcaption><span class="pico-chip">Desktop preview</span>Step 3 on your laptop: click the orb to spin it, drag to orbit. &ldquo;VR not supported&rdquo; is expected in desktop Chrome.</figcaption>
+    </figure>
+    <p class="loop-foot dim" style="margin:0">Steps 5 and 6 use PICO CLI over USB. Without a cable, type the URL into the PICO browser and ask the wearer what they see.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PROMPTS -->
+<section id="s4" data-title="First 3 prompts">
+  <div class="wrap">
+    <p class="eyebrow">04 <b>Your first 3 prompts</b></p>
+    <div class="prompts-lead">
+      <h2>Paste these into Claude Code</h2>
+      <figure class="shot">
+        <img src="media/starter-orb.png" width="1600" height="1000" alt="The Vibe XR starter: a violet faceted orb with a ring, floating above a glass plinth on a dark grid floor" loading="lazy">
+        <figcaption><span class="pico-chip">Desktop preview</span>Where you start. Prompt 1 replaces this orb.</figcaption>
+      </figure>
+    </div>
+    <div class="grid">
+      <div class="prompt pico-panel">
+        <div class="row"><h3>1 &middot; Make it yours</h3><button class="pico-btn copy" data-copy="p1">Copy</button></div>
+        <blockquote id="p1">Replace the faceted orb on the plinth with a slowly spinning torus knot, and surround the whole scene with a soft starfield. Keep the Enter VR and Enter AR buttons working.</blockquote>
+      </div>
+      <div class="prompt pico-panel">
+        <div class="row"><h3>2 &middot; Use your hands</h3><button class="pico-btn copy" data-copy="p2">Copy</button></div>
+        <blockquote id="p2">When I pinch with either hand or pull a controller trigger, spawn a glowing sphere at that hand that drops to the floor and bounces to a stop. Cap it at 50 spheres, removing the oldest first.</blockquote>
+      </div>
+      <div class="prompt pico-panel">
+        <div class="row"><h3>3 &middot; Set the mood</h3><button class="pico-btn copy" data-copy="p3">Copy</button></div>
+        <blockquote id="p3">Give the scene a dusk sky gradient and light fog, and make every sphere slowly cycle through colors. Then check the browser console and fix anything that errors.</blockquote>
+      </div>
+    </div>
+    <p class="note">After each prompt: refresh the desktop tab first. Put it in a headset once it looks right on the laptop.</p>
+  </div>
+</section>
+
+<!-- 05 HEADSET -->
+<section id="s5" data-title="Into the headset">
+  <div class="wrap">
+    <p class="eyebrow">05 <b>Getting it into the headset</b></p>
+    <h2>Three ways in</h2>
+    <p class="lede" style="margin-bottom:18px">WebXR only starts on <code>https://</code> or <code>localhost</code>. On a plain <code>http://192.168&hellip;</code> address the page loads but the Enter VR button never appears.</p>
+    <div class="grid">
+      <div class="pico-panel stack">
+        <h3>A &middot; Tailscale HTTPS</h3>
+        <p class="dim small">Your headset and laptop on the same tailnet. No cable. Best for your own headset.</p>
+        <div class="cmd"><pre id="c-ts">npm run serve</pre><button class="pico-btn copy" data-copy="c-ts">Copy</button></div>
+        <p class="dim small">It runs <code>tailscale serve</code> for you and prints an <code>https://&lt;laptop&gt;.&lt;tailnet&gt;.ts.net</code> URL, with a port such as <code>:5443</code> added if 443 is taken. Open that in the PICO browser.</p>
+      </div>
+      <div class="pico-panel stack">
+        <h3>B &middot; USB + adb reverse</h3>
+        <p class="dim small">Headset plugged into your laptop. The headset&rsquo;s <code>localhost</code> becomes your laptop, and localhost counts as secure.</p>
+        <div class="cmd"><pre id="c-rev">npm run usb</pre><button class="pico-btn copy" data-copy="c-rev">Copy</button></div>
+        <p class="dim small">It runs <code>adb reverse tcp:5173 tcp:5173</code>. Then open <code>http://localhost:5173</code> in the PICO browser.</p>
+      </div>
+      <div class="pico-panel stack">
+        <h3>C &middot; A host&rsquo;s headset</h3>
+        <p class="dim small">Our headsets cannot see your private tailnet. With <code>npm run dev</code> running, publish a public HTTPS link and hand it to the host at the table.</p>
+        <div class="cmd"><pre id="c-fun">tailscale funnel --bg --https=443 5173</pre><button class="pico-btn copy" data-copy="c-fun">Copy</button></div>
+        <p class="dim small">The link is public while it is on. Already serving something on 443? Pick another port: <code>--https=8443</code> (funnel allows 443, 8443 and 10000).</p>
+        <p class="dim small">Turn off only this one when you are done:</p>
+        <div class="cmd"><pre id="c-funoff">tailscale funnel --https=443 off</pre><button class="pico-btn copy" data-copy="c-funoff">Copy</button></div>
+        <p class="dim small">Not <code>funnel reset</code>: that wipes every serve and funnel on your laptop.</p>
+      </div>
+    </div>
+    <p class="note">Port 5173 is the starter&rsquo;s default. Desktop preview only, no headset: <code>npm run dev</code> and open <code>http://localhost:5173</code>.</p>
+  </div>
+</section>
+
+<!-- 06 REMIX -->
+<section id="s6" data-title="Remix gallery">
+  <div class="wrap">
+    <p class="eyebrow">06 <b>Remix gallery</b></p>
+    <h2>Steal a starting point</h2>
+    <p class="dim" style="margin-top:-14px">All five open on your laptop too. Screenshots are desktop previews; in the headset you get the real thing.</p>
+    <div class="grid gallery">
+      <a class="remix pico-panel" href="../examples/hand-garden/"><figure class="shot"><img src="media/example-hand-garden-orbs.png" width="1600" height="1000" alt="Hand Garden: six glowing orbs floating above a dark circular grid floor" loading="lazy"></figure><span class="path">examples/hand-garden</span><h3>Hand garden</h3><span class="dim small">Pinch the air to plant a glowing orb that hums a note where it floats. Hands or trigger.</span></a>
+      <a class="remix pico-panel" href="../examples/ar-placer/"><figure class="shot"><img src="media/example-ar-placer.png" width="1600" height="1000" alt="AR Placer desktop fallback: a box placed on a stand-in floor" loading="lazy"></figure><span class="path">examples/ar-placer</span><h3>AR placer</h3><span class="dim small">Passthrough AR. Aim at a real floor or table, pinch to drop an object, and it stays anchored in the room.</span></a>
+      <a class="remix pico-panel" href="../examples/beat-room/"><figure class="shot"><img src="media/example-beat-room.png" width="1600" height="1000" alt="Beat Room: four labelled speaker orbs above a ring of violet bars" loading="lazy"></figure><span class="path">examples/beat-room</span><h3>Beat room</h3><span class="dim small">A live synthesized beat, one glowing speaker per instrument. Grab a speaker and the sound moves with it.</span></a>
+      <a class="remix pico-panel" href="../examples/portal/"><figure class="shot"><img src="media/example-portal.png" width="1600" height="1000" alt="Portal: a glowing doorway with a blue sky world inside it, standing on a dark floor" loading="lazy"></figure><span class="path">examples/portal</span><h3>Portal</h3><span class="dim small">A doorway in your real room onto another world. Walk through it and look back at your room.</span></a>
+      <a class="remix pico-panel" href="../examples/gallery/"><figure class="shot"><img src="media/example-gallery.png" width="1600" height="1000" alt="Gallery: an orange chair model on a plinth with a credit label" loading="lazy"></figure><span class="path">examples/gallery</span><h3>Gallery</h3><span class="dim small">One GLB on a plinth you grab and twist. Swap in your own model with <code>?model=URL</code>.</span></a>
+    </div>
+    <div class="cmd" style="margin-top:22px"><pre id="c-remix">Look at examples/portal and bring its portal effect into my scene in src/main.js.</pre><button class="pico-btn copy" data-copy="c-remix">Copy</button></div>
+  </div>
+</section>
+
+<!-- 07 CLI -->
+<section id="s7" data-title="PICO CLI">
+  <div class="wrap">
+    <p class="eyebrow">07 <b>PICO CLI cheatsheet</b></p>
+    <h2>The headset side, from your terminal</h2>
+    <p class="dim">Over USB, with USB debugging allowed on the headset. <code>pico-cli</code> over Tailscale does not reach the headset.</p>
+    <div class="grid-2" style="margin-top:14px">
+      <div class="stack">
+        <div><strong>Is a headset connected?</strong><div class="cmd"><pre id="q1">pico-cli device list</pre><button class="pico-btn copy" data-copy="q1">Copy</button></div></div>
+        <div><strong>Open my page on it</strong><div class="cmd"><pre id="q2">node scripts/open-on-headset.mjs http://localhost:5173</pre><button class="pico-btn copy" data-copy="q2">Copy</button></div></div>
+        <div><strong>Screenshot what the wearer sees</strong><div class="cmd"><pre id="q3">node scripts/snap.mjs</pre><button class="pico-btn copy" data-copy="q3">Copy</button></div></div>
+      </div>
+      <div class="stack">
+        <div><strong>Stream the headset browser console</strong><div class="cmd"><pre id="q4">node scripts/console.mjs</pre><button class="pico-btn copy" data-copy="q4">Copy</button></div></div>
+        <div><strong>Battery before you hand it over</strong><div class="cmd"><pre id="q5">pico-cli device battery</pre><button class="pico-btn copy" data-copy="q5">Copy</button></div></div>
+        <div><strong>Something off? Diagnose</strong><div class="cmd"><pre id="q6">pico-cli doctor</pre><button class="pico-btn copy" data-copy="q6">Copy</button></div><p class="dim small" style="margin:6px 0 0">It always lists Spatial SDK &ldquo;blocking issues&rdquo;. Those are for OS 6 apps and do not affect WebXR.</p></div>
+      </div>
+    </div>
+    <p class="note">The <code>scripts/</code> wrap PICO CLI and adb for you. Snaps land in <code>captures/</code> as both eyes side by side. Full reference: <a href="../docs/PICO-CLI.md">docs/PICO-CLI.md</a></p>
+  </div>
+</section>
+
+<!-- 08 CAN / CAN'T -->
+<section id="s8" data-title="Can and can't">
+  <div class="wrap">
+    <p class="eyebrow">08 <b>What the headset can and can&rsquo;t do</b></p>
+    <h2>Measured on our units</h2>
+    <div class="table-scroll pico-panel" style="padding:8px 12px">
+      <table>
+        <thead><tr><th>Feature in the PICO browser</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Immersive VR and passthrough AR</td><td class="yes">WORKS</td><td class="dim">Both <code>immersive-vr</code> and <code>immersive-ar</code></td></tr>
+          <tr><td>Hand tracking, controllers</td><td class="yes">WORKS</td><td class="dim">Pinch fires the same select event as a trigger</td></tr>
+          <tr><td>Hit test, plane detection, anchors</td><td class="yes">WORKS</td><td class="dim">Anchors persist across sessions</td></tr>
+          <tr><td>Layers</td><td class="yes">WORKS</td><td class="dim">For crisp text panels</td></tr>
+          <tr><td>Camera access, depth, room mesh, light estimation</td><td class="no">REFUSED</td><td class="dim">The browser blocks them. No &ldquo;point a model at the room&rdquo;</td></tr>
+          <tr><td>DOM overlay</td><td class="no">REFUSED</td><td class="dim">Build UI in 3D instead</td></tr>
+          <tr><td>Eye and face tracking</td><td class="no">ABSENT</td><td class="dim">Not on any unit we have</td></tr>
+          <tr><td>Native PICO Spatial SDK apps</td><td class="no">NOT TONIGHT</td><td class="dim">Needs PICO OS 6. Our headsets run an earlier OS</td></tr>
+          <tr><td><code>pico-cli web launch</code></td><td class="no">NOT FOR US</td><td class="dim">Targets OS 6 / the emulator, and installs a 336 MB browser APK on the headset first; not for our headsets</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ETIQUETTE -->
+<section id="s9" data-title="Headset etiquette">
+  <div class="wrap">
+    <p class="eyebrow">09 <b>Headset etiquette</b></p>
+    <h2>Eight headsets, fifty builders</h2>
+    <div class="grid">
+      <div class="pico-panel"><h3>Check out at the table</h3><p class="dim">Name, unit number, waiver. Bring it back to the same table and check in.</p></div>
+      <div class="pico-panel"><h3>5 to 8 minutes</h3><p class="dim">Then hand it on. The next person watches your laptop mirror while they wait.</p></div>
+      <div class="pico-panel"><h3>Have your URL ready</h3><p class="dim">Test on your laptop first. Headset time is for looking, not debugging.</p></div>
+      <div class="pico-panel"><h3>Clear space, wipe the pad</h3><p class="dim">Set the boundary, keep a spotter nearby, wipe the face pad before you hand it back.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 NEXT -->
+<section id="s10" data-title="Next up">
+  <div class="wrap">
+    <p class="eyebrow">10 <b>Next up</b></p>
+    <h2>Put real things in your scene</h2>
+    <div class="grid">
+      <div class="pico-panel stack">
+        <span class="pico-chip" style="align-self:flex-start">Assets lane</span>
+        <h3>Meshy &rarr; Blender MCP &rarr; your scene</h3>
+        <p class="dim small">Generate a model from text or an image with Meshy, clean it up in Blender with Claude driving it over MCP, export a GLB into <code>assets/</code>.</p>
+        <p class="dim small">Higgsfield also turns an image into 3D if you have your own account.</p>
+      </div>
+      <div class="pico-panel stack">
+        <span class="pico-chip" style="align-self:flex-start">Then ask</span>
+        <div class="cmd"><pre id="c-glb">Load assets/model.glb with GLTFLoader, scale it to about 30 cm, and place it on the floor a meter in front of me.</pre><button class="pico-btn copy" data-copy="c-glb">Copy</button></div>
+      </div>
+      <div class="pico-panel stack">
+        <span class="pico-chip" style="align-self:flex-start">Next rooms</span>
+        <h3>Physical AI Agents</h3><p class="dim small">Wed Sep 30 &middot; Vizcom</p>
+        <h3>Impact Lab</h3><p class="dim small">Sat Oct 3</p>
+      </div>
+    </div>
+    <p class="note">Show and tell at 8:20. Two minutes each, in a headset, mirrored on this screen.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  // Fill-ins from the URL: ?wifi=Name&pw=secret&repo=github.com/you/repo
+  var params = new URLSearchParams(location.search);
+  document.querySelectorAll(".fill").forEach(function (el) { if (el.textContent.indexOf("{{") !== 0) el.classList.add("done"); });
+  var fills = { wifi: "Homebrew-Club", pw: "homebrew", repo: "github.com/RayyanZahid/pico-workshops" };
+  Object.keys(fills).forEach(function (key) {
+    var v = params.get(key);
+    if (!v) return;
+    document.querySelectorAll('[data-fill="' + key + '"]').forEach(function (el) { el.textContent = v; el.classList.add("done"); });
+    document.querySelectorAll("pre").forEach(function (pre) {
+      if (pre.textContent.indexOf(fills[key]) !== -1) pre.textContent = pre.textContent.split(fills[key]).join(v);
+    });
+  });
+
+  // Respect reduced motion: show the poster instead of looping video
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll("video[autoplay]").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; });
+  }
+
+  // Copy buttons
+  var toast = document.getElementById("toast"), timer;
+  function say(msg) {
+    toast.textContent = msg; toast.classList.add("show");
+    clearTimeout(timer); timer = setTimeout(function () { toast.classList.remove("show"); }, 1600);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta); return ok;
+  }
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var src = document.getElementById(btn.getAttribute("data-copy"));
+      var text = src.textContent.replace(/\s+\n/g, "\n").trim();
+      function done(ok) {
+        btn.textContent = ok ? "Copied" : "Select";
+        say(ok ? "Copied to clipboard" : "Copy blocked. Select the text and press Ctrl+C");
+        if (!ok) { var r = document.createRange(); r.selectNodeContents(src); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+        setTimeout(function () { btn.textContent = "Copy"; }, 1400);
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+      } else { done(fallbackCopy(text)); }
+    });
+  });
+
+  // Section tracking + arrow keys
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main > section"));
+  var links = Array.prototype.slice.call(document.querySelectorAll(".rail a"));
+  function current() {
+    var mid = window.innerHeight * 0.4, idx = 0;
+    sections.forEach(function (s, i) { if (s.getBoundingClientRect().top <= mid) idx = i; });
+    return idx;
+  }
+  function mark() {
+    var i = current();
+    links.forEach(function (a, j) { a.classList.toggle("on", i === j); });
+  }
+  // While a smooth scroll is in flight, the next key press counts from where it is heading
+  var target = null, settle;
+  window.addEventListener("scroll", function () {
+    mark();
+    clearTimeout(settle); settle = setTimeout(function () { target = null; }, 180);
+  }, { passive: true });
+  mark();
+  function go(i) {
+    i = Math.max(0, Math.min(sections.length - 1, i));
+    target = i;
+    sections[i].scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    history.replaceState(null, "", location.pathname + location.search + "#" + sections[i].id);
+  }
+  document.addEventListener("keydown", function (e) {
+    var t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    if (e.key === " " && t && (t.tagName === "BUTTON" || t.tagName === "A")) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var i = target !== null ? target : current();
+    if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey)) { e.preventDefault(); go(i + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp" || (e.key === " " && e.shiftKey)) { e.preventDefault(); go(i - 1); }
+    else if (e.key === "Home") { e.preventDefault(); go(0); }
+    else if (e.key === "End") { e.preventDefault(); go(sections.length - 1); }
+  });
+})();
+</script>
+</body>
+</html>

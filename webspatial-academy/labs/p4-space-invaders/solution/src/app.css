@@ -1,0 +1,359 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--pico-grad-hero);
+  color: var(--pico-ink);
+  font-family: var(--pico-font-body);
+}
+
+/* SPATIAL { */
+/* The window itself is glass, and in the headset we stop painting over it. */
+html {
+  --xr-background-material: translucent;
+}
+html.is-spatial body {
+  background: transparent;
+}
+/* SPATIAL } */
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: var(--pico-gap);
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--pico-gap);
+  width: 720px;
+  max-width: 100%;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.stats dt {
+  color: var(--pico-ink-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stats dd {
+  margin: 0;
+  font-family: var(--pico-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- playfield ---------- */
+
+.playfield {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--pico-rule);
+  border-radius: var(--pico-radius);
+  background: color-mix(in srgb, var(--pico-bg) 70%, transparent);
+}
+
+/* SPATIAL { */
+/* In the headset the playfield is a faint frame on the glass window; every game layer
+   floats in front of it. It is deliberately NOT a spatial element, because the layers
+   inside it would then be nested spatial elements, which did not render on PICO OS 6.0.0. */
+html.is-spatial .playfield {
+  background: color-mix(in srgb, var(--pico-bg) 25%, transparent);
+}
+/* SPATIAL } */
+
+/* SPATIAL { */
+/* position: absolute (below) is also what lets --xr-back apply to every layer. */
+/* SPATIAL } */
+/* Everything that moves sits at 0,0 and is moved with transform from the game loop. */
+.row,
+.invader,
+.shields,
+.shield,
+.block,
+.ship,
+.ufo,
+.shot,
+.bomb {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.row {
+  height: 24px;
+}
+
+/* Invaders: three original pixel silhouettes drawn with clip-path, eyes cut from the theme. */
+.invader {
+  width: 34px;
+  height: 24px;
+  background:
+    radial-gradient(circle at 32% 46%, var(--pico-bg) 0 2.6px, transparent 3px),
+    radial-gradient(circle at 68% 46%, var(--pico-bg) 0 2.6px, transparent 3px),
+    var(--kind);
+}
+
+.kind-0 {
+  --kind: var(--pico-accent-2);
+  clip-path: polygon(38% 0, 62% 0, 62% 12%, 76% 12%, 76% 30%, 90% 30%, 90% 62%, 76% 62%, 76% 78%, 90% 78%, 90% 100%, 70% 100%, 62% 84%, 38% 84%, 30% 100%, 10% 100%, 10% 78%, 24% 78%, 24% 62%, 10% 62%, 10% 30%, 24% 30%, 24% 12%, 38% 12%);
+}
+
+.kind-1,
+.kind-2 {
+  --kind: var(--pico-glow);
+  clip-path: polygon(12% 0, 24% 0, 24% 14%, 76% 14%, 76% 0, 88% 0, 88% 28%, 100% 28%, 100% 72%, 88% 72%, 88% 100%, 72% 100%, 72% 84%, 28% 84%, 28% 100%, 12% 100%, 12% 72%, 0 72%, 0 28%, 12% 28%);
+}
+
+.kind-3,
+.kind-4 {
+  --kind: var(--pico-accent);
+  clip-path: polygon(30% 0, 70% 0, 70% 10%, 94% 10%, 100% 30%, 100% 66%, 82% 66%, 90% 88%, 100% 100%, 80% 100%, 64% 80%, 36% 80%, 20% 100%, 0 100%, 10% 88%, 18% 66%, 0 66%, 0 30%, 6% 10%, 30% 10%);
+}
+
+.invader.dying {
+  --kind: var(--pico-ink);
+  transform: scale(1.25);
+}
+
+.invader.gone {
+  visibility: hidden;
+}
+
+.shields {
+  width: 100%;
+}
+
+.block {
+  width: 8px;
+  height: 8px;
+  background: var(--pico-ok);
+}
+
+.ship {
+  width: 44px;
+  height: 20px;
+  background: var(--pico-accent-fill);
+  box-shadow: 0 0 12px var(--pico-glow);
+  clip-path: polygon(0 100%, 0 55%, 38% 55%, 42% 20%, 50% 0, 58% 20%, 62% 55%, 100% 55%, 100% 100%);
+}
+
+.ufo {
+  width: 48px;
+  height: 20px;
+  border-radius: 50% 50% 30% 30% / 70% 70% 30% 30%;
+  background:
+    radial-gradient(circle at 25% 72%, var(--pico-bg) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 50% 72%, var(--pico-bg) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 75% 72%, var(--pico-bg) 0 2px, transparent 2.5px),
+    var(--pico-danger);
+  visibility: hidden;
+}
+
+.shot {
+  width: 4px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--pico-ink);
+  box-shadow: 0 0 10px var(--pico-glow);
+  visibility: hidden;
+}
+
+.bomb {
+  width: 6px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--pico-warn);
+  box-shadow: 0 0 8px var(--pico-warn);
+  visibility: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pico-gap);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.overlay-title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* ---------- controls ---------- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 720px;
+  max-width: 100%;
+}
+
+.controls .pico-btn {
+  position: relative;
+  min-height: 44px;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  user-select: none;
+  touch-action: none;
+}
+
+.pad {
+  min-width: var(--pico-target);
+}
+
+.fire {
+  min-width: 96px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.keys {
+  margin: 0;
+  color: var(--pico-ink-dim);
+  font-size: 0.85rem;
+}
+
+/* SPATIAL { */
+/* ---------- HUD and hall-of-fame windows ---------- */
+
+/* The HUD and hall of fame stay flat on their own glass window. As one big enable-xr panel
+   the HUD came up blank in the PICO OS 6.0.0 emulator, like p2's schedule rows. */
+.hud {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 100vh;
+  border-radius: var(--pico-radius-lg);
+}
+
+.hud-score {
+  font-family: var(--pico-font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-grid {
+  display: flex;
+  gap: 32px;
+  margin: 0;
+}
+
+.hud-grid dt {
+  color: var(--pico-ink-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hud-grid dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.hud-lives {
+  color: var(--pico-ok);
+  letter-spacing: 0.2em;
+}
+
+.hud-final {
+  margin: 0;
+  color: var(--pico-danger);
+  font-weight: 600;
+}
+
+.hud-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hud-wait {
+  color: var(--pico-ink-dim);
+}
+
+.fame-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.fame {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fame li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--pico-surface);
+}
+
+.fame li.fresh {
+  background: color-mix(in srgb, var(--pico-accent) 28%, transparent);
+}
+
+.fame-rank,
+.fame-wave {
+  color: var(--pico-ink-dim);
+  font-size: 0.85rem;
+}
+
+.fame-score {
+  font-family: var(--pico-font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+/* SPATIAL } */

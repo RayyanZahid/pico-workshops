@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.vite/
+captures/
+.env
+.env.*
+*.log
+.vercel
+
+.vercel

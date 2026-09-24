@@ -1,0 +1,10 @@
+.runtime-badge {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 50;
+  max-width: calc(100vw - 24px);
+  background: var(--pico-surface-2);
+  font-size: 0.8rem;
+  pointer-events: none;
+}

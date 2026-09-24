@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PICO WebSpatial Academy</title>
+<meta name="description" content="Beginner to expert workshop deck: spatialize a website with WebSpatial, run it in the PICO OS 6 emulator, and let Claude Code do the work. {{COUNT}} slides, levels L0 to L5.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%234200ff%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22none%22 stroke=%22white%22 stroke-width=%223%22/%3E%3C/svg%3E">
+<link rel="alternate" type="text/markdown" href="slides.md" title="Deck as markdown">
+<link rel="alternate" type="application/json" href="deck.json" title="Deck as structured JSON">
+<link rel="help" href="llms.txt">
+<link rel="stylesheet" href="../theme/pico.css">
+<style>
+  /* Layout only. Every colour, font, radius and type size comes from ../theme/pico.css. */
+  * { box-sizing: border-box; }
+  html { background: var(--pico-bg); }
+  body {
+    margin: 0; background: var(--pico-bg); color: var(--pico-ink);
+    font-family: var(--pico-font-body); font-size: var(--pico-step-0); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--pico-accent); }
+  :focus-visible { outline: 2px solid var(--pico-glow); outline-offset: 3px; }
+  code, pre, kbd { font-family: var(--pico-font-mono); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 50; }
+  .skip:focus { left: 16px; }
+
+  /* ---------- top bar: the picoxr.com nav, wordmark left, links right ---------- */
+  .topbar {
+    position: fixed; inset: 0 0 auto 0; z-index: 20; height: 64px;
+    display: flex; align-items: center; gap: var(--pico-gap);
+    padding: 0 max(16px, calc((100vw - 1500px) / 2));
+    background: color-mix(in srgb, var(--pico-bg) 86%, transparent);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--pico-rule);
+  }
+  .wordmark { display: flex; align-items: baseline; gap: 12px; text-decoration: none; color: var(--pico-ink); white-space: nowrap; }
+  .wordmark b { font: 800 26px/1 var(--pico-font-display); letter-spacing: 0.02em; }
+  .wordmark span { font: 500 15px/1 var(--pico-font-body); color: var(--pico-ink-dim); }
+  .topbar nav { margin-left: auto; }
+  .topnav { display: flex; gap: 4px; list-style: none; padding: 0; margin-block: 0; }
+  .topnav a {
+    display: inline-flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: var(--pico-radius-pill);
+    font: 500 15px/1 var(--pico-font-body); color: var(--pico-ink-faint); text-decoration: none; white-space: nowrap;
+  }
+  .topnav a:hover { color: var(--pico-ink); }
+  .topnav .nm { margin-left: 6px; }
+  @media (max-width: 1400px) { .topnav .nm { display: none; } }
+  .topnav a[aria-current="true"] { color: var(--pico-ink); background: var(--pico-surface); }
+  .progress { position: fixed; left: 0; right: 0; top: 64px; height: 3px; z-index: 21; background: transparent; }
+  .progress i { display: block; height: 100%; background: var(--pico-accent); transform-origin: 0 50%; transform: scaleX(0); transition: transform .25s var(--pico-ease); }
+
+  /* ---------- HUD: counter + controls, bottom right ---------- */
+  .hud {
+    position: fixed; right: max(16px, calc((100vw - 1500px) / 2)); bottom: 16px; z-index: 20;
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px; border-radius: var(--pico-radius-pill);
+    background: color-mix(in srgb, var(--pico-bg) 80%, transparent);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--pico-rule);
+  }
+  .hud .pico-btn { min-height: 40px; min-width: 44px; padding: 6px 16px; font-size: 15px; }
+  .hud-count { font: 500 15px/1 var(--pico-font-mono); color: var(--pico-ink-dim); padding: 0 8px; font-variant-numeric: tabular-nums; }
+  .hud [aria-pressed="true"] { background: var(--pico-accent-fill); color: #fff; box-shadow: none; }
+
+  /* ---------- slides ---------- */
+  .slide { position: relative; min-height: 100vh; min-height: 100svh; display: flex; border-bottom: 1px solid var(--pico-rule); }
+  .slide-inner {
+    width: 100%; max-width: 1500px; margin: 0 auto;
+    padding: calc(64px + 4vh) max(16px, 4vw) calc(72px + 3vh);
+    display: flex; flex-direction: column; justify-content: safe center;
+  }
+  .slide-title { font-size: var(--pico-step-3); margin: 0 0 0.35em; text-wrap: balance; }
+  .pico-eyebrow { margin: 0 0 18px; font-variant-numeric: tabular-nums; }
+  .lead { font: 500 var(--pico-step-1)/1.4 var(--pico-font-body); color: var(--pico-ink-dim); margin: 0 0 1em; max-width: 46ch; text-wrap: pretty; }
+  .body { max-width: 62ch; }
+  .body p { margin: 0 0 0.8em; color: var(--pico-ink-dim); text-wrap: pretty; }
+  .body strong { color: var(--pico-ink); font-weight: 600; }
+  .body ul, .body ol { margin: 0 0 0.8em; padding-left: 1.2em; color: var(--pico-ink-dim); }
+  .body li { margin: 0.25em 0; }
+  .body li::marker { color: var(--pico-accent); }
+  .body h3, .body h4 { font: 700 var(--pico-step-1)/1.2 var(--pico-font-display); color: var(--pico-ink); margin: 0.6em 0 0.3em; }
+  .body code, .lead code, .action code, .check-panel code { font-size: 0.86em; padding: 1px 6px; border-radius: 6px; background: var(--pico-surface-2); color: var(--pico-ink); overflow-wrap: anywhere; }
+  .body a { color: var(--pico-accent); }
+
+  /* cover + level openers: the picoxr.com hero, big type left on dark imagery */
+  .slide--cover, .slide--level { background: var(--pico-grad-hero); }
+  .cover .slide-title { font-size: var(--pico-step-5); line-height: 1.02; letter-spacing: -0.02em; max-width: 12ch; }
+  .cover .lead { font-size: var(--pico-step-2); color: var(--pico-ink); max-width: 30ch; }
+  .slide--level .slide-title { font-size: var(--pico-step-4); max-width: 18ch; }
+  .slide--level::after {
+    content: attr(data-lvlmark); position: absolute; right: max(16px, 4vw); bottom: 4vh; pointer-events: none;
+    font: 800 clamp(8rem, 24vw, 30rem)/0.8 var(--pico-font-display); color: var(--pico-rule); letter-spacing: -0.04em;
+  }
+  .slide--level .slide-inner { position: relative; z-index: 1; }
+  .slide--level:has(.concept--split)::after { display: none; }
+  .concept .body { max-width: 70ch; }
+  .concept .body ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22ch), 1fr)); gap: var(--pico-gap); list-style: none; padding: 0; max-width: none; }
+  .concept .body ul li {
+    margin: 0; padding: 18px 22px; border-radius: var(--pico-radius); background: var(--pico-surface); border: 1px solid var(--pico-rule);
+    color: var(--pico-ink); font-size: var(--pico-step--1); line-height: 1.45;
+  }
+
+  /* agenda: centred section title + product-card grid, like "New Release" */
+  .center-head { text-align: center; margin-bottom: 3vh; }
+  .center-head .lead { margin-inline: auto; }
+  .lvl-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .lvl-card a { display: flex; flex-direction: column; height: 100%; border-radius: var(--pico-radius); overflow: hidden; text-decoration: none; color: var(--pico-ink); background: var(--pico-surface); border: 1px solid var(--pico-rule); transition: transform .2s var(--pico-ease), border-color .2s; }
+  .lvl-card a:hover { transform: translateY(-4px); border-color: var(--pico-accent); }
+  .lvl-num { display: flex; align-items: flex-end; min-height: 9vh; padding: 16px 24px; background: var(--pico-grad-hero); font: 800 var(--pico-step-4)/0.9 var(--pico-font-display); letter-spacing: -0.03em; }
+  .lvl-body { display: flex; flex-direction: column; gap: 6px; padding: 18px 24px 22px; }
+  .lvl-name { font: 700 var(--pico-step-1)/1.2 var(--pico-font-display); }
+  .lvl-meta { font-size: var(--pico-step--1); color: var(--pico-ink-dim); }
+  .body--center { margin: 3vh auto 0; text-align: center; }
+
+  /* step: text + command left, emulator screenshot + expected result right */
+  .step { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 72px); align-items: center; }
+  .step--solo { grid-template-columns: minmax(0, 1fr); max-width: 1100px; }
+  .step .slide-title { font-size: var(--pico-step-3); }
+  .action { margin: 0 0 1em; font: 600 var(--pico-step-1)/1.35 var(--pico-font-body); color: var(--pico-ink); text-wrap: pretty; }
+  .action-k { display: inline-block; vertical-align: 0.15em; margin-right: 8px; padding: 3px 12px; border-radius: var(--pico-radius-pill); background: var(--pico-accent-fill); color: #fff; font: 600 var(--pico-step--1)/1.3 var(--pico-font-body); letter-spacing: .04em; text-transform: uppercase; }
+  .concept--split .slide-title { font-size: var(--pico-step-3); }
+  .concept--split .body ul { padding-left: 1.2em; }
+  .concept--split .shot img, .concept--split .shot video { max-height: 64vh; object-position: top; }
+  .step-r { display: flex; flex-direction: column; gap: var(--pico-gap); min-width: 0; }
+
+  /* code, prompt, expected output */
+  .code { margin: 0 0 var(--pico-gap); border-radius: var(--pico-radius); background: var(--pico-surface-2); border: 1px solid var(--pico-rule); overflow: hidden; }
+  .code-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 6px 6px 18px; border-bottom: 1px solid var(--pico-rule); }
+  .code-label { font: 600 var(--pico-step--1)/1 var(--pico-font-body); color: var(--pico-ink-dim); letter-spacing: .04em; text-transform: uppercase; }
+  .code--prompt .code-label { color: var(--pico-accent); }
+  .copy {
+    min-height: 40px; min-width: 76px; padding: 0 16px; border-radius: var(--pico-radius-pill); cursor: pointer;
+    background: transparent; color: var(--pico-accent); border: 0; box-shadow: inset 0 0 0 1px var(--pico-accent);
+    font: 600 15px/1 var(--pico-font-body);
+  }
+  .copy:hover { background: color-mix(in srgb, var(--pico-accent) 14%, transparent); }
+  .copy.is-done { color: var(--pico-ok); box-shadow: inset 0 0 0 1px var(--pico-ok); }
+  .code pre { margin: 0; padding: 16px 18px; overflow-x: auto; }
+  .code code { font-size: var(--pico-step--1); line-height: 1.5; color: var(--pico-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .code--cmd code::before { content: "$ "; color: var(--pico-ink-faint); user-select: none; }
+  .code--prompt code { font-family: var(--pico-font-body); overflow-wrap: break-word; }
+  /* What you see is what you paste: no => arrow ligatures in prompts or code */
+  .code code, .body code { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+  .expect { border-radius: var(--pico-radius); border: 1px dashed var(--pico-rule); padding: 14px 18px; }
+  .expect-h { margin: 0 0 8px; font: 600 var(--pico-step--1)/1 var(--pico-font-body); color: var(--pico-ok); letter-spacing: .04em; text-transform: uppercase; }
+  .expect pre { margin: 0; font: 400 var(--pico-step--1)/1.5 var(--pico-font-body); white-space: pre-wrap; color: var(--pico-ink); }
+
+  /* screenshots: product-photo framing, 16px radius, caption under */
+  .shot { margin: 0; }
+  .shot img, .shot video { display: block; width: 100%; height: auto; max-height: 52vh; object-fit: contain; border-radius: var(--pico-radius); background: var(--pico-surface); border: 1px solid var(--pico-rule); }
+  .shot figcaption { margin-top: 8px; font-size: var(--pico-step--1); color: var(--pico-ink-faint); }
+  .shot-ph { aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 24px; border-radius: var(--pico-radius); background: var(--pico-grad-hero); border: 1px dashed var(--pico-rule); color: var(--pico-ink-dim); font-size: var(--pico-step--1); }
+  .shot--missing figcaption { display: none; }
+
+  /* checkpoint + lab */
+  .checkpoint { max-width: 1100px; }
+  .check-panel { margin-bottom: var(--pico-gap); }
+  .check-panel ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .check-panel li { position: relative; padding-left: 44px; color: var(--pico-ink); }
+  .check-panel li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 26px; height: 26px; border-radius: 8px; box-shadow: inset 0 0 0 2px var(--pico-ok); }
+  .check-panel p { margin: 0.6em 0 0; color: var(--pico-ink-dim); }
+  .slide--lab { background: linear-gradient(180deg, transparent, var(--pico-surface)); }
+  .lab { max-width: 1100px; }
+  .lab--fig { max-width: none; }
+  .lab--fig .slide-title { font-size: var(--pico-step-3); }
+  .cta { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin: 1em 0 0; }
+
+  /* pair: two screenshots side by side */
+  .pair .slide-title { font-size: var(--pico-step-3); }
+  .pair-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 1vh 0 1.5vh; }
+  .pair-figs .shot img, .pair-figs .shot video { max-height: 42vh; }
+  .pair .body { max-width: none; }
+  @media (max-width: 899px) { .pair-figs { grid-template-columns: 1fr; } }
+
+  /* compare: two panes, before -> after (browser tab vs Web App) */
+  .compare .slide-title { font-size: var(--pico-step-3); }
+  .panes { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch; margin: 1vh 0 2vh; }
+  .pane { padding: clamp(20px, 2.4vw, 40px); border-radius: var(--pico-radius-lg); border: 1px solid var(--pico-rule); background: var(--pico-surface); }
+  .pane--on { background: var(--pico-grad-hero); border-color: var(--pico-accent); }
+  .pane-h { margin: 0 0 10px; font: 700 var(--pico-step-2)/1.1 var(--pico-font-display); color: var(--pico-ink); }
+  .pane p, .pane li { color: var(--pico-ink-dim); font-size: var(--pico-step-0); line-height: 1.45; }
+  .pane strong { color: var(--pico-ink); }
+  .pane ul { padding-left: 1.1em; margin: 0; }
+  .pane li::marker { color: var(--pico-accent); }
+  .pane code { font-size: 0.86em; padding: 1px 6px; border-radius: 6px; background: var(--pico-surface-2); color: var(--pico-ink); }
+  .pane-arrow { align-self: center; font: 700 var(--pico-step-4)/1 var(--pico-font-display); color: var(--pico-accent); }
+  @media (max-width: 899px) { .panes { grid-template-columns: 1fr; } .pane-arrow { transform: rotate(90deg); justify-self: center; } }
+
+  /* verbatim quote (partner slides) */
+  .body blockquote { margin: 0 0 1em; padding: 18px 26px; border-left: 3px solid var(--pico-accent); border-radius: 0 var(--pico-radius) var(--pico-radius) 0; background: var(--pico-surface); }
+  .body blockquote p { margin: 0.2em 0; color: var(--pico-ink); font-size: var(--pico-step-1); }
+  .body blockquote p:first-child { font-weight: 700; letter-spacing: 0.04em; }
+
+  /* tables (layer budget, troubleshooting) */
+  .table-wrap { overflow-x: auto; margin: 0 0 0.8em; border-radius: var(--pico-radius); border: 1px solid var(--pico-rule); }
+  .body table { width: 100%; border-collapse: collapse; font-size: var(--pico-step--1); line-height: 1.4; }
+  .body th, .body td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--pico-rule); }
+  .body th { color: var(--pico-ink); font-weight: 600; background: var(--pico-surface); }
+  .body td { color: var(--pico-ink-dim); }
+  .body td:first-child { color: var(--pico-ink); }
+  .body tr:last-child td { border-bottom: 0; }
+  .concept .body:has(table), .warning .body:has(table) { max-width: none; }
+  .shot-credit { display: block; margin-top: 4px; font-size: 0.85em; color: var(--pico-ink-faint); }
+
+  /* cover logistics */
+  .logistics { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-top: 2vh; }
+  .logistics .wifi { margin: 0; }
+  .wifi a { color: var(--pico-ink); text-decoration: none; }
+  .wifi a:hover strong { color: var(--pico-accent); }
+  .wifi { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; margin: 2vh 0 0; padding: 14px 22px; border-radius: var(--pico-radius-pill); border: 1px solid var(--pico-rule); background: var(--pico-surface); font-size: var(--pico-step-1); }
+  .wifi .pico-eyebrow { margin: 0; }
+  .wifi strong { font-family: var(--pico-font-mono); font-weight: 600; color: var(--pico-ink); }
+  .wifi-k { color: var(--pico-ink-dim); font-size: var(--pico-step-0); }
+
+  /* warning: one loud fact, the PICO pill turned amber */
+  .warning { max-width: 1200px; padding: clamp(20px, 3vw, 44px); border-radius: var(--pico-radius-lg); border: 2px solid var(--pico-warn); background: color-mix(in srgb, var(--pico-warn) 10%, transparent); }
+  .warning .pico-eyebrow { color: var(--pico-warn); }
+  .warning .slide-title { font-size: var(--pico-step-3); }
+  .warning .body { max-width: 60ch; }
+  .warning .body strong { color: var(--pico-warn); }
+
+  /* diagram slide: the picture is the slide */
+  .diagram-slide .slide-title { font-size: var(--pico-step-3); margin-bottom: 0.2em; }
+  .diagram-slide .diagram { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .diagram-slide .diagram svg { max-height: 58vh; }
+  .diagram-slide .diagram figcaption { font-size: var(--pico-step--1); margin: 0; }
+  .diagram-slide .body { margin-top: 1vh; max-width: 90ch; }
+  @media (max-width: 899px) { .diagram-slide .diagram { grid-template-columns: 1fr; } }
+
+  /* diagrams: inline SVG, coloured from theme tokens */
+  .diagram { margin: 0; }
+  .diagram svg { display: block; width: 100%; height: auto; max-height: 64vh; }
+  .diagram figcaption { margin-top: 10px; font-size: var(--pico-step--1); color: var(--pico-ink-dim); line-height: 1.45; }
+
+  /* TODO chips and speaker notes */
+  .todos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .todos .pico-chip { max-width: 100%; overflow-wrap: anywhere; }
+  .notes { display: none; margin-top: var(--pico-gap); padding: 16px 20px; border-radius: var(--pico-radius); background: var(--pico-surface); border-left: 3px solid var(--pico-accent); font-size: var(--pico-step--1); color: var(--pico-ink-dim); max-width: 100ch; }
+  .notes h3 { margin: 0 0 6px; font: 600 var(--pico-step--1)/1 var(--pico-font-body); color: var(--pico-accent); text-transform: uppercase; letter-spacing: .06em; }
+  .notes p { margin: 0 0 0.5em; }
+  body.notes-on .notes { display: block; }
+
+  /* level index overlay */
+  .index { position: fixed; inset: 0; z-index: 40; display: none; place-items: center; background: color-mix(in srgb, var(--pico-bg) 70%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px; }
+  .index.open { display: grid; }
+  .index .pico-panel { width: min(720px, 100%); max-height: 90vh; overflow: auto; background: var(--pico-surface-2); }
+  .index h2 { margin: 0 0 16px; font-size: var(--pico-step-2); }
+  .index ol { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 6px; }
+  .index ol a { display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 6px 14px; border-radius: 12px; text-decoration: none; color: var(--pico-ink); font-size: var(--pico-step-0); }
+  .index ol a:hover, .index ol a:focus-visible { background: var(--pico-surface); }
+  .keys { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: var(--pico-step--1); color: var(--pico-ink-dim); margin: 0 0 16px; }
+  .keys dt { white-space: nowrap; }
+  .keys dd { margin: 0; }
+
+  /* ---------- projector / laptop: one slide per screen ---------- */
+  @media (min-width: 900px) and (min-height: 620px) {
+    html { scroll-snap-type: y mandatory; }
+    .slide { height: 100vh; height: 100svh; scroll-snap-align: start; overflow: hidden; }
+    /* Notes make a slide taller than the screen: let it grow instead of clipping. */
+    html:has(body.notes-on) { scroll-snap-type: y proximity; }
+    body.notes-on .slide { height: auto; min-height: 100vh; overflow: visible; }
+  }
+  /* ---------- phone / narrow: a scrolling follow-along ---------- */
+  @media (max-width: 899px) {
+    .topnav { display: none; }
+    .wordmark span { display: none; }
+    .step { grid-template-columns: minmax(0, 1fr); }
+    .lvl-grid { grid-template-columns: 1fr; gap: 12px; }
+    .lvl-num { min-height: 0; padding-top: 28px; }
+    .slide { min-height: 0; }
+    .slide-inner { padding: 96px 16px 112px; }
+    .slide--cover { min-height: 100svh; }
+    .slide--level::after { font-size: 9rem; bottom: 8px; }
+    .hud { left: 16px; right: 16px; justify-content: space-between; }
+    #notes-btn { display: none; }
+  }
+  @media (max-width: 1280px) and (min-width: 900px) { .lvl-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  @media print {
+    .topbar, .progress, .hud, .index, .copy { display: none !important; }
+    .slide { height: auto; min-height: 0; page-break-after: always; overflow: visible; }
+    .notes { display: block; }
+  }
+</style>
+</head>
+<body>
+<a class="skip pico-btn" href="#deck">Skip to slides</a>
+<header class="topbar">
+  <a class="wordmark" href="#intro-s1" aria-label="PICO WebSpatial Academy, first slide"><b>PICO</b><span>WebSpatial Academy</span></a>
+  <nav aria-label="Levels"><ul class="topnav" id="topnav">{{TOP_NAV}}</ul></nav>
+</header>
+<div class="progress" role="progressbar" aria-label="Deck progress" aria-valuemin="1" aria-valuemax="{{COUNT}}" aria-valuenow="1"><i id="bar"></i></div>
+
+<main id="deck" tabindex="-1">
+{{SLIDES}}
+</main>
+
+<div class="hud" role="toolbar" aria-label="Slide controls">
+  <button type="button" class="pico-btn pico-btn--ghost" id="prev" aria-label="Previous slide">&#8249;</button>
+  <span class="hud-count" id="count" aria-live="polite">1 / {{COUNT}}</span>
+  <button type="button" class="pico-btn pico-btn--ghost" id="next" aria-label="Next slide">&#8250;</button>
+  <button type="button" class="pico-btn pico-btn--ghost" id="notes-btn" aria-pressed="false" title="Speaker notes (N)">Notes</button>
+  <button type="button" class="pico-btn pico-btn--ghost" id="index-btn" title="Level index (I)">Index</button>
+</div>
+
+<div class="index" id="index" role="dialog" aria-modal="true" aria-labelledby="index-h">
+  <div class="pico-panel">
+    <h2 id="index-h" class="pico-display">Levels</h2>
+    <ol>{{LEVEL_INDEX}}</ol>
+    <dl class="keys">
+      <dt><span class="pico-kbd">&rarr;</span> <span class="pico-kbd">Space</span></dt><dd>next slide</dd>
+      <dt><span class="pico-kbd">&larr;</span> <span class="pico-kbd">Shift+Space</span></dt><dd>previous slide</dd>
+      <dt><span class="pico-kbd">0</span>&ndash;<span class="pico-kbd">5</span></dt><dd>jump to that level</dd>
+      <dt><span class="pico-kbd">Home</span> <span class="pico-kbd">End</span></dt><dd>first / last slide</dd>
+      <dt><span class="pico-kbd">N</span></dt><dd>speaker notes on / off</dd>
+      <dt><span class="pico-kbd">I</span> <span class="pico-kbd">Esc</span></dt><dd>this index</dd>
+    </dl>
+    <button type="button" class="pico-btn" id="index-close">Close</button>
+  </div>
+</div>
+<p class="sr-only" id="live" aria-live="polite"></p>
+
+<script>
+(() => {
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const bar = document.getElementById("bar");
+  const count = document.getElementById("count");
+  const progress = document.querySelector(".progress");
+  const live = document.getElementById("live");
+  const indexEl = document.getElementById("index");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let cur = 0;
+
+  slides.forEach((s) => { if (s.classList.contains("slide--level")) s.dataset.lvlmark = "L" + s.dataset.level; });
+
+  function paint(i) {
+    cur = i;
+    const s = slides[i];
+    bar.style.transform = "scaleX(" + ((i + 1) / slides.length) + ")";
+    count.textContent = (i + 1) + " / " + slides.length;
+    progress.setAttribute("aria-valuenow", String(i + 1));
+    document.querySelectorAll("[data-nav-level]").forEach((a) => a.setAttribute("aria-current", String(a.dataset.navLevel === s.dataset.level)));
+    if (location.hash !== "#" + s.id) history.replaceState(null, "", "#" + s.id);
+  }
+  let navLock = 0;
+  function go(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    const smooth = !reduce && Math.abs(i - cur) === 1;
+    navLock = Date.now() + (smooth ? 900 : 150);
+    slides[i].scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    paint(i);
+    const t = slides[i].querySelector("h1, h2");
+    live.textContent = "Slide " + (i + 1) + " of " + slides.length + ": " + (t ? t.textContent : "");
+  }
+  // Track the slide under the upper third of the viewport (works for tall phone slides too).
+  let ticking = false;
+  addEventListener("scroll", () => {
+    if (ticking || Date.now() < navLock) return; ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const line = innerHeight * 0.35;
+      let i = 0;
+      for (let k = 0; k < slides.length; k++) { if (slides[k].getBoundingClientRect().top <= line) i = k; else break; }
+      if (i !== cur) paint(i);
+    });
+  }, { passive: true });
+
+  const levelStart = (n) => slides.findIndex((s) => s.dataset.level === String(n));
+  function toggleNotes(force) {
+    const on = document.body.classList.toggle("notes-on", force);
+    document.getElementById("notes-btn").setAttribute("aria-pressed", String(on));
+    try { localStorage.setItem("pwa-notes", on ? "1" : "0"); } catch (e) {}
+  }
+  function toggleIndex(force) {
+    const open = indexEl.classList.toggle("open", force);
+    if (open) { const a = indexEl.querySelector("ol a"); if (a) a.focus(); }
+  }
+
+  addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea") return;
+    const onControl = tag === "button" || tag === "a";
+    const k = e.key;
+    if (indexEl.classList.contains("open")) { if (k === "Escape" || k === "i" || k === "I") { e.preventDefault(); toggleIndex(false); } return; }
+    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || (k === " " && !e.shiftKey && !onControl)) { e.preventDefault(); go(cur + 1); }
+    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || (k === " " && e.shiftKey && !onControl)) { e.preventDefault(); go(cur - 1); }
+    else if (k === "Home") { e.preventDefault(); go(0); }
+    else if (k === "End") { e.preventDefault(); go(slides.length - 1); }
+    else if (/^[0-5]$/.test(k)) { const i = levelStart(k); if (i >= 0) { e.preventDefault(); go(i); } }
+    else if (k === "n" || k === "N") { e.preventDefault(); toggleNotes(); }
+    else if (k === "i" || k === "I") { e.preventDefault(); toggleIndex(true); }
+  });
+
+  document.getElementById("prev").addEventListener("click", () => go(cur - 1));
+  document.getElementById("next").addEventListener("click", () => go(cur + 1));
+  document.getElementById("notes-btn").addEventListener("click", () => toggleNotes());
+  document.getElementById("index-btn").addEventListener("click", () => toggleIndex(true));
+  document.getElementById("index-close").addEventListener("click", () => toggleIndex(false));
+  indexEl.addEventListener("click", (e) => { if (e.target === indexEl) toggleIndex(false); });
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const i = slides.findIndex((s) => "#" + s.id === a.getAttribute("href"));
+    if (i < 0) return;
+    e.preventDefault(); toggleIndex(false); go(i);
+  });
+
+  // Copy buttons: clipboard API, with a textarea fallback for file:// and older browsers.
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+    ta.remove(); return ok;
+  }
+  document.querySelectorAll("button.copy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const ok = await copyText(el.textContent);
+      btn.textContent = ok ? "Copied" : "Select + copy";
+      btn.classList.toggle("is-done", ok);
+      live.textContent = ok ? "Copied to clipboard" : "Copy failed, select the text";
+      if (!ok) { const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("is-done"); }, 1600);
+    });
+  });
+
+  // Clips play only while their slide is on screen (so a phone doesn't download every clip at once),
+  // and never auto-play for people who asked for reduced motion: they get controls instead.
+  const clips = document.querySelectorAll("video[data-autoplay]");
+  if (reduce) clips.forEach((v) => { v.controls = true; });
+  else if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.play().catch(() => { e.target.controls = true; }); } else e.target.pause();
+    }), { threshold: 0.5 });
+    clips.forEach((v) => io.observe(v));
+  } else clips.forEach((v) => { v.autoplay = true; });
+
+  try { if (localStorage.getItem("pwa-notes") === "1") toggleNotes(true); } catch (e) {}
+  if (new URLSearchParams(location.search).has("notes")) toggleNotes(true);
+  const start = slides.findIndex((s) => "#" + s.id === location.hash);
+  if (start > 0) { slides[start].scrollIntoView({ block: "start" }); paint(start); } else paint(0);
+})();
+</script>
+</body>
+</html>

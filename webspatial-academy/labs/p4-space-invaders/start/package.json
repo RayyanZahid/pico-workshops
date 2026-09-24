@@ -1,0 +1,26 @@
+{
+  "name": "p4-space-invaders-start",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5304",
+    "dev:xr": "vite --host 0.0.0.0 --port 5304",
+    "build": "tsc --noEmit && vite build",
+    "build:xr": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5304",
+    "preview:xr": "vite preview --host 0.0.0.0 --port 5304"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  }
+}

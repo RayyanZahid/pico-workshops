@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PICO Workshops</title>
+<meta name="description" content="Claude for Spatial Computing, Homebrew Club SF, 2026-09-24: every deck, guide, lab and setup file for the PICO workshops in one place.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%234200ff%22/%3E%3C/svg%3E">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Agent index">
+<link rel="stylesheet" href="webspatial-academy/theme/pico.css">
+<style>
+  body { margin: 0; background: var(--pico-bg); color: var(--pico-ink); font-family: var(--pico-font-body); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 48px 16px 96px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .mark { font-family: var(--pico-font-display); font-weight: 700; font-size: 22px; letter-spacing: .02em; }
+  .hero { padding: 56px 0 24px; }
+  .hero h1 { font-family: var(--pico-font-display); font-size: clamp(40px, 7vw, 88px); line-height: 1.02; margin: 12px 0 16px; letter-spacing: -0.01em; }
+  .hero p { color: var(--pico-ink-dim); font-size: 19px; max-width: 64ch; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  section { margin-top: 56px; }
+  section > h2 { font-family: var(--pico-font-display); font-size: clamp(26px, 3.4vw, 40px); margin: 8px 0 6px; }
+  section > p.lede { color: var(--pico-ink-dim); margin: 0 0 20px; max-width: 70ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--pico-gap); }
+  a.card { display: block; text-decoration: none; color: inherit; padding: 22px; border-radius: var(--pico-radius); background: var(--pico-surface); border: 1px solid var(--pico-rule); transition: border-color .15s, transform .15s; min-height: 132px; }
+  a.card:hover, a.card:focus-visible { border-color: var(--pico-accent); transform: translateY(-2px); outline: none; }
+  a.card h3 { margin: 6px 0 6px; font-size: 19px; font-family: var(--pico-font-display); }
+  a.card p { margin: 0; color: var(--pico-ink-dim); font-size: 15px; line-height: 1.45; }
+  a.card.primary { background: var(--pico-accent-fill); border-color: transparent; color: #fff; }
+  a.card.primary p, a.card.primary .pico-eyebrow { color: rgba(255,255,255,.82); }
+  .path { font-family: var(--pico-font-mono); font-size: 12px; color: var(--pico-ink-dim); margin-top: 10px; word-break: break-all; }
+  a.card.primary .path { color: rgba(255,255,255,.7); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--pico-rule); vertical-align: top; }
+  th { color: var(--pico-ink-dim); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  td a { color: var(--pico-accent); }
+  .ok { color: var(--pico-ok); } .warn { color: var(--pico-warn); }
+  pre { background: var(--pico-surface-2); padding: 14px 16px; border-radius: 12px; overflow-x: auto; font-family: var(--pico-font-mono); font-size: 14px; }
+  footer { margin-top: 72px; color: var(--pico-ink-dim); font-size: 14px; }
+  .tablewrap { overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="mark">PICO <span style="font-weight:400;color:var(--pico-ink-dim)">Workshops</span></div>
+    <div class="chips">
+      <span class="pico-chip">Wi-Fi: Homebrew-Club</span>
+      <span class="pico-chip">Password: homebrew</span>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="pico-eyebrow">Claude for Spatial Computing · Homebrew Club SF · Thu 2026-09-24</div>
+    <h1>Build for PICO with Claude.</h1>
+    <p>Everything for tonight in one place: PICO's own PICO CLI quickstart, the Vibe XR workshop (3D websites in the headset), and the PICO WebSpatial Academy (turn a website into a spatial app in the PICO OS 6 emulator, beginner to expert).</p>
+  </div>
+
+  <section id="start">
+    <div class="pico-eyebrow">New here?</div>
+    <h2>Paste this into Claude Code</h2>
+    <p class="lede">Open a terminal, run <code>claude</code>, and paste one prompt. Claude sets up the kit, checks your machine, and walks you through the first lab.</p>
+    <pre id="first-prompt">Clone https://github.com/RayyanZahid/pico-workshops into this folder. In pico-workshops/webspatial-academy run `npm run labs:install` and then `npm run doctor`, and tell me my track (emulator or web-only). Then read webspatial-academy/CLAUDE.md and walk me through lab 1 step by step, telling me what to look at after each step.</pre>
+    <button class="pico-btn" onclick="navigator.clipboard.writeText(document.getElementById('first-prompt').innerText);this.textContent='Copied';setTimeout(()=>this.textContent='Copy prompt',1500)">Copy prompt</button>
+    <p style="color:var(--pico-ink-dim);font-size:14px;margin-top:10px">For the Vibe XR workshop instead: clone the same repo, <code>cd pico-workshops/vibe-xr</code>, and follow the <a href="vibe-xr/workshop/index.html" style="color:var(--pico-accent)">guide</a>.</p>
+  </section>
+
+  <section id="pico">
+    <div class="pico-eyebrow">00 · From PICO</div>
+    <h2>PICO CLI Quickstart</h2>
+    <p class="lede">David Oh's deck, shown exactly as PICO sent it: install PICO CLI, connect it to Claude Code, and run a native Spatial SDK app in the emulator. Ends with the PICO Early Access Developer Program.</p>
+    <div class="grid">
+      <a class="card primary" href="webspatial-academy/partner/pico-cli-quickstart-david-oh/index.html">
+        <div class="pico-eyebrow">Deck · 12 slides</div>
+        <h3>PICO CLI Quickstart</h3>
+        <p>By David Oh, PICO. Arrow keys to navigate.</p>
+        <div class="path">webspatial-academy/partner/pico-cli-quickstart-david-oh/</div>
+      </a>
+      <a class="card" href="webspatial-academy/partner/pico-cli-quickstart-david-oh/index.html#12">
+        <div class="pico-eyebrow">Slide 12</div>
+        <h3>PICO Early Access Developer Program</h3>
+        <p>Invitees get up to $1500 for publishing their AI generated application. October 1 to Nov 11 2026. Hardware access.</p>
+      </a>
+      <a class="card" href="webspatial-academy/partner/pico-cli-quickstart-david-oh/slides.md">
+        <div class="pico-eyebrow">Text</div>
+        <h3>Slide text</h3>
+        <p>Verbatim text of every slide, for agents and screen readers. Original .pptx and PDF alongside.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="vibe-xr">
+    <div class="pico-eyebrow">01 · Workshop</div>
+    <h2>Vibe XR with PICO CLI</h2>
+    <p class="lede">Describe a 3D scene in plain English, Claude Code writes it in HTML, CSS and JavaScript, and you open it in the PICO browser on a PICO 4 Ultra headset (WebXR). PICO CLI handles the headset side: open the page, screenshot, read logs.</p>
+    <div class="grid">
+      <a class="card primary" href="vibe-xr/workshop/index.html">
+        <div class="pico-eyebrow">Guide · projector + laptop</div>
+        <h3>Workshop guide</h3>
+        <p>Setup, the loop, first prompts, getting into the headset, the cheatsheet. Arrow keys jump sections.</p>
+        <div class="path">vibe-xr/workshop/</div>
+      </a>
+      <a class="card" href="vibe-xr/index.html">
+        <div class="pico-eyebrow">Starter</div>
+        <h3>Starter scene</h3>
+        <p>The scene attendees clone and remix. Enter VR or AR in the PICO browser; drag to orbit on a laptop.</p>
+        <div class="path">vibe-xr/</div>
+      </a>
+      <a class="card" href="vibe-xr/examples/index.html">
+        <div class="pico-eyebrow">Remix gallery</div>
+        <h3>Five example scenes</h3>
+        <p>Hand garden, AR placer, beat room, portal, model gallery. Each has three remix prompts at the top.</p>
+        <div class="path">vibe-xr/examples/</div>
+      </a>
+      <a class="card" href="vibe-xr/docs/PICO-CLI.md">
+        <div class="pico-eyebrow">Reference</div>
+        <h3>PICO CLI cheatsheet</h3>
+        <p>Task → pico-cli command → raw adb equivalent, and what not to run on the loaner headsets.</p>
+      </a>
+      <a class="card" href="vibe-xr/CLAUDE.md">
+        <div class="pico-eyebrow">For Claude Code</div>
+        <h3>Starter CLAUDE.md</h3>
+        <p>What Claude Code reads first in the starter repo: file map, remix markers, constraints.</p>
+      </a>
+      <a class="card" href="vibe-xr/workshop/RUN-OF-SHOW.md">
+        <div class="pico-eyebrow">Host</div>
+        <h3>Run of show</h3>
+        <p>The live demo, minute by minute, with fallbacks.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="academy">
+    <div class="pico-eyebrow">02 · Workshop</div>
+    <h2>PICO WebSpatial Academy</h2>
+    <p class="lede">Take an ordinary React website and make it spatial with WebSpatial, then run it in the PICO OS 6 emulator, with Claude Code doing the work. Six levels, from setup to an agent that drives the whole loop.</p>
+    <div class="grid">
+      <a class="card primary" href="webspatial-academy/slides/index.html">
+        <div class="pico-eyebrow">Deck · the path to follow</div>
+        <h3>Academy slides</h3>
+        <p>L0 setup to L5 expert, one action per step, every command copyable. Press N for notes, I for the index.</p>
+        <div class="path">webspatial-academy/slides/</div>
+      </a>
+      <a class="card" href="webspatial-academy/setup/SETUP.md">
+        <div class="pico-eyebrow">L0</div>
+        <h3>Setup + dependencies</h3>
+        <p>Claude Code, Node, PICO CLI, Android Studio 2025.1.x, the emulator. Run <code>npm run doctor</code> to check your machine.</p>
+      </a>
+      <a class="card" href="webspatial-academy/curriculum/SYLLABUS.md">
+        <div class="pico-eyebrow">Curriculum</div>
+        <h3>Syllabus</h3>
+        <p>Objectives and timing per level, and the "you're an expert when you can…" list.</p>
+      </a>
+      <a class="card" href="webspatial-academy/labs/SPATIAL-CRACK.md">
+        <div class="pico-eyebrow">Read this if it looks flat</div>
+        <h3>Why nothing pops out</h3>
+        <p>A browser tab is never spatial. Install the page as a web app (monitor icon → Install app), then wait up to 60 s (close and reopen once if the panels are still missing).</p>
+      </a>
+      <a class="card" href="webspatial-academy/curriculum/TROUBLESHOOTING.md">
+        <div class="pico-eyebrow">Help</div>
+        <h3>Troubleshooting</h3>
+        <p>Symptom → cause → fix, starting with "nothing is spatial".</p>
+      </a>
+      <a class="card" href="webspatial-academy/CLAUDE.md">
+        <div class="pico-eyebrow">For Claude Code</div>
+        <h3>Academy CLAUDE.md</h3>
+        <p>The loop, the WebSpatial 2.0 rules, the emulator rules, and the slash commands /lab /launch /snap /doctor.</p>
+      </a>
+    </div>
+
+    <h3 style="margin:36px 0 12px;font-family:var(--pico-font-display)">The labs</h3>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Level</th><th>Lab</th><th>You learn</th><th>Instructions</th></tr></thead>
+      <tbody>
+        <tr><td>L0</td><td>Setup</td><td>Machine ready, emulator booted, Claude Code wired</td><td><a href="webspatial-academy/setup/SETUP.md">SETUP.md</a> · <a href="webspatial-academy/curriculum/L0.md">L0</a></td></tr>
+        <tr><td>L1</td><td>Hello Spatial</td><td>One element lifts off the page; tab vs web app</td><td><a href="webspatial-academy/labs/p1-hello-spatial/README.md">README</a> · <a href="webspatial-academy/curriculum/L1.md">L1</a></td></tr>
+        <tr><td>L2</td><td>Spatialize a website</td><td>An ordinary landing page made spatial, one small diff at a time</td><td><a href="webspatial-academy/labs/p2-spatialize-site/README.md">README</a> · <a href="webspatial-academy/curriculum/L2.md">L2</a></td></tr>
+        <tr><td>L3</td><td>3D + volumes</td><td>A GLB model in a volume</td><td><a href="webspatial-academy/labs/p3-volume-model/README.md">README</a> · <a href="webspatial-academy/curriculum/L3.md">L3</a></td></tr>
+        <tr><td>L4</td><td>Spatial Invaders</td><td>Depth as gameplay: invader rows at stepped depths, a HUD window</td><td><a href="webspatial-academy/labs/p4-space-invaders/README.md">README</a> · <a href="webspatial-academy/curriculum/L4.md">L4</a></td></tr>
+        <tr><td>L5</td><td>Capstone</td><td>Claude Code drives build, emulator, debug; spatialize your own site</td><td><a href="webspatial-academy/labs/p5-capstone/README.md">README</a> · <a href="webspatial-academy/curriculum/L5.md">L5</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="color:var(--pico-ink-dim);font-size:14px">Emulator results for each lab: <a href="webspatial-academy/labs/EMULATOR-RESULTS.md" style="color:var(--pico-accent)">EMULATOR-RESULTS.md</a> · exact versions: <a href="webspatial-academy/labs/VERSIONS.md" style="color:var(--pico-accent)">VERSIONS.md</a></p>
+  </section>
+
+  <section id="agents">
+    <div class="pico-eyebrow">For agents</div>
+    <h2>Machine-readable</h2>
+    <p class="lede">Every deck has a markdown and JSON twin built from the same source, so an agent can follow the workshop without screenshots.</p>
+    <div class="grid">
+      <a class="card" href="llms.txt"><div class="pico-eyebrow">Start here</div><h3>llms.txt</h3><p>Index of every file below, with what each is for.</p></a>
+      <a class="card" href="webspatial-academy/slides/deck.json"><div class="pico-eyebrow">JSON</div><h3>Academy deck.json</h3><p>Slides with id, level, commands, prompts, expected output, notes.</p></a>
+      <a class="card" href="webspatial-academy/slides/slides.md"><div class="pico-eyebrow">Markdown</div><h3>Academy slides.md</h3><p>The full deck as clean markdown, same slide ids.</p></a>
+      <a class="card" href="webspatial-academy/curriculum/outline.json"><div class="pico-eyebrow">JSON</div><h3>Curriculum outline</h3><p>Levels, objectives, concepts, commands, prompts, durations.</p></a>
+    </div>
+  </section>
+
+  <footer>
+    Run it: <code>node serve.mjs</code> in this folder, then open <code>http://localhost:5180/</code>. PICO OS 6 emulator screenshots are shown with PICO's clearance for this workshop.
+  </footer>
+</div>
+</body>
+</html>

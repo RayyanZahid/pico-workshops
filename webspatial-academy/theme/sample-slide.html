@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme Sample Slide</title>
+<link rel="stylesheet" href="pico.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--pico-grad-hero); color: var(--pico-ink); font-family: var(--pico-font-body); }
+  .slide { box-sizing: border-box; min-height: 100vh; padding: 8vh 8vw; display: grid; align-content: center; gap: var(--pico-gap); }
+  h1 { margin: 0; font-size: var(--pico-step-5); }
+  .sub { margin: 0; font-size: var(--pico-step-2); color: var(--pico-ink-dim); font-family: var(--pico-font-display); font-weight: 500; }
+  .row { display: flex; gap: var(--pico-gap); align-items: center; flex-wrap: wrap; margin-top: var(--pico-pad); }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--pico-gap); margin-top: var(--pico-pad); }
+  .pico-panel h3 { margin: 0 0 8px; font-size: var(--pico-step-1); }
+  .pico-panel p { margin: 0; color: var(--pico-ink-dim); font-size: var(--pico-step--1); line-height: 1.5; }
+  code { font-family: var(--pico-font-mono); color: var(--pico-accent-2); }
+  .light { background: var(--pico-bg); color: var(--pico-ink); }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="pico-eyebrow">Module 02 &middot; WebSpatial</div>
+  <h1 class="pico-display">Spatialize a website.</h1>
+  <p class="sub">Any React page becomes a PICO OS 6 window.</p>
+  <div class="row">
+    <a class="pico-btn" href="#">Open the lab</a>
+    <a class="pico-btn pico-btn--ghost" href="#">Read the spec</a>
+    <a class="pico-link" href="#">Learn More</a>
+    <span class="pico-chip pico-chip--ok">emulator ready</span>
+    <span class="pico-chip">press <kbd class="pico-kbd">R</kbd> to reload</span>
+  </div>
+  <div class="cards">
+    <div class="pico-panel"><h3 class="pico-display">Install</h3><p>Add the WebSpatial SDK to a <code>vite</code> app.</p></div>
+    <div class="pico-panel"><h3 class="pico-display">Elevate</h3><p>Lift one panel off the page and give it depth.</p></div>
+    <div class="pico-panel"><h3 class="pico-display">Run</h3><p>Open it in the PICO emulator browser.</p></div>
+  </div>
+</section>
+</body>
+</html>

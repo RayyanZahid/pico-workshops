@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  --xr-background-material: translucent;
+}
+
+body {
+  background: var(--pico-grad-hero);
+  color: var(--pico-ink);
+  font-family: var(--pico-font-body);
+}
+
+html.is-spatial body {
+  background: transparent;
+}
+
+/* ---------- launcher window ---------- */
+
+.launcher {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: var(--pico-pad);
+}
+
+.launcher-card {
+  position: relative;
+  --xr-back: 30;
+  --xr-background-material: translucent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--pico-gap);
+  width: min(100%, 420px);
+  border-radius: var(--pico-radius-lg);
+}
+
+.launcher-title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.launcher-poster {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--pico-radius);
+  object-fit: cover;
+  background: var(--pico-surface-2);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px var(--pico-gap);
+  width: 100%;
+  margin: 0;
+}
+
+.facts dt {
+  color: var(--pico-ink-dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.hint {
+  margin: 0;
+  color: var(--pico-ink-dim);
+  font-size: 0.9rem;
+}
+
+/* ---------- viewer volume ---------- */
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pico-gap);
+  height: 100%;
+  padding: var(--pico-gap);
+}
+
+/* The model's backplate takes the free space. Depth defaults to the volume's own depth. */
+.viewer-model {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.viewer-fallback {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pico-gap);
+  text-align: center;
+}
+
+.viewer-fallback img {
+  border-radius: var(--pico-radius);
+}
+
+.viewer-fallback p {
+  max-width: 40ch;
+  margin: 0;
+  color: var(--pico-ink-dim);
+}
+
+.viewer-bar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px var(--pico-gap);
+  border-radius: var(--pico-radius-pill);
+}
+
+.readout {
+  flex: 1;
+  font-family: var(--pico-font-mono);
+  color: var(--pico-ink-dim);
+}

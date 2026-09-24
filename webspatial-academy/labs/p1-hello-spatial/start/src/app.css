@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--pico-grad-hero);
+  color: var(--pico-ink);
+  font-family: var(--pico-font-body);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--pico-gap);
+  height: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--pico-pad);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+}
+
+.lede {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--pico-ink-dim);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.lifted {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: var(--pico-gap);
+  max-width: 440px;
+  border-radius: var(--pico-radius-lg);
+}
+
+.lifted-copy {
+  margin: 0;
+  font-family: var(--pico-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.lifted-hint {
+  margin: 0;
+  color: var(--pico-ink-dim);
+}

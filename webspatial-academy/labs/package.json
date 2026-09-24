@@ -1,0 +1,26 @@
+{
+  "name": "pico-webspatial-academy-labs",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Hands-on WebSpatial labs for PICO OS 6. One npm install at this folder serves every lab.",
+  "type": "module",
+  "workspaces": [
+    "p1-hello-spatial/start",
+    "p1-hello-spatial/solution",
+    "p2-spatialize-site/start",
+    "p2-spatialize-site/solution",
+    "p3-volume-model/start",
+    "p3-volume-model/solution",
+    "p4-space-invaders/start",
+    "p4-space-invaders/solution",
+    "p5-capstone/template",
+    "p5-capstone/solution"
+  ],
+  "scripts": {
+    "build:all": "npm run build --workspaces --if-present",
+    "build:xr:all": "npm run build:xr --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

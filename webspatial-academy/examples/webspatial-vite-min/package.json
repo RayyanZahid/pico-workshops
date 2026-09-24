@@ -1,0 +1,31 @@
+{
+  "name": "example-webspatial-vite-min",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Official WebSpatial SDK 2.0 fixture apps/spatial-vite-min, vendored and adapted for the PICO WebSpatial Academy kit. See NOTICE.",
+  "scripts": {
+    "predev": "node ../link-labs.mjs",
+    "dev": "vite --port 5501",
+    "predev:xr": "node ../link-labs.mjs",
+    "dev:xr": "vite --host 0.0.0.0 --port 5501",
+    "prebuild": "node ../link-labs.mjs",
+    "build": "tsc --noEmit && vite build",
+    "build:xr": "npm run build",
+    "preview": "vite preview --port 5501"
+  },
+  "dependencies": {
+    "@webspatial/core-sdk": "2.0.0",
+    "@webspatial/react-sdk": "2.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  }
+}

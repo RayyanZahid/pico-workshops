@@ -1,0 +1,22 @@
+Vendored from the official WebSpatial SDK monorepo.
+
+  Source:   https://github.com/webspatial/webspatial-sdk/tree/8436ff2c9209c8e86685c46f1b487c44009039b9/apps/spatial-vite-min
+  Commit:   8436ff2c9209c8e86685c46f1b487c44009039b9 (main, fetched 2026-09-24)
+  License:  MIT, Copyright (c) 2024 Spatial Web (see LICENSE, copied from the repo root)
+  Targets:  @webspatial/react-sdk 2.0.0 (its CHANGELOG pins 2.0.0), no @webspatial/vite-plugin
+
+Changes made for the PICO WebSpatial Academy kit (2026-09-24):
+  - package.json: React 19 + Vite 8 + TypeScript 6 to match labs/VERSIONS.md; SDK pinned to 2.0.0
+    instead of workspace:*; port 5501; scripts dev / dev:xr / build / build:xr.
+  - vite.config.ts: react({ jsxImportSource: '@webspatial/react-sdk' }) passed explicitly.
+    Upstream relies on plugin-react reading tsconfig, which Vite 8 (oxc) does not do.
+    Added the @pico/theme alias and fs.allow for ../../theme.
+  - index.html, eager-lean.html, xr-monitor.html: data-theme="light", icon, manifest link.
+  - public/app.webmanifest + public/icons/ (kit icons): name, short_name, start_url, scope,
+    display minimal-ui, icons, xr_main_scene.
+  - src/main*.tsx: import the kit's PICO theme.
+  - src/spatial-app.tsx: <Model> renders only inside a WebSpatial runtime (a flat browser shows a
+    placeholder instead of an unknown <model> tag, which logged a React console error), and PICO
+    gets public/modelasset/avocado.glb (from labs/p3) instead of cone.usdz (a visionOS format).
+  - UPSTREAM-README.md is the original README, unchanged. Its pnpm workspace setup steps do not
+    apply here.

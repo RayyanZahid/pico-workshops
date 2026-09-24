@@ -1,0 +1,99 @@
+/* spatial.css: the whole spatial layer of Night Market. Desktop browsers ignore it. */
+
+html {
+  --xr-background-material: translucent;
+}
+
+html.is-spatial body {
+  background: transparent;
+}
+
+/* Every spatialized element needs a position for --xr-back to apply. */
+.nav,
+.hero,
+.vendor,
+.visit,
+.scene-stall-card {
+  position: relative;
+}
+
+.nav {
+  --xr-back: 16;
+  --xr-background-material: translucent;
+  border-radius: var(--pico-radius-pill);
+}
+
+.hero {
+  --xr-back: 90;
+}
+
+/* Cards step forward row by row, so the grid reads as tiers of stalls. */
+.vendor {
+  --xr-back: 36;
+  --xr-background-material: translucent;
+  border-radius: var(--pico-radius-lg);
+}
+
+.vendor:nth-child(n + 4) {
+  --xr-back: 56;
+}
+
+.visit {
+  --xr-back: 24;
+  --xr-background-material: translucent;
+  border-radius: var(--pico-radius-lg);
+}
+
+html.is-spatial .vendor,
+html.is-spatial .visit {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- stall window + lantern fallback ---------- */
+
+.scene-stall {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100vh;
+  padding: var(--pico-pad);
+}
+
+.scene-stall-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.scene-stall-card {
+  --xr-back: 30;
+  --xr-background-material: translucent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.scene-stall-card p {
+  margin: 0;
+}
+
+.lantern-fallback {
+  display: flex;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.lantern-fallback span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--pico-warn);
+  box-shadow: 0 0 24px var(--pico-warn);
+}

@@ -1,0 +1,2505 @@
+{
+  "title": "PICO WebSpatial Academy",
+  "generated_by": "slides/build.mjs",
+  "generated_at": "2026-09-24T23:39:40.766Z",
+  "html": "index.html",
+  "markdown": "slides.md",
+  "levels": [
+    {
+      "level": 0,
+      "name": "Setup",
+      "lab": "setup",
+      "readme": "setup/SETUP.md",
+      "first_slide": "L0-s1"
+    },
+    {
+      "level": 1,
+      "name": "Hello Spatial",
+      "lab": "labs/p1-hello-spatial",
+      "readme": "labs/p1-hello-spatial/README.md",
+      "first_slide": "L1-s1"
+    },
+    {
+      "level": 2,
+      "name": "Spatialize a website",
+      "lab": "labs/p2-spatialize-site",
+      "readme": "labs/p2-spatialize-site/README.md",
+      "first_slide": "L2-s1"
+    },
+    {
+      "level": 3,
+      "name": "3D + volumes",
+      "lab": "labs/p3-volume-model",
+      "readme": "labs/p3-volume-model/README.md",
+      "first_slide": "L3-s1"
+    },
+    {
+      "level": 4,
+      "name": "Space Invaders in depth",
+      "lab": "labs/p4-space-invaders",
+      "readme": "labs/p4-space-invaders/README.md",
+      "first_slide": "L4-s1"
+    },
+    {
+      "level": 5,
+      "name": "Agentic expert",
+      "lab": "labs/p5-capstone",
+      "readme": "labs/p5-capstone/README.md",
+      "first_slide": "L5-s1"
+    }
+  ],
+  "links": [
+    {
+      "href": "../CLAUDE.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p1-solution-hello.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p1-start-hello.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p2-clip-solution-scroll.webm",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p3-solution-model-viewer.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p3-solution-viewer-volume.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p4-clip-gameplay.webm",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p4-clip-start-vs-solution.webm",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p4-solution-invaders-playing.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p4-solution-invaders.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p4-start-vs-solution.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p5-clip-night-market.webm",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/media/p5-solution-night-market.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../assets/pico-docs/WEB-APP-RUNTIME.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/GLOSSARY.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L0.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L1.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L2.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L3.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L4.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/L5.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/SYLLABUS.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/TROUBLESHOOTING.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../curriculum/outline.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../examples/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../examples/webspatial-vite-min/UPSTREAM-README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../examples/webspatial-vite-min/screenshot.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/EMULATOR-RESULTS.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/SPATIAL-CRACK.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/VERSIONS.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/_shots/p1-solution.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/_shots/p2-solution.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/_shots/p2-start.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/_shots/p3-solution.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/_shots/p4-solution-halloffame.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/p1-hello-spatial/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/p2-spatialize-site/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/p3-volume-model/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/p4-space-invaders/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../labs/p5-capstone/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/README.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/index.html",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/index.html#12",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/slides.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/slides/slide-01.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../partner/pico-cli-quickstart-david-oh/slides/slide-12.png",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../setup/DEPENDENCIES.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../setup/SETUP.md",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "../theme/pico.css",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%234200ff%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22none%22 stroke=%22white%22 stroke-width=%223%22/%3E%3C/svg%3E",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "deck.json",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "https://developer.picoxr.com",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://developer.picoxr.com/document/web/install-free/",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://developer.picoxr.com/document/web/manifest/",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://developer.picoxr.com/document/web/webspatial/",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://github.com/RayyanZahid/pico-workshops",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://github.com/webspatial/webspatial-sdk/tree/main/apps",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://webspatial.dev",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "https://webspatial.dev/showcase",
+      "kind": "external",
+      "exists": null
+    },
+    {
+      "href": "llms.txt",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/00-emulator-home-launcher.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/01-lab1-browser-tab-flat.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/02-lab1-install-app-dialog.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/03-lab1-web-app-card-lifted.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/04-lab2-browser-tab-flat.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/10-lab3-volume-web-app.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/21-lab2-web-app-spatial.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/22-lab4-web-app-rows-stepped.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/23-lab4-web-app-midgame.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/24-lab3-volume-avocado.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/25-lab4-angled-rows-in-depth.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/26-lab4-hud-window-live.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/27-lab5-web-app-night-market.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/crack-p1-standalone-xr-back-400.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/crack-p1-standalone-xr-back-80.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "slides.md",
+      "kind": "relative",
+      "exists": true
+    }
+  ],
+  "logistics": {
+    "wifi": {
+      "network": "Homebrew-Club",
+      "password": "homebrew"
+    },
+    "repo": "https://github.com/RayyanZahid/pico-workshops"
+  },
+  "command_sources": [
+    "curriculum/outline.json",
+    "curriculum/GLOSSARY.md",
+    "curriculum/L0.md",
+    "curriculum/L1.md",
+    "curriculum/L2.md",
+    "curriculum/L3.md",
+    "curriculum/L4.md",
+    "curriculum/L5.md",
+    "curriculum/SYLLABUS.md",
+    "curriculum/TROUBLESHOOTING.md",
+    "labs/EMULATOR-RESULTS.md",
+    "labs/p0-doctor/README.md",
+    "labs/p1-hello-spatial/README.md",
+    "labs/p2-spatialize-site/README.md",
+    "labs/p3-volume-model/README.md",
+    "labs/p4-space-invaders/README.md",
+    "labs/p5-capstone/README.md",
+    "labs/README.md",
+    "setup/DEPENDENCIES.md",
+    "setup/DOCTOR-SAMPLE.md",
+    "setup/doctor.mjs",
+    "setup/install-macos.sh",
+    "setup/install-windows.ps1",
+    "setup/launch.mjs",
+    "setup/printwindow.ps1",
+    "setup/SETUP.md",
+    "setup/snap.mjs",
+    "setup/_lib.mjs",
+    "CLAUDE.md",
+    "package.json",
+    "assets/emulator/WALKTHROUGH.md",
+    "assets/pico-docs/WEB-APP-RUNTIME.md",
+    "labs/README.md",
+    "labs/VERSIONS.md",
+    "examples/README.md",
+    "labs/SPATIAL-CRACK.md",
+    "slides/src/pico-cli-help.txt"
+  ],
+  "slides": [
+    {
+      "id": "intro-s1",
+      "level": "intro",
+      "step": 1,
+      "kind": "concept",
+      "title": "PICO WebSpatial Academy",
+      "action": null,
+      "body": "Take an ordinary website, make it spatial, and run it in the PICO OS 6 emulator. Claude Code does the typing.\n\nSix levels, from an empty laptop to your own site floating in space. Every step has one action, the exact command or prompt, and what you should see.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Open on this slide while people settle. Press I for the level index, N to hide these notes, 0 to 5 to jump to a level. The follow-along link is this same page: it scrolls on a phone.",
+      "todos": []
+    },
+    {
+      "id": "intro-s2",
+      "level": "intro",
+      "step": 2,
+      "kind": "concept",
+      "title": "Three facts before you start",
+      "action": null,
+      "body": "Each one has cost someone an hour. Say them out loud.\n\n- WebSpatial requires React. It works by replacing React's JSX runtime. There is no plain-HTML path today.\n- WebSpatial needs PICO OS 6. The emulator is PICO OS 6 and has the runtime built in, so you open a URL and nothing gets packaged. A PICO 4 Ultra runs OS 5.x and shows a flat page.\n- The SDK just moved to 2.0. `@webspatial/react-sdk` 2.0.0 is what the labs pin. We teach the 2.x API (`<SpatialBoot>`). Older guides use `@webspatial/vite-plugin` and `XR_ENV=avp`, which belong to 1.x.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Source: curriculum/SYLLABUS.md \"Three facts before you start\". If someone has a 1.x project, point them at curriculum/TROUBLESHOOTING.md#version-drift and move on.",
+      "todos": []
+    },
+    {
+      "id": "intro-s3",
+      "level": "intro",
+      "step": 3,
+      "kind": "concept",
+      "title": "Six levels, three hours",
+      "action": null,
+      "body": "Pass each lab's check before you start the next level. Press 0 to 5 to jump.\n\n- L0 · Setup: 25 min in the room, 2 h self-paced, lab setup\n- L1 · Hello Spatial: 25 min in the room, 1.5 h self-paced, lab labs/p1-hello-spatial\n- L2 · Spatialize a website: 45 min in the room, 3 h self-paced, lab labs/p2-spatialize-site\n- L3 · 3D + volumes: 30 min in the room, 2.5 h self-paced, lab labs/p3-volume-model\n- L4 · Space Invaders in depth: 30 min in the room, 2.5 h self-paced, lab labs/p4-space-invaders\n- L5 · Agentic expert: 25 min in the room, 4 h self-paced, lab labs/p5-capstone\n\nL2 is the headline lab. The emulator install is pre-work: don't try to install Android Studio in the room.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Run of show from SYLLABUS.md: 0:00 L0 check-in (25), 0:25 L1 (25), 0:50 L2 (45), 1:35 break (10), 1:45 L3 (30), 2:15 L4 (30), 2:45 L5 (15 in the room), 3:00 end. L4 can be demo-only if the room is behind. Self-paced total is about 15.5 h.",
+      "todos": []
+    },
+    {
+      "id": "intro-s4",
+      "level": "intro",
+      "step": 4,
+      "kind": "concept",
+      "title": "How the pieces talk",
+      "action": null,
+      "body": "Four things on one machine. Claude Code drives all of them.\n\n- Node + Vite serves your site on a port per lab (5301 for lab 1).\n- PICO OS 6 emulator is a PICO device in a window, built on the Android emulator.\n- pico-cli is PICO's one command line for the emulator, apps, logs, screenshots and perf.\n- Claude Code runs pico-cli and the dev server, and asks the `pico-dev-knowledge` MCP about PICO docs.\n\nThe emulator opens your site at `http://localhost:<port>/`, mapped to your machine with `adb reverse`. `node setup/launch.mjs <n>` does the mapping for you.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "The localhost-through-adb-reverse point comes back in every level; land it here once. MEASURED on the OS 6 emulator (emulator-lab + labs-builder, 2026-09-24): http://10.0.2.2:<port>/ loads but reports isSecureContext=false, beforeinstallprompt never fires, and the page stays a flat tab. localhost through adb reverse is a secure context, and Lab 1 installed as com.picoxr.webapp.localhost.* with depth. PICO's docs say 10.0.2.2; the measurement overrides them for this workshop (assets/pico-docs/WEB-APP-RUNTIME.md section 3, kit CLAUDE.md, setup/launch.mjs).",
+      "todos": []
+    },
+    {
+      "id": "intro-s5",
+      "level": "intro",
+      "step": 5,
+      "kind": "concept",
+      "title": "From PICO: PICO CLI Quickstart, David Oh",
+      "action": null,
+      "body": "David Oh's deck is the native Spatial SDK (Kotlin) path. The Academy is the WebSpatial path to the same PICO OS 6 emulator.\n\n- His path: `pico-cli project create` a planar, volumetric or stage app in Kotlin, build it, then install and launch it in the emulator.\n- Our path: a React website, spatialized with WebSpatial, opened as a Web App in the same emulator.\n- Same pico-cli, same emulator, same Claude Code wiring.\n\nOpen David Oh's deck: PICO CLI Quickstart",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../partner/pico-cli-quickstart-david-oh/slides/slide-01.png",
+          "original": "../partner/pico-cli-quickstart-david-oh/slides/slide-01.png",
+          "poster": null,
+          "alt": "Cover of David Oh's deck, unmodified: \"Build a PICO Spatial app with Claude, from zero\". Install the CLI, connect it to Claude Code, and get a first Spatial SDK app running on the PICO emulator.",
+          "caption": "Cover of David Oh's deck, unmodified: \"Build a PICO Spatial app with Claude, from zero\". Install the CLI, connect it to Claude Code, and get a first Spatial SDK app running on the PICO emulator.",
+          "credit": null,
+          "pending": false
+        }
+      ],
+      "notes": "Sent by David Oh (PICO) on 2026-09-24 for tonight. It's presented exactly as sent: never edit or re-theme anything in partner/. Its README lists where our kit is more specific (for example, pico-cli 0.5.0 accepts only Android Studio 2025.1.x); those are answers for questions, not corrections to his slides.",
+      "todos": []
+    },
+    {
+      "id": "L0-s1",
+      "level": 0,
+      "step": 1,
+      "kind": "concept",
+      "title": "Setup: Claude Code, Node, pico-cli and the PICO OS 6 emulator",
+      "action": null,
+      "body": "25 minutes in the room, because the install is pre-work. 2 hours self-paced.\n\n- Why the emulator, not a headset: WebSpatial needs PICO OS 6. The emulator is OS 6. A PICO 4 Ultra is OS 5.x.\n- Emulator machine: Windows 10/11 or an Apple Silicon Mac, 16 GB RAM (32 GB is comfortable), about 40 GB free disk, an NVIDIA GeForce GTX 1060 or better.\n- Below that bar? You take the web-only track: every lab runs flat in a desktop browser.\n- Git, and Node 20.19+ or 22.12+ (Vite 8's floor). A paid Claude plan for Claude Code.\n- Licence: the PICO Emulator and PICO WebSpatial browser are PICO-licensed. PICO has cleared tonight's attendees to use both.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Sources: curriculum/L0.md, SYLLABUS.md prerequisites, setup/SETUP.md. The kit recommends Node 24 LTS. Claude Code needs a Pro, Max, Team, Enterprise or Console account; the free plan doesn't include it. The full install walk-through is setup/SETUP.md; exact versions are in setup/DEPENDENCIES.md.",
+      "todos": []
+    },
+    {
+      "id": "L0-s2",
+      "level": 0,
+      "step": 2,
+      "kind": "concept",
+      "title": "Android Studio 2025.1.x. Exactly.",
+      "action": null,
+      "body": "PICO's plugin only loads in Android Studio 2025.1.x. The default winget and brew installs give you 2026.1, which will not work.\n\n- Already on a newer release? Install 2025.1.4.8 beside it. Don't uninstall anything.",
+      "commands": [
+        "winget install --id Google.AndroidStudio -e --version 2025.1.4.8   # Windows",
+        "bash setup/install-macos.sh --yes --emulator   # macOS"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Android Studio → Help → About shows 2025.1.4.8. After you get the kit (L0-s5), npm run doctor confirms it.",
+      "media": [],
+      "notes": "Source: setup/SETUP.md step 10 and curriculum/L0.md \"Common mistakes\". Say it twice: this is the install mistake that costs the most time.",
+      "todos": []
+    },
+    {
+      "id": "L0-s3",
+      "level": 0,
+      "step": 3,
+      "kind": "step",
+      "title": "Install Claude Code",
+      "action": "Run the native installer for your OS, then check it.",
+      "body": "",
+      "commands": [
+        "irm https://claude.ai/install.ps1 | iex   # Windows (PowerShell)",
+        "curl -fsSL https://claude.ai/install.sh | bash   # macOS",
+        "claude doctor"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "claude doctor explains anything wrong with the install. claude --version prints a version number.",
+      "media": [],
+      "notes": "Needs a Pro, Max, Team, Enterprise or Console account (curriculum/L0.md). On Windows, install Git first.",
+      "todos": []
+    },
+    {
+      "id": "L0-s4",
+      "level": 0,
+      "step": 4,
+      "kind": "step",
+      "title": "Confirm Node and pico-cli",
+      "action": "Check Node's version and install pico-cli from its scoped package.",
+      "body": "Skip the install if the version check already works. After any winget install, close and reopen the terminal so it finds the new command.",
+      "commands": [
+        "winget install --id OpenJS.NodeJS.LTS -e",
+        "node --version",
+        "npm install -g @picoxr/pico-cli",
+        "pico-cli --version"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "node prints v20.19+ or v22.12+.\npico-cli prints pico-cli/0.5.x, for example: pico-cli/0.5.0 (public) win32-x64 node-v22.17.0",
+      "media": [],
+      "notes": "The unscoped npm package `pico-cli` is an unrelated tool; the real one is @picoxr/pico-cli. The example version line is the kit laptop's real output on 2026-09-24.",
+      "todos": []
+    },
+    {
+      "id": "L0-s5",
+      "level": 0,
+      "step": 5,
+      "kind": "step",
+      "title": "Get the kit",
+      "action": "Clone the workshop repo and install every lab's dependencies once.",
+      "body": "Skip the install if the version check already works. After any winget install, close and reopen the terminal so it finds the new command.",
+      "commands": [
+        "winget install --id Git.Git -e",
+        "git clone https://github.com/RayyanZahid/pico-workshops.git",
+        "cd pico-workshops/webspatial-academy",
+        "npm run labs:install"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A pico-workshops folder with webspatial-academy inside. labs:install runs one npm workspace install that serves every lab.",
+      "media": [],
+      "notes": "Public repo: https://github.com/RayyanZahid/pico-workshops (the Academy lives in webspatial-academy/). Every later command runs from that folder. Needs Git: Windows `winget install --id Git.Git -e`, macOS `xcode-select --install` (curriculum/L0.md). Next: npm run doctor.",
+      "todos": []
+    },
+    {
+      "id": "L0-s6",
+      "level": 0,
+      "step": 6,
+      "kind": "step",
+      "title": "Run the doctors",
+      "action": "Run the kit's doctor, then have Claude Code turn pico-cli's failures into a fix list.",
+      "body": "",
+      "commands": [
+        "npm run doctor"
+      ],
+      "prompts": [
+        "Run `pico-cli doctor --format json`, group every failing check by module, and give me the exact fix command for each one. Do not run any --fix yet."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The kit doctor tells you your track: emulator or web-only. pico-cli doctor groups its checks by module. Red lines are fine for now, as long as each one gets a fix or a written reason.",
+      "media": [],
+      "notes": "npm run doctor is node setup/doctor.mjs: read-only, about 10 s. \"Do not run any --fix yet\" is deliberate: `pico-cli doctor --fix` also git-pulls PICO's plugin repo, so people should see the plan first.",
+      "todos": []
+    },
+    {
+      "id": "L0-s7",
+      "level": 0,
+      "step": 7,
+      "kind": "step",
+      "title": "Give Claude Code PICO's skills and docs",
+      "action": "Wire the PICO plugin skills and the pico-dev-knowledge MCP into Claude Code.",
+      "body": "Close your other Claude Code sessions first. Setup can restart the knowledge backend out from under them.",
+      "commands": [
+        "pico-cli setup --agent-tool claude-code --platform spatial --scope global --yes",
+        "pico-cli plugin doctor"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "plugin doctor reports the skills installed. Restart Claude Code so it loads the new skills and MCP server.",
+      "media": [],
+      "notes": "Also run `pico-cli knowledge doctor`: it should report the knowledge base ready. Re-running pico-cli setup while other sessions are open kills every session's pico-dev-knowledge MCP server. Run it once, before the workshop.",
+      "todos": []
+    },
+    {
+      "id": "L0-s8",
+      "level": 0,
+      "step": 8,
+      "kind": "concept",
+      "title": "16 GB of RAM? Do this before you boot.",
+      "action": null,
+      "body": "The emulator reserves 6 GB by default. On 16 GB, make room first.\n\n- Close Chrome, Slack, Android Studio and anything else heavy.\n\n\n\n- With the emulator stopped, set this in `~/.pico/avd/<avd name>.avd/config.ini`:",
+      "commands": [
+        "wsl --shutdown   # Windows"
+      ],
+      "prompts": [],
+      "code": [
+        "hw.ramSize=4096"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "A 16 GB laptop booted this way on 2026-09-24; page rendering at 4096 is still being confirmed. Source: setup/SETUP.md step 13 and the kit CLAUDE.md. Windows path: %USERPROFILE%\\.pico\\avd\\PICO_6.0.avd\\config.ini. \"Insufficient RAM free\" goes to stderr only, never the emulator log. labs/EMULATOR-RESULTS.md measured about 2 GB of free commit on a 16 GB laptop with Chrome, WSL and node running, against 6,144 MB needed.",
+      "todos": []
+    },
+    {
+      "id": "L0-s9",
+      "level": 0,
+      "step": 9,
+      "kind": "step",
+      "title": "Boot the emulator",
+      "action": "Start the PICO OS 6 emulator from a terminal and wait for adb.",
+      "body": "Run it in a terminal you can see. If it dies, the real reason is printed there and nowhere else.",
+      "commands": [
+        "pico-cli emulator start"
+      ],
+      "prompts": [
+        "Start the PICO emulator with `pico-cli emulator start`, wait for adb readiness, then run `pico-cli emulator status` and `pico-cli device list` and tell me the device id to use for the rest of the day."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The emulator window opens and the command returns once adb is ready.\n\"Insufficient RAM free\" means go back to the 16 GB recipe.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/00-emulator-home-launcher.webp",
+          "original": "../assets/emulator/00-emulator-home-launcher.png",
+          "poster": null,
+          "alt": "The PICO OS 6 emulator after boot: the home launcher floating in a virtual bedroom, with Browser, Settings, Viewer, Files and Media Player tiles and a status bar",
+          "caption": "The PICO OS 6 emulator after boot: the home launcher floating in a virtual bedroom, with Browser, Settings, Viewer, Files and Media Player tiles and a status bar",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "If start fails for any reason other than RAM, run `pico-cli emulator doctor` first. On Windows, bare `adb` may not be on PATH after an Android Studio install: the full path is %LOCALAPPDATA%\\Android\\Sdk\\platform-tools\\adb.exe. launch.mjs and snap.mjs find it automatically.",
+      "todos": []
+    },
+    {
+      "id": "L0-s10",
+      "level": 0,
+      "step": 10,
+      "kind": "step",
+      "title": "Get your device id",
+      "action": "Confirm the emulator is up and note its device id for the rest of the day.",
+      "body": "",
+      "commands": [
+        "pico-cli emulator status",
+        "pico-cli device list"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Process running: yes\nADB online: yes\ndevice list shows one device, usually emulator-5554.",
+      "media": [],
+      "notes": "The status lines are from setup/SETUP.md step 13. Anyone stuck here pairs with a neighbour whose emulator runs, per the run of show.",
+      "todos": []
+    },
+    {
+      "id": "L0-s11",
+      "level": 0,
+      "step": 11,
+      "kind": "step",
+      "title": "Prepare the web runtime",
+      "action": "Download the PICO WebSpatial browser package that web launch uses.",
+      "body": "",
+      "commands": [
+        "pico-cli web setup"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The command exits 0. If you skip it, the first launch downloads it instead.",
+      "media": [],
+      "notes": "From L0.md install table step 8 and setup/SETUP.md.",
+      "todos": []
+    },
+    {
+      "id": "L0-s12",
+      "level": 0,
+      "step": 12,
+      "kind": "checkpoint",
+      "title": "Checkpoint: you are set up when...",
+      "action": null,
+      "body": "Every box ticked, or a written reason next to it.\n\n- `npm run doctor` names your track, and `pico-cli doctor` is clean or explained.\n- `pico-cli emulator status` shows a running emulator, or you're on the web-only track.\n- You know your device id (usually `emulator-5554`).\n- You can say why the emulator opens `localhost` through `adb reverse`, not `10.0.2.2`.\n\n`adb reverse` makes the emulator's `localhost:<port>` your machine's port, and `localhost` is a secure context. 10.0.2.2 loads but was not a secure context in our test (no install); use localhost.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L0-s13",
+      "level": 0,
+      "step": 13,
+      "kind": "lab",
+      "title": "Lab: setup",
+      "action": null,
+      "body": "The L0 lab is the setup guide itself: doctor clean or explained, emulator running.\n\nWork through `setup/SETUP.md` step by step. If your emulator isn't installed yet, pair with a neighbour whose emulator is.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L1-s1",
+      "level": 1,
+      "step": 1,
+      "kind": "concept",
+      "title": "Hello Spatial: your first WebSpatial app",
+      "action": null,
+      "body": "A website becomes an app in the room. You keep writing HTML and CSS.\n\n- Not WebXR. WebXR gives you a canvas and a head pose, and you draw every pixel. WebSpatial gives the OS your HTML to render next to other apps.\n- Window scene: a 2D panel for GUI. It keeps the same apparent size, so text stays readable.\n- Volume scene: a box with real depth, in metres, for showing an object.\n- React is required. The SDK hooks React's JSX runtime. A static .html file never passes through it.\n- No packaging on PICO OS 6. Run the dev server, open the URL, install it as a Web App from the address bar.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/03-lab1-web-app-card-lifted.webp",
+          "original": "../assets/emulator/03-lab1-web-app-card-lifted.png",
+          "poster": null,
+          "alt": "Lab p1 installed as a Web App in the emulator: a glass window with the enable-xr card as its own panel, badge \"Web app · WebSpatial on\"",
+          "caption": "Lab p1 installed as a Web App in the emulator: a glass window with the enable-xr card as its own panel, badge \"Web app · WebSpatial on\"",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "From curriculum/L1.md. The WebXR vs WebSpatial table is worth drawing on a whiteboard if the room is mixed. visionOS is the other platform, and it needs @webspatial/builder and a Mac.",
+      "todos": []
+    },
+    {
+      "id": "L1-s2",
+      "level": 1,
+      "step": 2,
+      "kind": "concept",
+      "title": "A browser tab is flat. A Web App has depth.",
+      "action": null,
+      "body": "WebSpatial only switches on inside PICO OS 6's Web App Runtime. The button in the address bar is the door.\n\n## Browser tab\n- Your page, in a PICO Browser tab.\n- Flat. `enable-xr` and `--xr-*` do nothing here.\n- `display-mode` is `browser`.\n\n## Web App\n- Install it from the address bar: the monitor icon, titled Install app on OS 6.0.0 (PICO's docs call it Open as standalone app).\n- Depth. WebSpatial switches on: elements lift, `window.open` opens new windows.\n- Needs a secure URL: `localhost` via `adb reverse`.\n- `display-mode` is `standalone` or `minimal-ui`.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "PICO's docs (assets/pico-docs/WEB-APP-RUNTIME.md, from developer.picoxr.com/document/web/webspatial/ and /install-free/): \"In the Web App Runtime of PICO OS 6, any WebSpatial API used in your page source is automatically activated.\" The button only appears when the URL falls inside a Web App's manifest scope. No install needed for development, and no WebSpatial Builder on PICO. webspatial.dev calls the same button \"Run as a standalone app\"; PICO's label is \"Open as standalone app\".",
+      "todos": []
+    },
+    {
+      "id": "L1-s3",
+      "level": 1,
+      "step": 3,
+      "kind": "concept",
+      "title": "What the Web App needs",
+      "action": null,
+      "body": "No install, no depth. Two things decide whether the page can become a Web App.\n\n- A secure URL. In the emulator open `http://localhost:<port>/` through `adb reverse`; `node setup/launch.mjs <n>` sets this up. 10.0.2.2 loads but was not a secure context in our test (no install); use localhost.\n- A manifest with the 4 required fields: `name` (or `short_name`), `icons`, `start_url`, `display`. Link it with `<link rel=\"manifest\" href=\"/app.webmanifest\">` and serve it as JSON (`application/manifest+json`).\n\nTo see the adb reverse it will run, without running it:",
+      "commands": [
+        "node setup/launch.mjs 1 --dry-run"
+      ],
+      "prompts": [],
+      "code": [
+        "{ \"name\": \"Hello Spatial\", \"start_url\": \"/\", \"display\": \"minimal-ui\",\n  \"icons\": [ { \"src\": \"/icons/icon-512.png\", \"sizes\": \"512x512\", \"type\": \"image/png\" } ] }"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "MEASURED on the OS 6 emulator (emulator-lab + labs-builder, 2026-09-24): http://10.0.2.2:<port>/ loads but reports isSecureContext=false, beforeinstallprompt never fires, and the page stays a flat tab. localhost through adb reverse is a secure context, and Lab 1 installed as com.picoxr.webapp.localhost.* with depth. PICO's docs say 10.0.2.2; the measurement overrides them for this workshop (assets/pico-docs/WEB-APP-RUNTIME.md section 3, kit CLAUDE.md, setup/launch.mjs). Manifest rules: developer.picoxr.com/document/web/manifest/ via WEB-APP-RUNTIME.md section 4. PICO requires display (it's optional on some other platforms). `scope` decides which URLs count as the app, and so where the button shows. On a real PICO OS 6 device HTTP needs Developer Mode plus a debug broadcast; not tonight's concern.",
+      "todos": []
+    },
+    {
+      "id": "L1-s4",
+      "level": 1,
+      "step": 4,
+      "kind": "step",
+      "title": "Show which runtime you're in",
+      "action": "Put a badge on the page that says browser or webapp.",
+      "body": "",
+      "commands": [],
+      "prompts": [],
+      "code": [
+        "function getWebRuntime() {\n  if (window.matchMedia('(display-mode: browser)').matches) return 'browser';\n  if (window.matchMedia('(display-mode: standalone)').matches\n      || window.matchMedia('(display-mode: minimal-ui)').matches) return 'webapp';\n}"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "In a browser tab the badge says browser, and nothing pops out: that's expected.\nInstalled as a Web App it says webapp, and enable-xr elements lift.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p1-solution-hello.png",
+          "original": "../assets/media/p1-solution-hello.png",
+          "poster": null,
+          "alt": "Lab p1 in desktop Chrome, the flat fallback: the enable-xr card drawn flat and the runtime badge reading \"Browser tab · flat\"",
+          "caption": "Lab p1 in desktop Chrome, the flat fallback: the enable-xr card drawn flat and the runtime badge reading \"Browser tab · flat\"",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "From developer.picoxr.com/document/web/install-free/. Also works in CSS: @media (display-mode: standalone) { ... }. Recommended in every lab so people can see at a glance why nothing pops out.",
+      "todos": []
+    },
+    {
+      "id": "L1-s5",
+      "level": 1,
+      "step": 5,
+      "kind": "concept",
+      "title": "The whole recipe, in four lines",
+      "action": null,
+      "body": "No vite-plugin. No XR_ENV. One bundle; PICO is detected at runtime from the user agent.\n\nAfter the four steps below, mark something: `<div enable-xr>` with `position: relative`, `--xr-back: 80` (px) and `--xr-background-material: translucent`.",
+      "commands": [
+        "npm i @webspatial/react-sdk@2.0.0 @webspatial/core-sdk@2.0.0 --save-exact"
+      ],
+      "prompts": [],
+      "code": [
+        "// 2. tsconfig: \"jsxImportSource\": \"@webspatial/react-sdk\"   AND   vite.config.ts:\nreact({ jsxImportSource: '@webspatial/react-sdk' })\n// 3. main.tsx\n<SpatialBoot><App /></SpatialBoot>\n// 4. index.html\n<link rel=\"manifest\" href=\"/app.webmanifest\">"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Source: labs/VERSIONS.md and the p1/p2 lab READMEs. @webspatial/vite-plugin 1.0.1 aliases the SDK to /web, which 2.0 removed, so builds fail with it. Proven on the OS 6 emulator by emulator-lab (2026-09-24): lab 1's solution, installed as a web app, reported UA ... PicoWebApp/0.4.0 ... WebSpatial/1.5.0, react-sdk 2.0.0, and spatialized its enable-xr card (the screenshot on \"Make it pop out\").",
+      "todos": []
+    },
+    {
+      "id": "L1-s6",
+      "level": 1,
+      "step": 6,
+      "kind": "step",
+      "title": "Scaffold the app",
+      "action": "Ask Claude Code to scaffold a Vite + React app wired for WebSpatial 2.x.",
+      "body": "Doing it by hand? These two are the start:",
+      "commands": [
+        "npm create vite@latest hello-spatial -- --template react-ts",
+        "npm i @webspatial/react-sdk@2.0.0 @webspatial/core-sdk@2.0.0 --save-exact"
+      ],
+      "prompts": [
+        "Scaffold a Vite + React + TypeScript app in ./hello-spatial wired for WebSpatial 2.x: install @webspatial/react-sdk and @webspatial/core-sdk, set jsxImportSource to @webspatial/react-sdk in tsconfig.app.json, wrap the root in <SpatialBoot>, add public/app.webmanifest (name, start_url /, display minimal-ui, a 512 any icon and a 1024 maskable icon) linked from index.html, set react({ jsxImportSource: '@webspatial/react-sdk' }) in vite.config.ts, and make sure npm run dev:xr binds 0.0.0.0. Run the dev server and tell me the URL the emulator should open."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "The next three slides are what that one prompt does, so people can check Claude's diff against them. Don't install @webspatial/vite-plugin: that's the 1.x setup.",
+      "todos": []
+    },
+    {
+      "id": "L1-s7",
+      "level": 1,
+      "step": 7,
+      "kind": "step",
+      "title": "Route JSX through the SDK",
+      "action": "Set jsxImportSource in two places: the tsconfig that holds \"jsx\", and vite.config.ts.",
+      "body": "",
+      "commands": [],
+      "prompts": [],
+      "code": [
+        "\"jsx\": \"react-jsx\",\n\"jsxImportSource\": \"@webspatial/react-sdk\"",
+        "react({ jsxImportSource: '@webspatial/react-sdk' })"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "Every <div> you write in JSX now goes through WebSpatial's createElement, which is what understands enable-xr and --xr-back.\nIf enable-xr does nothing later, suspect this step first.",
+      "media": [],
+      "notes": "In Vite's template the tsconfig is tsconfig.app.json (curriculum/L1.md); the labs use a single tsconfig.json. The vite.config line comes from the kit CLAUDE.md: Vite 8 transforms with oxc and ignores esbuild.jsxImportSource, so without it every enable-xr goes inert with no error. curriculum/L1.md only shows the tsconfig half.",
+      "todos": []
+    },
+    {
+      "id": "L1-s8",
+      "level": 1,
+      "step": 8,
+      "kind": "step",
+      "title": "Boot it and add the manifest",
+      "action": "Wrap the app in <SpatialBoot> and link a PWA manifest.",
+      "body": "The manifest needs `display` set to `standalone` or `minimal-ui`, plus a 1024 maskable icon with no transparency. Without a valid manifest the browser can't install it as a Web App.",
+      "commands": [],
+      "prompts": [],
+      "code": [
+        "createRoot(document.getElementById('root')!).render(\n  <SpatialBoot>\n    <App />\n  </SpatialBoot>,\n)"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "In a desktop browser the app looks normal. <SpatialBoot> only loads the spatial half inside a WebSpatial runtime.",
+      "media": [],
+      "notes": "<SpatialBoot> renders nothing while it loads and has no fallback prop, so put loading UI outside it. Add onError={e => console.error(e)} if the emulator shows a blank page.",
+      "todos": []
+    },
+    {
+      "id": "L1-s9",
+      "level": 1,
+      "step": 9,
+      "kind": "step",
+      "title": "Serve it where the emulator can reach it",
+      "action": "Start lab p1's dev server in the background and open it in the emulator, from the kit root.",
+      "body": "",
+      "commands": [
+        "node setup/launch.mjs 1 --serve"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The dev server starts in the background (log in .academy/logs/) and the emulator opens http://localhost:5301/.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p1-start-hello.png",
+          "original": "../assets/media/p1-start-hello.png",
+          "poster": null,
+          "alt": "Lab p1's start page in desktop Chrome, before any WebSpatial wiring",
+          "caption": "Lab p1's start page in desktop Chrome, before any WebSpatial wiring",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "dev:xr is `vite --host 0.0.0.0 --port 5301`. Plain `dev` binds localhost only and the emulator gets connection refused. Solutions serve on 5311 to 5315.",
+      "todos": []
+    },
+    {
+      "id": "L1-s10",
+      "level": 1,
+      "step": 10,
+      "kind": "step",
+      "title": "Open it in the emulator",
+      "action": "Open lab p1 in the emulator at localhost, through adb reverse, and screenshot it.",
+      "body": "",
+      "commands": [
+        "node setup/launch.mjs 1"
+      ],
+      "prompts": [
+        "Start lab p1 with `npm run dev:xr` in labs/p1-hello-spatial/start (port 5301), open it in the running PICO emulator with `node setup/launch.mjs 1`, wait 5 seconds, take a screenshot with `node setup/snap.mjs`, and tell me what loaded. If the frame is mostly black, take a burst before concluding anything."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Your page loads in the PICO Browser at http://localhost:5301/, still a flat tab. The next slides make it pop out.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/01-lab1-browser-tab-flat.webp",
+          "original": "../assets/emulator/01-lab1-browser-tab-flat.png",
+          "poster": null,
+          "alt": "Lab p1 in a PICO Browser tab at localhost: the page and its enable-xr card are drawn flat, and the corner badge reads \"Browser tab · flat\"",
+          "caption": "Lab p1 in a PICO Browser tab at localhost: the page and its enable-xr card are drawn flat, and the corner badge reads \"Browser tab · flat\"",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "launch.mjs runs `adb reverse tcp:<port> tcp:<port>` and opens http://localhost:<port>/ in the emulator. It only calls pico-cli web launch to install the PICO browser if it's missing, because web launch rewrites localhost to the flat 10.0.2.2 URL. It refuses any target that isn't an emulator. The reverse mapping lasts until the emulator restarts. If launch.mjs fails with INSTALL_FAILED_UID_CHANGED, open the URL by hand: adb reverse tcp:P tcp:P, then type http://localhost:P/ into the PICO Browser. The p1 Web App that lifted was installed from http://localhost:5311/ (package com.picoxr.webapp.localhost.anoignjj).",
+      "todos": []
+    },
+    {
+      "id": "L1-s11",
+      "level": 1,
+      "step": 11,
+      "kind": "concept",
+      "title": "Never point web launch at a real headset",
+      "action": null,
+      "body": "pico-cli web launch is for the emulator only.\n\n- It installs a 336 MB PICO WebSpatial browser APK on the target before it opens anything.\n- It rewrites localhost to 10.0.2.2, which exists only inside the emulator and isn't a secure context there either.\n- Both are right for the emulator and wrong for a headset. A PICO 4 Ultra runs OS 5.x and has no WebSpatial runtime anyway.\n- On this emulator image it also fails (`INSTALL_FAILED_UID_CHANGED`): the browser is a system app it can't update.\n- Use `node setup/launch.mjs <n>`: `adb reverse` plus localhost, and it refuses any target that isn't an emulator.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Source: kit CLAUDE.md \"Emulator and pico-cli rules\" (pico-cli 0.5.0, source-read) and TROUBLESHOOTING.md. The lending headsets on the table are someone else's fleet: installing an APK on one is a change to their device.",
+      "todos": []
+    },
+    {
+      "id": "L1-s12",
+      "level": 1,
+      "step": 12,
+      "kind": "step",
+      "title": "Make it pop out: install it",
+      "action": "In the address bar, just left of the star, click the monitor icon, titled Install app on OS 6.0.0 (PICO's docs call it Open as standalone app). Then Install.",
+      "body": "- Install app dialog: click Install. The app opens in its own window with a glass background.\n- Wait up to 60 s; if the panels are still missing, close and reopen the app once. Panels arrive late on a cold launch. Don't judge at 5 s.\n- Next time, open it from its own tile on the home launcher, not from the browser.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The app opens as its own window. Within 60 s the enable-xr card floats in front of the page (if not, close and reopen the app once).",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/02-lab1-install-app-dialog.webp",
+          "original": "../assets/emulator/02-lab1-install-app-dialog.png",
+          "poster": null,
+          "alt": "The Install app dialog over lab p1 in a browser tab: app name Hello Spatial, its localhost URL, Cancel and Install",
+          "caption": "The Install app dialog over lab p1 in a browser tab: app name Hello Spatial, its localhost URL, Cancel and Install",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "Source: labs/SPATIAL-CRACK.md (VERIFIED on the OS 6.0.0 emulator, 2026-09-24). A browser tab is never spatial: only the installed Web App's user agent contains WebSpatial/, and the SDK checks for exactly that string. Install creates a real Android package (com.picoxr.webapp.localhost.*) that survives an emulator restart. Changed the manifest? The installed app keeps the old one: `adb -s emulator-5554 shell pm list packages picoxr.webapp`, `adb uninstall <pkg>`, install again. Code changes hot-reload as usual. The emulator labels its actions \"Install app\" and \"Open as Web App\"; PICO's docs call the button \"Open as standalone app\"; webspatial.dev says \"Run as a standalone app\". After an emulator restart, re-run `node setup/launch.mjs <n>` to restore the adb reverse mapping.",
+      "todos": []
+    },
+    {
+      "id": "L1-s13",
+      "level": 1,
+      "step": 13,
+      "kind": "concept",
+      "title": "Proof it's real depth",
+      "action": null,
+      "body": "Same DOM. Only --xr-back changed, from 80 to 400.\n\nA flat element can't leave its window. That card is a real plane in front of the page.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/crack-p1-standalone-xr-back-80.webp",
+          "original": "../assets/emulator/crack-p1-standalone-xr-back-80.png",
+          "poster": null,
+          "alt": "Lab p1 installed as a Web App, card at --xr-back: 80",
+          "caption": "Lab p1 installed as a Web App, card at --xr-back: 80",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        },
+        {
+          "type": "image",
+          "src": "media/crack-p1-standalone-xr-back-400.webp",
+          "original": "../assets/emulator/crack-p1-standalone-xr-back-400.png",
+          "poster": null,
+          "alt": "The same page with only --xr-back changed to 400: the card grows and overhangs the window edge",
+          "caption": "The same page with only --xr-back changed to 400: the card grows and overhangs the window edge",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "Source: labs/SPATIAL-CRACK.md (VERIFIED on the OS 6.0.0 emulator, 2026-09-24). The value was changed live over CDP from 80 to 400; the card went from about 374 to 580 px wide on screen. Each lifted element is its own child document (?command=createSpatialized2DElement). Proof from an agent: navigator.userAgent contains WebSpatial/ and <html> has is-spatial.",
+      "todos": []
+    },
+    {
+      "id": "L1-s14",
+      "level": 1,
+      "step": 14,
+      "kind": "step",
+      "title": "Prove the runtime loaded",
+      "action": "Add a badge showing the display-mode and the user-agent markers, then read it in all three places.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Add a small badge to the page that shows the display-mode (browser vs standalone/minimal-ui via matchMedia) and whether navigator.userAgent matches /PicoWebApp\\// and /WebSpatial\\//. Tell me what it should say in a desktop browser, in a PICO Browser tab, and after Open as standalone app."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Desktop browser: browser, no markers.\nPICO Browser tab: still browser. That's why it's flat.\nInstalled Web App: standalone, and the UA contains PicoWebApp/<ver> and WebSpatial/<ver>.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/03-lab1-web-app-card-lifted.webp",
+          "original": "../assets/emulator/03-lab1-web-app-card-lifted.png",
+          "poster": null,
+          "alt": "Lab p1 installed as a Web App: no browser chrome, a glass window, the enable-xr card as its own panel in front of the page, and the badge \"Web app · WebSpatial on\"",
+          "caption": "Lab p1 installed as a Web App: no browser chrome, a glass window, the enable-xr card as its own panel in front of the page, and the badge \"Web app · WebSpatial on\"",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "Measured (labs/SPATIAL-CRACK.md): a tab reads ... PicoBrowser/5.0.0 Chrome/138 ...; the installed app reads ... PicoWebApp/0.4.0 (like PicoBrowser) Chrome/138 WebSpatial/1.5.0 .... If it doesn't work, the debugging prompt from L1.md walks the five checks in order: which tsconfig has \"jsx\", jsxImportSource, inside <SpatialBoot>, opened as standalone app, UA contains WebSpatial/.",
+      "todos": []
+    },
+    {
+      "id": "L1-s15",
+      "level": 1,
+      "step": 15,
+      "kind": "checkpoint",
+      "title": "Checkpoint: Hello Spatial",
+      "action": null,
+      "body": "You're done when the app is installed as a Web App and something floats.\n\n- The app is installed as a Web App in the emulator (its own window, its own launcher tile).\n- Your `enable-xr` paragraph is visibly in front of the page.\n- The same page looks completely normal in desktop Chrome.\n- You can name the three things that make a React app a WebSpatial app on PICO: `jsxImportSource`, `<SpatialBoot>`, a valid PWA manifest.\n\nA normal-looking page in Chrome is not a bug. That's the fallback working.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L1-s16",
+      "level": 1,
+      "step": 16,
+      "kind": "lab",
+      "title": "Lab p1: hello spatial",
+      "action": null,
+      "body": "Build it yourself from the start folder. The solution folder is there when you're stuck.\n\nEach lab has `start/` (you edit this) and `solution/` (the answer). Install every lab's dependencies once, from the kit root:\n\n\n\nThen start lab 1's dev server in the background and open it in the emulator, still from the kit root (p1 serves on port 5301):",
+      "commands": [
+        "npm run labs:install",
+        "node setup/launch.mjs 1 --serve"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../labs/_shots/p1-solution.png",
+          "original": "../labs/_shots/p1-solution.png",
+          "poster": null,
+          "alt": "The finished lab p1 in desktop Chrome: \"Hello, spatial web.\" with the enable-xr card drawn flat, as a desktop browser should",
+          "caption": "The finished lab p1 in desktop Chrome: \"Hello, spatial web.\" with the enable-xr card drawn flat, as a desktop browser should",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Labs pin @webspatial/react-sdk 2.0.0. Ports are 5301 to 5305 for start and 5311 to 5315 for solution (kit CLAUDE.md; each lab's package.json wins if they disagree).",
+      "todos": []
+    },
+    {
+      "id": "L2-s1",
+      "level": 2,
+      "step": 1,
+      "kind": "concept",
+      "title": "Spatialize a website",
+      "action": null,
+      "body": "The headline level. You don't rebuild the site. You pick a few elements and give them a Z axis.\n\n- Mark the elements you want lifted with `enable-xr`.\n- Lift them toward you with `--xr-back`.\n- Glass: make the window transparent and give lifted elements a translucent material.\n- Split: move secondary content into its own window with `initScene` + `window.open`.\n\nX and Y stay plain CSS. Every Z property is ignored in an ordinary browser, so the desktop site doesn't change.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../labs/_shots/p2-start.png",
+          "original": "../labs/_shots/p2-start.png",
+          "poster": null,
+          "alt": "The lab's starting site, Swanfest, in a desktop browser: a hero, three feature cards and a schedule. This is what you spatialize.",
+          "caption": "The lab's starting site, Swanfest, in a desktop browser: a hero, three feature cards and a schedule. This is what you spatialize.",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "45 minutes: 10 of concept, 35 of lab. Success is a before and an after screenshot. The mental model from L2.md is \"2D containing 3D\".",
+      "todos": []
+    },
+    {
+      "id": "L2-s2",
+      "level": 2,
+      "step": 2,
+      "kind": "step",
+      "title": "Take the before picture",
+      "action": "Serve the lab's starting site and open it in the emulator.",
+      "body": "From the kit root (port 5302):",
+      "commands": [
+        "node setup/launch.mjs 2 --serve"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The unchanged site loads in the emulator: one flat, opaque panel.\nScreenshot it now. You'll compare against it in step 6.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/04-lab2-browser-tab-flat.webp",
+          "original": "../assets/emulator/04-lab2-browser-tab-flat.png",
+          "poster": null,
+          "alt": "Before: lab p2, Swanfest, flat in a PICO Browser tab at localhost:5312: nav, hero, stat boxes and three feature cards, badge \"Browser tab · flat\"",
+          "caption": "Before: lab p2, Swanfest, flat in a PICO Browser tab at localhost:5312: nav, hero, stat boxes and three feature cards, badge \"Browser tab · flat\"",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L2-s3",
+      "level": 2,
+      "step": 3,
+      "kind": "step",
+      "title": "Mark and lift",
+      "action": "Ask Claude Code to spatialize the nav and the three feature cards.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Here is an ordinary landing page. Spatialize it with WebSpatial without breaking the desktop version: mark the nav and the three feature cards enable-xr, give each card position: relative, --xr-back: 40 and --xr-background-material: translucent, set html { --xr-background-material: transparent } so the window glass disappears, and list every file you changed and why."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A short diff: enable-xr on the nav and three cards, a CSS block for .card, one rule on html, and a list of changed files with reasons.",
+      "media": [
+        {
+          "type": "video",
+          "src": "../assets/media/p2-clip-solution-scroll.webm",
+          "original": "../assets/media/p2-clip-solution-scroll.webm",
+          "poster": "../assets/media/p2-clip-solution-scroll-poster.png",
+          "alt": "The spatialized Swanfest site scrolling in desktop Chrome: on desktop it looks exactly like the original, which is the point",
+          "caption": "The spatialized Swanfest site scrolling in desktop Chrome: on desktop it looks exactly like the original, which is the point",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Don't mark everything: each enable-xr element is a separate native plane. If a parent's children come and go and shift a lifted child, put enable-xr-monitor on the parent.",
+      "todos": []
+    },
+    {
+      "id": "L2-s4",
+      "level": 2,
+      "step": 4,
+      "kind": "step",
+      "title": "Read what --xr-back does",
+      "action": "Check the card CSS against the three rules.",
+      "body": "- It's an inset like `top`, but on Z: the distance to the plane behind the element.\n- Don't nest `enable-xr` inside `enable-xr`. On PICO OS 6.0.0 the nested one never rendered. Lift one or the other.\n- Units are px, not metres. `\"0.1m\"` is not valid here.",
+      "commands": [],
+      "prompts": [],
+      "code": [
+        ".card {\n  position: relative;   /* required: relative, absolute or fixed */\n  --xr-back: 40;        /* px only, one decimal allowed */\n}"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "If a card doesn't move: it's missing enable-xr, or it has no position.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/21-lab2-web-app-spatial.webp",
+          "original": "../assets/emulator/21-lab2-web-app-spatial.png",
+          "poster": null,
+          "alt": "The result of --xr-back in the emulator: lab p2's lifted feature cards stand forward of the glass window and overhang its bottom edge",
+          "caption": "The result of --xr-back in the emulator: lab p2's lifted feature cards stand forward of the glass window and overhang its bottom edge",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L2-s5",
+      "level": 2,
+      "step": 5,
+      "kind": "step",
+      "title": "Make the glass show through",
+      "action": "Clear any background you paint over the glass, in spatial mode only.",
+      "body": "Only `translucent`, `transparent` and `none` exist. Solid panel? Your own background covers the glass:",
+      "commands": [],
+      "prompts": [
+        "My cards are lifted but show a solid white panel instead of glass. Find every CSS rule that paints a background under or on .card, and make them transparent only when navigator.userAgent matches /WebSpatial\\//. Show me the diff."
+      ],
+      "code": [
+        "html  { --xr-background-material: transparent; }  /* the window */\n.card { --xr-background-material: translucent; }  /* a lifted element */"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/21-lab2-web-app-spatial.webp",
+          "original": "../assets/emulator/21-lab2-web-app-spatial.png",
+          "poster": null,
+          "alt": "Glass in the emulator: lab p2's window turned translucent with the page background cleared, and the lifted cards on their own glass",
+          "caption": "Glass in the emulator: lab p2's window turned translucent with the page background cleared, and the lifted cards on their own glass",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "The screenshot is lab p2 installed as a Web App on the OS 6.0.0 emulator (21-lab2-web-app-spatial): that is what translucent looks like there.",
+      "todos": []
+    },
+    {
+      "id": "L2-s6",
+      "level": 2,
+      "step": 6,
+      "kind": "step",
+      "title": "Split off a second window",
+      "action": "Open a details window from the Learn more button.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Add a second window scene called 'details' with initScene (defaultSize 480 x 600), registered in <SpatialBoot onReady={registerScenes}> (not at module load), open it from the Learn more button with window.open('/?scene=details', 'details'), route ?scene=details to a Details component in main.tsx, and make sure it still opens as a normal tab in a desktop browser."
+      ],
+      "code": [
+        "// register after boot, or it's a no-op\nconst registerScenes = () =>\n  initScene('details', prev => ({\n    ...prev,\n    defaultSize: { width: 480, height: 600 },\n  }), { type: 'window' })\n\n<SpatialBoot onReady={registerScenes}>\n\n// on click; 2nd arg = scene name\nwindow.open('/?scene=details', 'details')"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "Learn more opens a second window (the OS may size it like the main window). In desktop Chrome it opens a tab.",
+      "media": [],
+      "notes": "In a second window, don't wrap the page in enable-xr; the window is already glass. Keep floating panels small and few. initScene must run before window.open, and after boot. VERIFIED (assets/emulator/WALKTHROUGH.md): in SDK 2.0, initScene() does nothing until <SpatialBoot> has finished. It returns undefined and throws nothing, so a call at the top of main.tsx is lost: window.open gets the default config and a type: 'volume' scene opens as a flat 1280x720 window. Register scenes from <SpatialBoot onReady={...}>. The name must match the second argument. The OS treats defaultSize as a request.",
+      "todos": []
+    },
+    {
+      "id": "L2-s7",
+      "level": 2,
+      "step": 7,
+      "kind": "step",
+      "title": "Take the after picture",
+      "action": "Capture the spatialized site and compare it with the before.",
+      "body": "",
+      "commands": [
+        "pico-cli capture screenshot -o shots/spatialized.png"
+      ],
+      "prompts": [
+        "Take a before and after screenshot in the emulator with pico-cli capture screenshot and describe exactly which elements now float and which stayed flat. Then open the page in desktop Chrome and confirm nothing broke."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Nav and cards float on glass in front of a clear window. Everything else stayed flat. Desktop Chrome looks the same as before.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/21-lab2-web-app-spatial.webp",
+          "original": "../assets/emulator/21-lab2-web-app-spatial.png",
+          "poster": null,
+          "alt": "After: lab p2 installed as a Web App, in front of the flat tab it came from: a glass window, and the lifted feature cards overhang the window's bottom edge, which a flat element can't do",
+          "caption": "After: lab p2 installed as a Web App, in front of the flat tab it came from: a glass window, and the lifted feature cards overhang the window's bottom edge, which a flat element can't do",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L2-s8",
+      "level": 2,
+      "step": 8,
+      "kind": "step",
+      "title": "Read the runtime's logs",
+      "action": "Pull recent log lines that mention WebSpatial.",
+      "body": "",
+      "commands": [
+        "pico-cli log -e webspatial -n 200"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The last 200 logcat lines that match \"webspatial\". Errors here explain a card that won't lift or a window that won't open.",
+      "media": [],
+      "notes": "The kit's `node setup/snap.mjs` takes a burst and keeps the least-black frame; a single emulator capture is often mostly black while the page renders fine. -e is a regex filter on the message, -n the number of recent lines (pico-cli log --help).",
+      "todos": []
+    },
+    {
+      "id": "L2-s9",
+      "level": 2,
+      "step": 9,
+      "kind": "checkpoint",
+      "title": "Checkpoint: spatialized",
+      "action": null,
+      "body": "The headline result. Show your neighbour both screenshots.\n\n- You have a before and an after screenshot from the emulator.\n- The nav and the cards float; the window glass is clear.\n- The details window opens from Learn more.\n- The desktop build is unchanged.\n\nTwo questions for the room: which values does `--xr-background-material` accept? What's the difference between `--xr-back: 40` and `transform: translateZ(40px)`?",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Answers from L2.md: translucent, transparent, none, with transparent on html to remove the window. --xr-back moves the Z layout position, and children and event coordinates follow it; translateZ only moves where it's drawn.",
+      "todos": []
+    },
+    {
+      "id": "L2-s10",
+      "level": 2,
+      "step": 10,
+      "kind": "lab",
+      "title": "Lab p2: spatialize a site",
+      "action": null,
+      "body": "The headline lab. Mark, lift, glass, split, on a real landing page.\n\nEdit `labs/p2-spatialize-site/start`, serve it with `npm run dev:xr` on port 5302, and open it with `node setup/launch.mjs 2`. `launch.mjs` wraps `pico-cli web launch` and refuses any target that isn't an emulator. Keep the desktop version working the whole way through.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../labs/_shots/p2-solution.png",
+          "original": "../labs/_shots/p2-solution.png",
+          "poster": null,
+          "alt": "The finished lab p2, Swanfest, in desktop Chrome: nav, hero, stat boxes, three feature cards and the schedule, unchanged on desktop",
+          "caption": "The finished lab p2, Swanfest, in desktop Chrome: nav, hero, stat boxes, three feature cards and the schedule, unchanged on desktop",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L3-s1",
+      "level": 3,
+      "step": 1,
+      "kind": "concept",
+      "title": "3D and volumes",
+      "action": null,
+      "body": "WebSpatial puts 3D inside a 2D layout. A 3D container takes part in CSS layout as a flat plane, and its content lives in a box in front of it.\n\n- `<Model>` shows a prebuilt GLB or USDZ file. Its API follows the web `<model>` element.\n- `<Reality>` composes a scene from primitives, materials and model entities as React components.\n- Volume scene: a window that behaves like a physical object, sized in metres.\n- Units flip: `--xr-depth` is px, entity sizes and positions are metres, rotation is radians.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/10-lab3-volume-web-app.webp",
+          "original": "../assets/emulator/10-lab3-volume-web-app.png",
+          "poster": null,
+          "alt": "Lab p3 installed as a Web App in the emulator: the main window turned to glass, with a lifted card showing the avocado model preview (avocado.glb, 2.4 MB, 682 triangles) and an Open in 3D button that opens the 0.6 m volume",
+          "caption": "Lab p3 installed as a Web App in the emulator: the main window turned to glass, with a lifted card showing the avocado model preview (avocado.glb, 2.4 MB, 682 triangles) and an Open in 3D button that opens the 0.6 m volume",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "30 minutes. Teach <Model> first; <Reality> is optional stretch (SYLLABUS run of show). Unverified per L3.md: that <Model> and <Reality> render in PICO OS 6's runtime on the emulator. Say so.",
+      "todos": []
+    },
+    {
+      "id": "L3-s2",
+      "level": 3,
+      "step": 2,
+      "kind": "step",
+      "title": "Open a volume with a model",
+      "action": "Ask Claude Code for a 'viewer' volume that shows your GLB.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Add a volume scene called 'viewer' (defaultSize 0.6m on all three axes, registered in <SpatialBoot onReady={registerScenes}>, not at module load) that shows public/model.glb with <Model enable-xr> plus a poster image, onLoad and onError handlers. Open it from a button on the main page with window.open('/?scene=viewer', 'viewer'). In a desktop browser the button should still open a normal tab."
+      ],
+      "code": [
+        "// call from <SpatialBoot onReady={registerScenes}>\nexport function registerScenes() {\n  initScene('viewer', prev => ({\n    ...prev,\n    defaultSize: {\n      width: '0.6m', height: '0.6m', depth: '0.6m',\n    },\n  }), { type: 'volume' })  // 3rd argument\n}"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Inside a volume, keep 2D UI flat; put the depth in the 3D content: an enable-xr panel inside a volume failed to create on PICO OS 6.0.0 (createSpatialized2DElement failed). VERIFIED (assets/emulator/WALKTHROUGH.md): in SDK 2.0, initScene() does nothing until <SpatialBoot> has finished. It returns undefined and throws nothing, so a call at the top of main.tsx is lost: window.open gets the default config and a type: 'volume' scene opens as a flat 1280x720 window. Register scenes from <SpatialBoot onReady={...}>. Without enable-xr, <Model> is the flat web <model> element. The model fits the container's width and height: size the container, not the model.",
+      "todos": []
+    },
+    {
+      "id": "L3-s3",
+      "level": 3,
+      "step": 3,
+      "kind": "step",
+      "title": "Launch and record it",
+      "action": "Serve lab p3, open it in the emulator and record 15 seconds of the volume.",
+      "body": "",
+      "commands": [
+        "node setup/launch.mjs 3 --serve",
+        "pico-cli capture record -t 15 -o shots/volume.mp4"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A 15 second clip in shots/volume.mp4 with the viewer volume open and the model inside it.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/24-lab3-volume-avocado.webp",
+          "original": "../assets/emulator/24-lab3-volume-avocado.png",
+          "poster": null,
+          "alt": "\"Open in 3D\" opens a 0.6 m volume in the emulator, and <Model> scales the CC0 avocado to fill it",
+          "caption": "\"Open in 3D\" opens a 0.6 m volume in the emulator, and <Model> scales the CC0 avocado to fill it",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L3-s4",
+      "level": 3,
+      "step": 4,
+      "kind": "step",
+      "title": "Make it respond to a drag",
+      "action": "Wire spatial drag and tap onto the model.",
+      "body": "- `onSpatialTap`: `offsetX/Y/Z` and `clientX/Y/Z`\n- `onSpatialDrag`: `translationX/Y/Z`, px from the start\n- `onSpatialRotate`: `quaternion` · `onSpatialMagnify`: `magnification`",
+      "commands": [],
+      "prompts": [
+        "Make the model follow a spatial drag: on onSpatialDragStart remember the start, on onSpatialDrag apply translationX/Y/Z (px) through a style transform, and on onSpatialTap reset. Tell me which event carries which field and what I have to test by hand because adb cannot inject a spatial ray."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Each handler logs to the console, so you can prove it fired.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p3-solution-viewer-volume.png",
+          "original": "../assets/media/p3-solution-viewer-volume.png",
+          "poster": null,
+          "alt": "The viewer scene's own page opened in desktop Chrome: the volume's content, flat",
+          "caption": "The viewer scene's own page opened in desktop Chrome: the volume's content, flat",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "adb shell input injects a 2D touch on the emulator's flat display. It never ray-casts into 3D content. Test gestures by hand with the emulator window's pointer.",
+      "todos": []
+    },
+    {
+      "id": "L3-s5",
+      "level": 3,
+      "step": 5,
+      "kind": "step",
+      "title": "Check the warnings",
+      "action": "Read recent log lines at warning level or above.",
+      "body": "",
+      "commands": [
+        "pico-cli log -l W -n 200"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "The last 200 lines at W, E or F. A model that failed to load shows up here, and your onError handler fires.",
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L3-s6",
+      "level": 3,
+      "step": 6,
+      "kind": "step",
+      "title": "Keep the model light",
+      "action": "Ask Claude Code to measure the GLB and compress it if it's heavy.",
+      "body": "",
+      "commands": [
+        "npx @gltf-transform/cli inspect"
+      ],
+      "prompts": [
+        "Check the GLB file size and triangle count with gltf-transform inspect and tell me if it is too heavy for a headset. If it is, give me the gltf-transform command to simplify and compress it, run it, and compare before and after."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A size and triangle count for the file, and a before/after comparison if Claude compressed it.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../labs/_shots/p3-solution.png",
+          "original": "../labs/_shots/p3-solution.png",
+          "poster": null,
+          "alt": "Lab p3 in desktop Chrome: the model card lists avocado.glb at 2.4 MB and 682 triangles, the numbers this step asks you to check",
+          "caption": "Lab p3 in desktop Chrome: the model card lists avocado.glb at 2.4 MB and 682 triangles, the numbers this step asks you to check",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Claude adds the file path to the inspect command. A 40 MB GLB has to load over a headset's network and GPU.",
+      "todos": []
+    },
+    {
+      "id": "L3-s7",
+      "level": 3,
+      "step": 7,
+      "kind": "step",
+      "title": "Stretch: build with primitives",
+      "action": "Build a trophy from primitives with no model file at all.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Without any external model, build a trophy in a <Reality> from Box, Cylinder and Sphere with one unlit gold Material, slowly rotating on Y via requestAnimationFrame. Gate it with WebSpatialRuntime.supports('Reality') and render a flat <img> fallback otherwise."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A gold trophy turning slowly in the volume. In desktop Chrome, the flat image.",
+      "media": [],
+      "notes": "Materials go outside <World>, entities inside. A <Box width={200}> is a 200 metre box. No CSS on entities; animate state in requestAnimationFrame.",
+      "todos": []
+    },
+    {
+      "id": "L3-s8",
+      "level": 3,
+      "step": 8,
+      "kind": "checkpoint",
+      "title": "Checkpoint: 3D and volumes",
+      "action": null,
+      "body": "You're done when a volume opens with your model or scene, and a log line proves a gesture fired.\n\n- A volume opens with a model or a primitive scene.\n- At least one spatial gesture fired, proved by a console log line.\n- The page still works in desktop Chrome, with a flat fallback.\n\nQuick check: how big is a `<Box width={0.2}>`? (20 cm: entity lengths are metres.)",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L3-s9",
+      "level": 3,
+      "step": 9,
+      "kind": "lab",
+      "title": "Lab p3: volume model",
+      "action": null,
+      "body": "A model in a volume, a gesture that moves it, and a fallback for everyone else.\n\nStart from the lab's start folder. Log every gesture handler so you can prove it fired.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p3-solution-model-viewer.png",
+          "original": "../assets/media/p3-solution-model-viewer.png",
+          "poster": null,
+          "alt": "Lab p3's main page in desktop Chrome: the avocado poster, a \"flat fallback\" chip, and Orbit and Reset buttons",
+          "caption": "Lab p3's main page in desktop Chrome: the avocado poster, a \"flat fallback\" chip, and Orbit and Reset buttons",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L4-s1",
+      "level": 4,
+      "step": 1,
+      "kind": "concept",
+      "title": "Spatial Invaders: depth as gameplay",
+      "action": null,
+      "body": "So far depth has been decoration. Here it carries meaning: a complete, flat Space Invaders game where Z tells part of the story.\n\n- Rows stand in terraces, back rows deepest.\n- The formation comes toward you as it descends.\n- Your shots fly away from you; enemy shots fly at you.\n- A hit row flinches forward before the invader vanishes.\n- A HUD window and a hall of fame window, synced over `BroadcastChannel`.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "video",
+          "src": "../assets/media/p4-clip-gameplay.webm",
+          "original": "../assets/media/p4-clip-gameplay.webm",
+          "poster": "../assets/media/p4-clip-gameplay-poster.png",
+          "alt": "Spatial Invaders in desktop Chrome: start, strafe and fire (6.5 s, the flat fallback)",
+          "caption": "Spatial Invaders in desktop Chrome: start, strafe and fire (6.5 s, the flat fallback)",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "The showpiece. Source: labs/p4-space-invaders/README.md (final). start/ is solution/ with every SPATIAL line removed, so `git diff --no-index labs/p4-space-invaders/start/src labs/p4-space-invaders/solution/src` is the whole lesson. Collisions never read Z: the game plays the same on a laptop. The screenshot is desktop Chrome (flat); the corner badge says \"Browser tab · flat\".",
+      "todos": []
+    },
+    {
+      "id": "L4-s2",
+      "level": 4,
+      "step": 2,
+      "kind": "concept",
+      "title": "Where everything sits in Z",
+      "action": null,
+      "body": "Each row writes its absolute depth: `(5 + y × 0.08) + row × 20 + flinch`. Nothing is nested. At wave 1 (y = 80) the front row is 11.4 + 80 = 91.4 px. Keep depths modest: planes lifted far toward you, low in the window, fall below it.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [
+        {
+          "title": "Side view of Spatial Invaders: five row planes at stepped depths that come forward together, the shield line and the ship",
+          "description": "Side view with the window's glass on the left at depth 0 and the player on the right; --xr-back grows toward the player. No spatial element sits inside another: each of the five rows is its own top-level plane at an absolute depth of 5 plus 0.08 times the formation's Y, plus row times 20, so row 0 (the top row) is deepest and all five come forward together as the formation descends. A hit row flinches 24 px forward. The shield line is one plane at 100 and the ship is at 120, always the closest. Player shots travel from 120 back to the front row; enemy shots travel from the firing row toward the ship. The Fire and arrow buttons are flat on the window."
+        }
+      ],
+      "expect": null,
+      "media": [],
+      "notes": "Start y is 80 (solution/src/constants.ts START_Y), per wave +14 up to wave 5. Numbers from labs/p4-space-invaders/README.md \"The depth map (solution)\" and solution/src/depth.ts: rows ROW_STEP 20, formation 5 + y × 0.08, shields 100, ship 120 (the deepest the front row ever reaches is 5 + 412 × 0.08 + 80 = 118), flinch 24 with POP_DECAY 0.85 (about 200 ms), overlay card 150 while shown, buttons flat. The first version used ship 260, shields 210 and 30 px steps, and in the emulator's default view the ship and buttons projected below the window's bottom edge. All values are px, one decimal, never negative, written through refs by writeBack(el, z), which skips unchanged values.",
+      "todos": []
+    },
+    {
+      "id": "L4-s3",
+      "level": 4,
+      "step": 3,
+      "kind": "concept",
+      "title": "The layer budget: 11 planes, not 230+",
+      "action": null,
+      "body": "Each enable-xr element is its own native plane. Spatialize containers, not sprites.\n\n| Layer | Planes | Depth (px) |\n|---|---|---|\n| Rows 0 to 4 | 5 | `(5 + y × 0.08) + row × 20` |\n| Invaders (55) | 0 | ride on their row |\n| Shields | 1 | 100: four bunkers on one plane |\n| Ship | 1 | 120, always the closest |\n| Shots, bombs | 4, pooled | travel in Z |\n| ◀ Fire ▶ | 0 | flat on the window; pinch = click |\n| Playfield | 0 | plain div: no nesting |\n\n11 planes (12 with the overlay card) vs 230+ if every sprite were spatial.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/25-lab4-angled-rows-in-depth.webp",
+          "original": "../assets/emulator/25-lab4-angled-rows-in-depth.png",
+          "poster": null,
+          "alt": "Lab 4 from the side in the emulator: each invader row stands at its own depth off the window, and the shields float out in front (captured with the earlier, deeper settings)",
+          "caption": "Lab 4 from the side in the emulator: each invader row stands at its own depth off the window, and the shields float out in front (captured with the earlier, deeper settings)",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "The key lesson of the level. The docs publish no per-scene plane limit, so treat roughly 15 as a budget habit, not a hard number; measure it with pico-cli perf in L5. The UFO stays on the page plane plane (cosmetic, 0 planes). Unverified on the emulator: frame rate with per-frame --xr-back writes.",
+      "todos": []
+    },
+    {
+      "id": "L4-s4",
+      "level": 4,
+      "step": 4,
+      "kind": "step",
+      "title": "Wire WebSpatial",
+      "action": "Play a round flat first, then wire the same four pieces as p1 and p2.",
+      "body": "- `jsxImportSource` in `tsconfig.json` and `react({...})` in `vite.config.ts`\n- `<SpatialBoot>` around `<Game />` in `main.tsx`\n- The manifest is already there: `xr_main_scene` sizes the game window 900 × 1000",
+      "commands": [
+        "node setup/launch.mjs 4 --serve",
+        "npm i @webspatial/react-sdk@2.0.0 @webspatial/core-sdk@2.0.0 --save-exact"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "http://localhost:5304/ plays the flat game. Press Enter to start. Then make the window glass. The playfield stays a plain div: nothing spatial nests inside anything spatial.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p4-start-vs-solution.png",
+          "original": "../assets/media/p4-start-vs-solution.png",
+          "poster": null,
+          "alt": "start/ and solution/ side by side in desktop Chrome: they look identical, because the whole diff is depth",
+          "caption": "start/ and solution/ side by side in desktop Chrome: they look identical, because the whole diff is depth",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Controls: ← → move, Space fire, Enter start, P pause, M sound. The on-screen buttons work with mouse, touch or a pinch. All art is CSS and all sound is WebAudio.",
+      "todos": []
+    },
+    {
+      "id": "L4-s5",
+      "level": 4,
+      "step": 5,
+      "kind": "step",
+      "title": "Rows get depth",
+      "action": "One spatial layer per row, not per sprite.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Spatialize this Space Invaders game with one spatial layer per ROW, not per sprite: make each .row enable-xr (no spatial parent: never nest enable-xr inside enable-xr, it does not render on PICO OS 6.0.0) and write each row's --xr-back = row * 20 (row 0, the top/back row, deepest) through its ref. Leave every invader a plain div. Put the depth constants in src/depth.ts with a writeBack(el, z) helper that rounds to one decimal and skips unchanged values, and make the loop's transform/visibility writes skip unchanged values too. Then count the enable-xr elements."
+      ],
+      "code": [
+        "// absolute depth: no spatial parent\nexport const rowWorldZ = (y: number, row: number, pop = 0) =>\n  formationZ(y) + row * ROW_STEP + pop"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "No visible change on desktop. In DevTools each .row's inline style shows --xr-back 20 px apart, row 0 deepest.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p4-solution-invaders.png",
+          "original": "../assets/media/p4-solution-invaders.png",
+          "poster": null,
+          "alt": "The solution at its Ready screen in desktop Chrome: five rows, four shields, the controls row and the HUD window button",
+          "caption": "The solution at its Ready screen in desktop Chrome: five rows, four shields, the controls row and the HUD window button",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L4-s6",
+      "level": 4,
+      "step": 6,
+      "kind": "step",
+      "title": "Depth tied to descent",
+      "action": "Make the threat physically approach, written from the game loop.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Tie the formation's depth to its descent: each row's --xr-back = (5 + y * 0.08) + row * 20 + flinch, written from the requestAnimationFrame loop through the row's ref with writeBack, so it only writes when the rounded value changes. No CSS transitions on spatial elements. Show me the loop code you changed."
+      ],
+      "code": [
+        "rowRefs.current.forEach((el, r) =>   // SPATIAL: every row comes toward you as it descends\n  writeBack(el, rowWorldZ(w.fy, r, w.pops[r])))"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": "At the start (y = 80) the rows read 11.4 / 31.4 / 51.4 / 71.4 / 91.4; near the shields (y ≈ 400) each is about 25 px further forward.",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/22-lab4-web-app-rows-stepped.webp",
+          "original": "../assets/emulator/22-lab4-web-app-rows-stepped.png",
+          "poster": null,
+          "alt": "Spatial Invaders installed as a Web App at the Ready screen: the rows stand on the glass, and the shields and the Fire and arrow buttons stand forward of it, overhanging its bottom edge (captured with the earlier, deeper settings)",
+          "caption": "Spatial Invaders installed as a Web App at the Ready screen: the rows stand on the glass, and the shields and the Fire and arrow buttons stand forward of it, overhanging its bottom edge (captured with the earlier, deeper settings)",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "Spatialized elements don't support CSS animations or transitions, so depth changes are writes from the rAF loop through refs, never document.querySelector.",
+      "todos": []
+    },
+    {
+      "id": "L4-s7",
+      "level": 4,
+      "step": 7,
+      "kind": "step",
+      "title": "Shots travel in Z; hits flinch",
+      "action": "Give the ship, shields, shots and bombs their depths.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Make the ship (120) and the shield line (100) enable-xr at fixed depths, and the 2 pooled shots and 2 pooled bombs enable-xr. Player shots: lerp --xr-back from the ship's depth to the front row's absolute depth (formation + row) as they rise. Enemy shots: lerp from the depth of the row that fired them to the ship's depth as they fall. Keep collision detection 2D. On a hit, pop that row forward by 24px and decay it back over about 200ms in the loop, while the invader flashes before it vanishes."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "11 planes, matching the layer budget. Your shots recede, enemy shots approach, and a hit row flinches.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p4-solution-invaders-playing.png",
+          "original": "../assets/media/p4-solution-invaders-playing.png",
+          "poster": null,
+          "alt": "The solution mid-game in desktop Chrome: score and shots in flight (depth only shows in the Web App)",
+          "caption": "The solution mid-game in desktop Chrome: score and shots in flight (depth only shows in the Web App)",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "The on-screen ◀ Fire ▶ buttons use plain onClick: a pinch on a spatial button arrives as a click. Never put onSpatialTap on a <button>, even gated by useSpatialReady(): inside the PICO runtime it logs \"Unknown event handler property onSpatialTap\". Spatial events are for <Model>, <Reality> entities and enable-xr divs.",
+      "todos": []
+    },
+    {
+      "id": "L4-s8",
+      "level": 4,
+      "step": 8,
+      "kind": "step",
+      "title": "The HUD window",
+      "action": "Give score, lives and wave their own window, kept in sync.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Add a HUD window: register initScene('hud', cfg => ({...cfg, defaultSize: {width: 360, height: 480}}), { type: 'window' }) in src/scenes.ts, open it with window.open('/?scene=hud', 'hud') from a \"HUD window\" button, call registerScenes from <SpatialBoot onReady={registerScenes}> (initScene before boot is a silent no-op in SDK 2.0), route ?scene=hud in main.tsx, and sync score, lives, wave and status over a BroadcastChannel named 'invaders'. The game is authoritative, broadcasts only when HUD state changes, answers 'hello', and applies 'intent' messages (pause, restart) from the HUD. Prove it in desktop Chrome, including a HUD opened mid-game and one closed and reopened."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/26-lab4-hud-window-live.webp",
+          "original": "../assets/emulator/26-lab4-hud-window-live.png",
+          "poster": null,
+          "alt": "The HUD as its own window in the emulator, synced over BroadcastChannel: score 90, two lives, wave 1, \"playing\"",
+          "caption": "The HUD as its own window in the emulator, synced over BroadcastChannel: score 90, two lives, wave 1, \"playing\"",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "In a second window, don't wrap the page in enable-xr; the window is already glass. Keep floating panels small and few. Files in solution/src: bus.ts (message types + channel), scenes.ts (initScene + openScene + router), Hud.tsx (display, hello on mount, intent buttons). The HUD's Pause sends an intent; only the game changes state. The second scene, 'halloffame' (420x560), opens at game over. The game window's own size comes from xr_main_scene in the manifest (900 x 1000), not initScene.",
+      "todos": []
+    },
+    {
+      "id": "L4-s9",
+      "level": 4,
+      "step": 9,
+      "kind": "step",
+      "title": "Gotcha: a message posted just before window.open can vanish",
+      "action": "Post first, then open the new window on a later task.",
+      "body": "",
+      "commands": [],
+      "prompts": [],
+      "code": [
+        "// broken: same task, the HUD misses it\nbus.post({ type: 'gameover', score, wave })\nopenScene('halloffame')\n\n// fixed: open the new window on a later task\nbus.post({ type: 'gameover', score, wave })\nwindow.setTimeout(() => openScene('halloffame'), 100)"
+      ],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../labs/_shots/p4-solution-halloffame.png",
+          "original": "../labs/_shots/p4-solution-halloffame.png",
+          "poster": null,
+          "alt": "The hall of fame window in desktop Chrome, opened when the game ends: rank 1, score 130, wave 1",
+          "caption": "The hall of fame window in desktop Chrome, opened when the game ends: rank 1, score 130, wave 1",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "In desktop Chrome, a BroadcastChannel message posted in the same task that opens a brand-new window was dropped for the windows already listening. The lab's automated check reproduces it: with the first form, the HUD never shows \"Game over\". Measured 2026-09-24 in Chrome with SDK 2.0.0; not yet measured inside PICO's web-app runtime, so keep the deferral either way.",
+      "todos": []
+    },
+    {
+      "id": "L4-s10",
+      "level": 4,
+      "step": 10,
+      "kind": "step",
+      "title": "In the emulator",
+      "action": "Launch it, install it as a Web App, open the HUD, and capture the proof.",
+      "body": "",
+      "commands": [
+        "node setup/launch.mjs 4"
+      ],
+      "prompts": [
+        "Launch the game in the PICO emulator with node setup/launch.mjs 4, install it as a web app, open the HUD, take a burst of screenshots with node setup/snap.mjs, then close the HUD and reopen it. Tell me whether it showed the right score immediately after reopening."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Installed as a Web App (monitor icon, titled Install app, just left of the star → Install; wait up to 60 s; if the panels are still missing, close and reopen the app once): stepped rows, an approaching formation, flinching hits, shots flying in and out of depth. The corner badge reads \"Web app · WebSpatial on\".",
+      "media": [
+        {
+          "type": "image",
+          "src": "media/23-lab4-web-app-midgame.webp",
+          "original": "../assets/emulator/23-lab4-web-app-midgame.png",
+          "poster": null,
+          "alt": "Spatial Invaders installed as a Web App, mid-game: score 20, one invader gone from row 2, a player shot and an enemy shot in flight; the shields and buttons stand forward of the glass and overhang its bottom edge (captured with the earlier, deeper settings)",
+          "caption": "Spatial Invaders installed as a Web App, mid-game: score 20, one invader gone from row 2, a player shot and an enemy shot in flight; the shields and buttons stand forward of the glass and overhang its bottom edge (captured with the earlier, deeper settings)",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "By hand: npm run dev:xr in the lab folder, adb reverse tcp:5314 tcp:5314 (solution) or 5304 (start), then http://localhost:<port>/ in the PICO Browser. 10.0.2.2 loads but was not a secure context in our test (no install); use localhost. Glass still empty after 60 s with createSpatialized2DElement failed in the console? Close and reopen the app (the solution auto-reloads once). Keep depths modest: a plane lifted far toward you, low in the window, projects below the window's bottom edge in the default view (the ship vanished at 260; it now sits at 120). For a clip: pico-cli capture record -t 15 -o captures/invaders.mp4.",
+      "todos": []
+    },
+    {
+      "id": "L4-s11",
+      "level": 4,
+      "step": 11,
+      "kind": "checkpoint",
+      "title": "Checkpoint: invaders in depth",
+      "action": null,
+      "body": "You're done when depth tells the story and the windows stay in sync.\n\n- You can state the plane count (11, 12 with the overlay), why invaders aren't planes, and why nothing is nested.\n- DevTools: each `.row`'s `--xr-back` rises as the formation descends, 20 px apart.\n- The HUD opened mid-game shows the live score, its Pause works, it recovers after close + reopen, and it shows \"Game over\".\n- Emulator (Web App): stepped rows, an approaching formation, flinching hits, shots in and out of depth.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L4-s12",
+      "level": 4,
+      "step": 12,
+      "kind": "lab",
+      "title": "Lab p4: Spatial Invaders",
+      "action": null,
+      "body": "Rows in depth, a formation that advances in Z, shots both ways, a HUD and a hall of fame.\n\nEdit `start/` (port 5304), never `solution/` (5314). The diff between them is the whole lesson:",
+      "commands": [],
+      "prompts": [
+        "Run git diff --no-index labs/p4-space-invaders/start/src labs/p4-space-invaders/solution/src and walk me through every SPATIAL change in order: which elements became planes, what depth each gets from src/depth.ts, and why the invaders and shield blocks did not."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "video",
+          "src": "../assets/media/p4-clip-start-vs-solution.webm",
+          "original": "../assets/media/p4-clip-start-vs-solution.webm",
+          "poster": "media/p4-clip-start-vs-solution-poster.webp",
+          "alt": "start/ and solution/ playing side by side in desktop Chrome: same game, the diff is depth",
+          "caption": "start/ and solution/ playing side by side in desktop Chrome: same game, the diff is depth",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L5-s1",
+      "level": 5,
+      "step": 1,
+      "kind": "concept",
+      "title": "Agentic expert: Claude Code runs the loop",
+      "action": null,
+      "body": "Every step you did by hand is a command, so an agent can run them. Your job is to hold it to evidence.\n\n- The loop: edit, serve, `pico-cli web launch`, capture, `pico-cli log -l W`, judge against SPEC.md, repeat.\n- Evidence per claim: a screenshot path, a log line or a DevTools read. \"The code looks right\" isn't evidence.\n- Bound it: an iteration cap and a stopping condition.\n- Ground it: PICO questions go through the `pico-dev-knowledge` MCP, with a cited source.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/27-lab5-web-app-night-market.webp",
+          "original": "../assets/emulator/27-lab5-web-app-night-market.png",
+          "poster": null,
+          "alt": "The capstone, Night Market, installed as a Web App in the emulator: glass window, and the vendor cards float out over the window's bottom edge; the result the agent loop should produce and prove",
+          "caption": "The capstone, Night Market, installed as a Web App in the emulator: glass window, and the vendor cards float out over the window's bottom edge; the result the agent loop should produce and prove",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "25 minutes: 15 of demo on one attendee's site, 10 of capstone kickoff, then the capstone goes home. Emulator screenshots are sometimes partly black while the app renders fine: that's why the loop needs a cap, or the agent \"fixes\" an artefact for an hour.",
+      "todos": []
+    },
+    {
+      "id": "L5-s2",
+      "level": 5,
+      "step": 2,
+      "kind": "step",
+      "title": "Check the agent layer",
+      "action": "Confirm PICO's skills and knowledge base are installed and current.",
+      "body": "",
+      "commands": [
+        "pico-cli plugin doctor",
+        "pico-cli knowledge pull"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "plugin doctor reports the skills installed. knowledge pull updates the PICO docs graph behind the pico-dev-knowledge MCP.",
+      "media": [],
+      "notes": "For web work, the PICO skills that matter are pico-cli, pico-env-doctor, spatial-emulator-usage and spatial-app-performance-analysis. Most others target native Kotlin Spatial SDK apps.",
+      "todos": []
+    },
+    {
+      "id": "L5-s3",
+      "level": 5,
+      "step": 3,
+      "kind": "step",
+      "title": "Docs for your agent, with one fix",
+      "action": "In your own project, add WebSpatial's docs and agent memory, then pin SDK 2.0.",
+      "body": "Verified 2026-09-24: adds WebSpatial docs + agent memory to a project. Its bundled docs predate SDK 2.0, so don't run it inside the labs. In your own project, run it, then add the second block below to `CLAUDE.md`.",
+      "commands": [
+        "npx @webspatial/starter ai"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [
+        "SDK 2.0: wrap the app in <SpatialBoot>; labs/VERSIONS.md overrides .webspatial/docs"
+      ],
+      "diagrams": [],
+      "expect": ".webspatial/docs (54 files), .claude/ + a CLAUDE.md block, .codex/skills, an AGENTS.md block.",
+      "media": [],
+      "notes": "Verified 2026-09-24: adds WebSpatial docs + agent memory to a project. Its bundled docs predate SDK 2.0, so don't run it inside the labs; in your own project, run it and then add one line to CLAUDE.md: 'SDK 2.0: wrap the app in <SpatialBoot>; labs/VERSIONS.md overrides .webspatial/docs' It also adds a .git/info/exclude entry, and `npx @webspatial/starter` (the scaffolder) creates an SDK ^1.5.0 project (examples/README.md). Hazard: the starter's CLAUDE.md block tells the agent \"local .webspatial/docs always wins\", and those docs never mention <SpatialBoot>. In a 2.0 project that steers Claude away from <SpatialBoot>, which means back to flat pages. Run by the team lead on a scratch copy of lab p1: @webspatial/starter v0.1.0, published 2026-04-15, no install scripts.",
+      "todos": []
+    },
+    {
+      "id": "L5-s4",
+      "level": 5,
+      "step": 4,
+      "kind": "step",
+      "title": "Hand over the whole loop",
+      "action": "Give Claude Code a spec, a cap and a demand for evidence.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Run the whole loop on this repo without asking me: start the dev server, launch it in the PICO emulator, screenshot every scene, read the last 200 log lines at warning or above, fix anything broken, and repeat until the screenshots match SPEC.md. Stop after 5 iterations either way and show me the evidence for each claim."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "A report where each claim has a screenshot path or a log excerpt next to it, and a stop at 5 iterations or fewer.",
+      "media": [
+        {
+          "type": "video",
+          "src": "../assets/media/p5-clip-night-market.webm",
+          "original": "../assets/media/p5-clip-night-market.webm",
+          "poster": "../assets/media/p5-clip-night-market-poster.png",
+          "alt": "The capstone solution, Night Market, scrolling in desktop Chrome: the kind of result the loop should produce and prove",
+          "caption": "The capstone solution, Night Market, scrolling in desktop Chrome: the kind of result the loop should produce and prove",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "If Claude says \"the translucent cards are working\", ask for the emulator screenshot path and proof the page ran in the runtime (a UA containing WebSpatial/).",
+      "todos": []
+    },
+    {
+      "id": "L5-s5",
+      "level": 5,
+      "step": 5,
+      "kind": "step",
+      "title": "Ask PICO, not the model's memory",
+      "action": "Audit your scenes against PICO's own design guidance, with citations.",
+      "body": "",
+      "commands": [],
+      "prompts": [
+        "Use the pico-dev-knowledge MCP to find what PICO recommends for window sizes and text legibility in spatial apps, cite the source file for each rule, then audit my scenes against it."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Rules with a source file each, then a list of your scenes that pass or fail them.",
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L5-s6",
+      "level": 5,
+      "step": 6,
+      "kind": "step",
+      "title": "Profile it",
+      "action": "Find the process, then record and analyze a trace.",
+      "body": "Confirm which package your page runs in first. On the emulator the PICO Browser is `com.picoxr.browser`.",
+      "commands": [
+        "pico-cli app list"
+      ],
+      "prompts": [
+        "Record a 10 second perf trace while the volume scene is open, run the built-in analysis, and tell me the top three costs and one change for each. Say which of them are the browser's cost and which are mine."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Three costs, each with one change, split into the browser's and yours. Usual suspects: too many enable-xr elements, a heavy GLB, a style loop that runs every frame.",
+      "media": [],
+      "notes": "Run `pico-cli perf doctor` once to install the profiler deps. The trace command under the hood is `pico-cli perf trace record -t 10 --package <pkg> -o trace.perfetto-trace`. Unverified: whether a standalone Web App runs under the browser's package or its own.",
+      "todos": []
+    },
+    {
+      "id": "L5-s7",
+      "level": 5,
+      "step": 7,
+      "kind": "step",
+      "title": "Ship it",
+      "action": "Deploy over HTTPS and launch it as a Web App from its manifest.",
+      "body": "On PICO OS 6 the HTTPS URL is the distribution. No packaging.",
+      "commands": [
+        "pico-cli web launch --manifest-url https://your.site/app.webmanifest"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": "Your site opens as a Web App. The manifest needs name or short_name, start_url and icons.",
+      "media": [
+        {
+          "type": "image",
+          "src": "../assets/media/p5-solution-night-market.png",
+          "original": "../assets/media/p5-solution-night-market.png",
+          "poster": null,
+          "alt": "The capstone solution in desktop Chrome: the same URL is a normal website for everyone without a headset",
+          "caption": "The capstone solution in desktop Chrome: the same URL is a normal website for everyone without a headset",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Emulator, or a device you own: web launch installs a browser APK first. visionOS is the only target that needs packaging (@webspatial/builder on a Mac). PICO store listing for Web Apps goes through business partnerships.",
+      "todos": []
+    },
+    {
+      "id": "L5-s8",
+      "level": 5,
+      "step": 8,
+      "kind": "checkpoint",
+      "title": "Checkpoint: expert",
+      "action": null,
+      "body": "Tick these honestly.\n\n- Claude Code ran a full loop and every claim came with evidence you opened.\n- You got a PICO answer with a cited source from the knowledge MCP.\n- You recorded a trace and can name the top cost.\n- You can say which claims are proven on the emulator and which would need real PICO OS 6 hardware.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": null,
+      "todos": []
+    },
+    {
+      "id": "L5-s9",
+      "level": 5,
+      "step": 9,
+      "kind": "lab",
+      "title": "Capstone: spatialize your own site",
+      "action": null,
+      "body": "Your site, end to end, with evidence.\n\n1. React + wiring (L1): Vite + React, `<SpatialBoot>`, manifest.\n2. Lift (L2): at most six elements, on glass.\n3. A second window (L4) and one volume (L3), with a flat fallback.\n4. Evidence: before/after shots and a 30 s recording.",
+      "commands": [],
+      "prompts": [
+        "Here is my site: <url or repo>. Plan how to spatialize it with WebSpatial in four steps (enable-xr pass, materials and depth, one extra scene, one volume), then do step one and show me a screenshot."
+      ],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "media/27-lab5-web-app-night-market.webp",
+          "original": "../assets/emulator/27-lab5-web-app-night-market.png",
+          "poster": null,
+          "alt": "The capstone reference site, Night Market, installed as a Web App in the PICO OS 6 emulator: glass window, the vendor cards floating over the window's bottom edge, and the WebSpatial on badge",
+          "caption": "The capstone reference site, Night Market, installed as a Web App in the PICO OS 6 emulator: glass window, the vendor cards floating over the window's bottom edge, and the WebSpatial on badge",
+          "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
+          "pending": false
+        }
+      ],
+      "notes": "Known issue, cause found: the \"Lanterns in 3D\" volume opened empty because its <Reality> was 0 px tall (height 100% of an auto-height #root). The fix is 100vw / 100vh; the emulator re-test is pending, so demo the stall window if the lanterns are still empty. An empty volume usually means a 0-px container: size <Reality> in real units. The screenshot is the p5 solution passing in the emulator; in it, opening a stall opens a second spatial window (WALKTHROUGH section 5). Evidence also includes a desktop screenshot; record with pico-cli capture record -t 30. Rubric and submission live in labs/p5-capstone/README.md. The capstone goes home; the room only does the kickoff.",
+      "todos": []
+    },
+    {
+      "id": "close-s1",
+      "level": "close",
+      "step": 1,
+      "kind": "concept",
+      "title": "You're an expert when you can...",
+      "action": null,
+      "body": "Take the list home and tick it honestly.\n\n- Explain in two sentences why WebSpatial is not WebXR.\n- Ship a spatial version of any React site whose desktop build is unchanged.\n- Say which `--xr-*` property applies to which element, and in what unit.\n- Put a GLB in a volume with a poster, an error path and a flat fallback.\n- Build a multi-scene app whose state survives any scene closing.\n- Hand Claude Code a spec and catch it when its evidence doesn't support its claim.",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Abridged from the SYLLABUS \"You're an expert when you can...\" list. The full list has eleven items.",
+      "todos": []
+    },
+    {
+      "id": "close-s2",
+      "level": "close",
+      "step": 2,
+      "kind": "concept",
+      "title": "Troubleshooting: \"it looks flat\"",
+      "action": null,
+      "body": "| Symptom | Check / fix |\n|---|---|\n| Flat in a browser tab | A tab is never spatial. Install it: the monitor icon, titled Install app on OS 6.0.0 (PICO's docs call it Open as standalone app), just left of the star → Install |\n| Installed, still flat | Wait up to 60 s; if the panels are still missing, close and reopen the app once |\n| Second window blank | The page is wrapped in `enable-xr`; remove it |\n| Some panels render, others don't | An `enable-xr` nested inside another `enable-xr`: it never renders on PICO OS 6.0.0. Un-nest |\n| No install offered at `10.0.2.2` | 10.0.2.2 loads but was not a secure context in our test (no install); use localhost. `node setup/launch.mjs <n>` opens localhost for you |\n| No install offered at localhost | Manifest missing, unlinked, or lacking `name` / `start_url` / `icons` / `display` |\n| Changed the manifest, nothing changed | The installed app keeps the old one: uninstall (`adb uninstall <pkg>`) and install again |\n| Volume or window opens flat at 1280×720 | `initScene` ran before boot finished, so it did nothing. Register scenes in `<SpatialBoot onReady>` |\n| Installed, UA has `WebSpatial/`, still inert | App not wrapped in `<SpatialBoot>`: in 2.0 spatial code loads only inside it |\n| Still inert with `<SpatialBoot>` | `jsxImportSource` missing in the tsconfig or in `react({ jsxImportSource })` in `vite.config.ts` |\n| One element won't lift | No `enable-xr`, or no `position: relative / absolute / fixed` |\n| Glass looks solid | Your own `background` covers the material; clear it in spatial mode |",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Root cause and first five rows: labs/SPATIAL-CRACK.md (VERIFIED on the OS 6.0.0 emulator, 2026-09-24): only an installed Web App's UA contains WebSpatial/, and the SDK checks for exactly that. Other rows: curriculum/TROUBLESHOOTING.md.",
+      "todos": []
+    },
+    {
+      "id": "close-s3",
+      "level": "close",
+      "step": 3,
+      "kind": "concept",
+      "title": "Troubleshooting: setup and the emulator",
+      "action": null,
+      "body": "| Symptom | Check / fix |\n|---|---|\n| PICO Spatial plugin won't install | Android Studio must be 2025.1.x, not the latest |\n| Emulator dies: `QEMU main loop exits abnormally` | Not enough free RAM; the real message is on stderr. Use the 16 GB recipe |\n| \"Site can't be reached\" at `localhost:<port>` | Dev server not running, or the `adb reverse` mapping is gone (it resets when the emulator restarts): rerun `node setup/launch.mjs <n>` |\n| Still unreachable | Wrong port, or the firewall blocks Node on private networks |\n| Knowledge MCP stopped answering | `pico-cli setup` ran while sessions were open; restart Claude Code |\n| Install fails, logcat says `manifest is empty` | Manifest icons rejected (seen with one SVG icon): ship PNG icons with real `sizes` (192, 512, 1024 + maskable) |\n| One screenshot is mostly black | Capture artefact, not your page: use `node setup/snap.mjs` (burst) |\n| HUD misses a message sent as it opened | Chrome drops a BroadcastChannel post made in the same task as `window.open`: post, then `setTimeout(() => window.open(url, name), 100)` |",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "Rows from curriculum/TROUBLESHOOTING.md \"Setup and emulator\" and \"Reaching the dev server\", plus the kit CLAUDE.md screenshot rule.",
+      "todos": []
+    },
+    {
+      "id": "close-s4",
+      "level": "close",
+      "step": 4,
+      "kind": "concept",
+      "title": "PICO Early Access Developer Program",
+      "action": null,
+      "body": "Where tonight's build can go next. Quoted exactly from his slide:\n\n> PICO EARLY ACCESS DEVELOPER PROGRAM\n> Invitees get up to $1500 for publishing their AI generated application\n> October 1-Nov 11 2026\n> Hardware Access\n\nOpen slide 12 in David Oh's deck",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../partner/pico-cli-quickstart-david-oh/slides/slide-12.png",
+          "original": "../partner/pico-cli-quickstart-david-oh/slides/slide-12.png",
+          "poster": null,
+          "alt": "David Oh's slide 12, unmodified: PICO Early Access Developer Program",
+          "caption": "David Oh's slide 12, unmodified: PICO Early Access Developer Program",
+          "credit": null,
+          "pending": false
+        }
+      ],
+      "notes": "Quote copied from partner/pico-cli-quickstart-david-oh/slides.md, \"Slide 12\", which is the verbatim text of the unmodified .pptx. Eligibility, how to get invited and the terms are PICO's to answer; point questions to David.",
+      "todos": []
+    },
+    {
+      "id": "close-s5",
+      "level": "close",
+      "step": 5,
+      "kind": "concept",
+      "title": "Official examples",
+      "action": null,
+      "body": "One SDK 2.0 example runs in the kit. The rest are linked, mostly SDK 1.x.\n\n| Linked | Level | SDK |\n|---|---|---|\n| sample-techshop, WebSpatialPlayground | L2 to L4 | 1.x |\n| sample-solarsystem, widget-generator | L3, L4 | 1.x |\n| webspatial-sdk `apps/*` (Next, Remix, Rspack) | L5 | 2.0 |",
+      "commands": [
+        "cd examples/webspatial-vite-min",
+        "npm run dev:xr   # port 5501",
+        "node setup/launch.mjs --url http://localhost:5501/   # 2nd terminal"
+      ],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "../examples/webspatial-vite-min/screenshot.png",
+          "original": "../examples/webspatial-vite-min/screenshot.png",
+          "poster": null,
+          "alt": "webspatial-vite-min in desktop Chrome, the flat fallback: a 3x3 enable-xr grid, an empty Reality box and a Model placeholder that fill in once it runs as a PICO Web App",
+          "caption": "webspatial-vite-min in desktop Chrome, the flat fallback: a 3x3 enable-xr grid, an empty Reality box and a Model placeholder that fill in once it runs as a PICO Web App",
+          "credit": "desktop Chrome",
+          "pending": false
+        }
+      ],
+      "notes": "Run the launch command from the kit root in a second terminal, then install the example as a Web App. Source: examples/README.md (examples-scout). Every standalone sample repo is SDK 1.x with @webspatial/vite-plugin, which fails to build on 2.0; only the apps/* fixtures in the webspatial-sdk monorepo are 2.0. @webspatial/starter 0.1.0 scaffolds ^1.5.0. The labs win where these disagree. webspatial-vite-min is desktop-verified (build clean, 0 console errors on all 3 pages, __webspatialsdk__ 2.0.0) and not yet run on the emulator; its Model swaps in the p3 avocado GLB on PICO. It shares labs/node_modules, so run npm run labs:install first. Repos without a license are linked, not vendored. Community apps: webspatial.dev/showcase.",
+      "todos": []
+    },
+    {
+      "id": "close-s6",
+      "level": "close",
+      "step": 6,
+      "kind": "concept",
+      "title": "Resources: everything in the kit",
+      "action": null,
+      "body": "One place for all of it. Every link is relative to this deck.\n\n- The kit: github.com/RayyanZahid/pico-workshops (this Academy is in `webspatial-academy/`)\n- This deck: slides.md · deck.json · llms.txt\n- Start here: setup/SETUP.md · setup/DEPENDENCIES.md · CLAUDE.md (what Claude Code follows in this kit)\n- Curriculum: SYLLABUS · L0 · L1 · L2 · L3 · L4 · L5 · GLOSSARY · TROUBLESHOOTING · outline.json\n- Labs: p1 hello spatial · p2 spatialize a site · p3 volume model · p4 Space Invaders · p5 capstone\n- From PICO: PICO CLI Quickstart, David Oh · README · slides.md (native Spatial SDK path; shown as sent)\n- Versions: labs/VERSIONS.md (SDK 2.0.0 pins, why there's no vite-plugin)\n- Official examples: examples/README.md · webspatial-vite-min (runs in the kit, SDK 2.0) · webspatial-sdk apps · showcase\n- Emulator notes: labs/EMULATOR-RESULTS.md · labs/SPATIAL-CRACK.md\n- Sources (PICO docs): WebSpatial on PICO · Manifest · Install-free Web Apps · assets/pico-docs/WEB-APP-RUNTIME.md\n- Outside the kit: webspatial.dev · developer.picoxr.com · `pico-cli <family> --help` (commands checked against pico-cli 0.5.0)",
+      "commands": [],
+      "prompts": [],
+      "code": [],
+      "text": [],
+      "diagrams": [],
+      "expect": null,
+      "media": [],
+      "notes": "The emulator and PICO WebSpatial browser are PICO-licensed; PICO cleared this workshop's attendees. The kit will move under a hub folder alongside the Vibe XR kit; all links here are relative so the move keeps them working.",
+      "todos": []
+    }
+  ]
+}
