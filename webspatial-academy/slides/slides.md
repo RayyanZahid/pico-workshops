@@ -1144,7 +1144,7 @@ Each enable-xr element is its own native plane. Spatialize containers, not sprit
 
 **11 planes** (12 with the overlay card) vs **230+** if every sprite were spatial.
 
-![Lab 4 from the side in the emulator: each invader row stands at its own depth off the window, and the shields float out in front (captured with the earlier, deeper settings)](media/25-lab4-angled-rows-in-depth.webp)
+![Spatial Invaders on the fitted 1280×720 layout in the emulator: the five stepped rows, shields, ship, Fire and the controls column all in view](media/acc-p4-v3-fits-720.webp)
 *PICO OS 6 emulator, shown with PICO's clearance for this workshop*
 
 > **Speaker notes:** The key lesson of the level. The docs publish no per-scene plane limit, so treat roughly 15 as a budget habit, not a hard number; measure it with pico-cli perf in L5. The UFO stays on the page plane plane (cosmetic, 0 planes). Unverified on the emulator: frame rate with per-frame --xr-back writes.

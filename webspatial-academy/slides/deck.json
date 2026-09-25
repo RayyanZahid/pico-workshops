@@ -1,7 +1,7 @@
 {
   "title": "PICO WebSpatial Academy",
   "generated_by": "slides/build.mjs",
-  "generated_at": "2026-09-25T00:01:57.152Z",
+  "generated_at": "2026-09-25T00:03:01.811Z",
   "html": "index.html",
   "markdown": "slides.md",
   "levels": [
@@ -390,17 +390,17 @@
       "exists": true
     },
     {
-      "href": "media/25-lab4-angled-rows-in-depth.webp",
-      "kind": "relative",
-      "exists": true
-    },
-    {
       "href": "media/27-lab5-web-app-night-market.webp",
       "kind": "relative",
       "exists": true
     },
     {
       "href": "media/acc-p4-v2-hud-window.webp",
+      "kind": "relative",
+      "exists": true
+    },
+    {
+      "href": "media/acc-p4-v3-fits-720.webp",
       "kind": "relative",
       "exists": true
     },
@@ -1857,11 +1857,11 @@
       "media": [
         {
           "type": "image",
-          "src": "media/25-lab4-angled-rows-in-depth.webp",
-          "original": "../assets/emulator/25-lab4-angled-rows-in-depth.png",
+          "src": "media/acc-p4-v3-fits-720.webp",
+          "original": "../assets/emulator/acc-p4-v3-fits-720.png",
           "poster": null,
-          "alt": "Lab 4 from the side in the emulator: each invader row stands at its own depth off the window, and the shields float out in front (captured with the earlier, deeper settings)",
-          "caption": "Lab 4 from the side in the emulator: each invader row stands at its own depth off the window, and the shields float out in front (captured with the earlier, deeper settings)",
+          "alt": "Spatial Invaders on the fitted 1280×720 layout in the emulator: the five stepped rows, shields, ship, Fire and the controls column all in view",
+          "caption": "Spatial Invaders on the fitted 1280×720 layout in the emulator: the five stepped rows, shields, ship, Fire and the controls column all in view",
           "credit": "PICO OS 6 emulator, shown with PICO's clearance for this workshop",
           "pending": false
         }
