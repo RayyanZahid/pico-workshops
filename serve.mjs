@@ -2,7 +2,7 @@
 // Serves this folder (hub + both kits) on http://localhost:5180 with no caching.
 // Markdown is served as plain text so it reads in any browser; node_modules is never served.
 //   node serve.mjs            -> :5180
-//   PORT=8080 node serve.mjs  -> :8080
+//   PORT=8080 node serve.mjs  (macOS/Linux)   |   $env:PORT=8080; node serve.mjs  (Windows PowerShell)
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
@@ -75,12 +75,12 @@ const server = createServer(async (req, res) => {
 });
 
 server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') console.error(`Port ${PORT} is busy. Something is already serving it (maybe another npm run dev). Stop it or run with PORT=5174.`);
+  if (err.code === 'EADDRINUSE') console.error(`Port ${PORT} is busy. Something is already serving it. Stop it, or pick another port: PORT=5181 node serve.mjs (macOS/Linux) or $env:PORT=5181; node serve.mjs (PowerShell).`);
   else console.error(err);
   process.exit(1);
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`Vibe XR starter: http://localhost:${PORT}  (serving ${ROOT})`);
-  console.log('Desktop: open that URL. Headset: npm run serve (tailnet HTTPS) or npm run usb (cable).');
+  console.log(`PICO workshops hub: http://localhost:${PORT}  (serving ${ROOT})`);
+  console.log('Open that URL for the hub. Each workshop has its own dev server: see vibe-xr/README.md and webspatial-academy/README.md.');
 });

@@ -65,7 +65,7 @@ p2 flat schedule rows, p3 plain viewer bar, favicon):
 | p4 | Fire while moving → hits register | PASS | score 0 → 20 → 40, invaders removed (`acc-p4-v2-midgame.png`); synthetic `KeyboardEvent`s on `window` via CDP |
 | p4 | HUD window renders and stays in sync | PASS | `acc-p4-v2-hud-window.png`: "SPATIAL INVADERS · HUD 40 · LIVES ▲▲▲ · WAVE 1 · playing" |
 | p4 | Pause from the HUD | PASS | HUD "Pause / resume" → HUD state reads "paused" (`acc-p4-v2-hud-paused.png`) |
-| p4 | Game over → HUD; hall of fame | NOT REACHED | Started a game with the HUD open and left it idle 2.5 min (17:06-17:09): lives stayed 3, no game over. Needs a deliberate lose path or a longer run |
+| p4 | Game over → HUD; hall of fame | NOT REACHED (second sprint: NOT RUN, time) | Started a game with the HUD open and left it idle 2.5 min (17:06-17:09): lives stayed 3, no game over. Needs a deliberate lose path or a longer run |
 | p2 | Schedule rows visible | PASS (17:03) | `acc-p2-v2-schedule-window.png`: six rows (09:30 Doors … Demo hour) on the window glass, 0 console errors. Earlier NOT RUN attempt: app killed by the guest's low-memory killer |
 | p3 | Viewer bar visible, no `createSpatialized2DElement failed` | PASS in the volume (17:05); main launcher card FAILED on this launch | `acc-p3-v2-volume-bar.png`: bar under the avocado reads "ready · yaw 0° · scale 1.00× · Orbit: off · Reset", no error in `?scene=viewer`. The MAIN document logged `Uncaught Error: createSpatialized2DElement failed` for the launcher card (cold-start case) |
 | all | Window scenes open at main-window size in the main slot, ignoring `defaultSize` | OBSERVED (OS placement) | p2 schedule 520x640, p4 HUD 360x480, p5 stall 420x360 all shown main-sized |
@@ -82,6 +82,24 @@ PICO 4 Ultra; these are notes on the OS 6 emulator, not failures.
 | gallery | Enter VR | true / true | not tried | `acc-vibexr-gallery-tab.png` |
 | hand-garden | Enter VR | true / true | not tried | `acc-vibexr-hand-garden-tab.png` |
 | portal | Enter AR | true / true | **session started** (`started immersive-ar`) after three permission prompts | `acc-vibexr-portal-enter-ar.png`, `acc-vibexr-portal-in-ar-session.png` |
+
+**Real-input Enter pass, 17:14-17:21** (`PORT=5720 node serve/serve.mjs`, `adb reverse`, one fresh tab per page,
+`adb shell input tap` on the button's centre computed from its page rect × (2880 / innerWidth) + 129 px toolbar,
+then tap "Allow while visiting the site" on each permission prompt; session result read by wrapping
+`navigator.xr.requestSession`):
+
+| Page | Button tapped | Result | Evidence |
+|---|---|---|---|
+| starter `/` | ENTER VR | **session started** (`immersive-vr`) after the prompts | `acc-vibexr-starter-session.png`: emulator frame black except the gaze reticle |
+| ar-placer | Enter AR | **FAIL in emulator**: `NotSupportedError: The specified session configuration is not supported.` (likely a required feature the emulator lacks; verify the requested features on the PICO 4 Ultra) | `acc-vibexr-ar-placer-session.png` |
+| portal | Enter AR | **session started** (`immersive-ar`) | `acc-vibexr-portal-session.png`: black + reticle |
+| beat-room | Enter VR | INCONCLUSIVE: tap landed, the page's hook was lost (reload/navigation), frame went mostly black | `acc-vibexr-beat-room-session.png` |
+| gallery | Enter VR | INCONCLUSIVE: `navigator.xr` was undefined when the hook was installed (browser still restarting) | - |
+| hand-garden | Enter VR | NOT RUN (time) | - |
+
+In every started session the host capture shows black with only the reticle, so what the scene renders
+inside an immersive session is not visible to `adb emu screenrecord screenshot`; UNVERIFIED whether the
+emulator window shows it.
 
 Emulator notes for Vibe XR: the first XR use on an origin raises up to three OS prompts, in order
 "wants to use your virtual reality device and data", "wants to create a 3D map of your surroundings and
