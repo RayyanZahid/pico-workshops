@@ -15,12 +15,38 @@ body {
   font-family: var(--pico-font-body);
 }
 
+/* Header across the top, playfield on the left, controls in a column on the right, so the
+   whole game fits a 1280 x 720 window (what the PICO web app opened at). */
 .game {
+  display: grid;
+  grid-template-columns: 720px 230px;
+  grid-template-areas: 'top top' 'field side';
+  justify-content: center;
+  align-items: start;
+  gap: 10px 16px;
+  padding: 8px var(--pico-gap);
+}
+
+.topbar {
+  grid-area: top;
+}
+
+.playfield {
+  grid-area: field;
+}
+
+.side {
+  grid-area: side;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
-  padding: var(--pico-gap);
+}
+
+@media (max-width: 980px) {
+  .game {
+    grid-template-columns: 720px;
+    grid-template-areas: 'top' 'field' 'side';
+  }
 }
 
 .topbar {
@@ -28,7 +54,6 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--pico-gap);
-  width: 720px;
   max-width: 100%;
 }
 
@@ -197,10 +222,9 @@ body {
 
 .controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  width: 720px;
-  max-width: 100%;
 }
 
 .controls .pico-btn {

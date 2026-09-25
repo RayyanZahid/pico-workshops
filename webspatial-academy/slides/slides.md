@@ -267,7 +267,7 @@ wsl --shutdown   # Windows
 hw.ramSize=4096
 ```
 
-> **Speaker notes:** A 16 GB laptop booted this way on 2026-09-24; page rendering at 4096 is still being confirmed. Source: setup/SETUP.md step 13 and the kit CLAUDE.md. Windows path: %USERPROFILE%\.pico\avd\PICO_6.0.avd\config.ini. "Insufficient RAM free" goes to stderr only, never the emulator log. labs/EMULATOR-RESULTS.md measured about 2 GB of free commit on a 16 GB laptop with Chrome, WSL and node running, against 6,144 MB needed.
+> **Speaker notes:** Close other web apps before launching a lab: at 4 GB the emulator's low-memory killer closes them. A 16 GB laptop booted this way on 2026-09-24; page rendering at 4096 is still being confirmed. Source: setup/SETUP.md step 13 and the kit CLAUDE.md. Windows path: %USERPROFILE%\.pico\avd\PICO_6.0.avd\config.ini. "Insufficient RAM free" goes to stderr only, never the emulator log. labs/EMULATOR-RESULTS.md measured about 2 GB of free commit on a 16 GB laptop with Chrome, WSL and node running, against 6,144 MB needed.
 
 ## Boot the emulator {#L0-s9}
 
@@ -1165,7 +1165,7 @@ npm i @webspatial/react-sdk@2.0.0 @webspatial/core-sdk@2.0.0 --save-exact
 
 - `jsxImportSource` in `tsconfig.json` **and** `react({...})` in `vite.config.ts`
 - `<SpatialBoot>` around `<Game />` in `main.tsx`
-- The manifest is already there: `xr_main_scene` sizes the game window 900 × 1000
+- The manifest is already there. On PICO OS 6.0.0 the game window opens at 1280 × 720 anyway
 
 You should see:
 
@@ -1202,7 +1202,7 @@ You should see:
 No visible change on desktop. In DevTools each .row's inline style shows --xr-back 20 px apart, row 0 deepest.
 ```
 
-![The solution at its Ready screen in desktop Chrome: five rows, four shields, the controls row and the HUD window button](../assets/media/p4-solution-invaders.png)
+![The solution at its Ready screen in desktop Chrome: five rows, four shields and the HUD window button (captured before the controls moved to a right-hand column)](../assets/media/p4-solution-invaders.png)
 *desktop Chrome*
 
 ## Depth tied to descent {#L4-s6}
@@ -1228,7 +1228,7 @@ You should see:
 At the start (y = 80) the rows read 11.4 / 31.4 / 51.4 / 71.4 / 91.4; near the shields (y ≈ 400) each is about 25 px further forward.
 ```
 
-![Spatial Invaders installed as a Web App at the Ready screen: the rows stand on the glass, and the shields and the Fire and arrow buttons stand forward of it, overhanging its bottom edge (captured with the earlier, deeper settings)](media/22-lab4-web-app-rows-stepped.webp)
+![Spatial Invaders installed as a Web App at the Ready screen, current build: the stepped rows, shields and ship all inside the window, with the controls in a right-hand column](media/acc-p4-v3-ready.webp)
 *PICO OS 6 emulator, shown with PICO's clearance for this workshop*
 
 > **Speaker notes:** Spatialized elements don't support CSS animations or transitions, so depth changes are writes from the rAF loop through refs, never document.querySelector.
@@ -1268,10 +1268,10 @@ Claude Code prompt:
 Add a HUD window: register initScene('hud', cfg => ({...cfg, defaultSize: {width: 360, height: 480}}), { type: 'window' }) in src/scenes.ts, open it with window.open('/?scene=hud', 'hud') from a "HUD window" button, call registerScenes from <SpatialBoot onReady={registerScenes}> (initScene before boot is a silent no-op in SDK 2.0), route ?scene=hud in main.tsx, and sync score, lives, wave and status over a BroadcastChannel named 'invaders'. The game is authoritative, broadcasts only when HUD state changes, answers 'hello', and applies 'intent' messages (pause, restart) from the HUD. Prove it in desktop Chrome, including a HUD opened mid-game and one closed and reopened.
 ```
 
-![The HUD as its own window in the emulator, synced over BroadcastChannel: score 90, two lives, wave 1, "playing"](media/26-lab4-hud-window-live.webp)
+![The HUD as its own window in the emulator, synced over BroadcastChannel: live score 40, three lives, wave 1, "playing"](media/acc-p4-v2-hud-window.webp)
 *PICO OS 6 emulator, shown with PICO's clearance for this workshop*
 
-> **Speaker notes:** In a second window, don't wrap the page in enable-xr; the window is already glass. Keep floating panels small and few. Files in solution/src: bus.ts (message types + channel), scenes.ts (initScene + openScene + router), Hud.tsx (display, hello on mount, intent buttons). The HUD's Pause sends an intent; only the game changes state. The second scene, 'halloffame' (420x560), opens at game over. The game window's own size comes from xr_main_scene in the manifest (900 x 1000), not initScene.
+> **Speaker notes:** In a second window, don't wrap the page in enable-xr; the window is already glass. Keep floating panels small and few. Files in solution/src: bus.ts (message types + channel), scenes.ts (initScene + openScene + router), Hud.tsx (display, hello on mount, intent buttons). The HUD's Pause sends an intent; only the game changes state. The second scene, 'halloffame' (420x560), opens at game over. The game window's size would come from xr_main_scene in the manifest, not initScene, but web apps open at 1280×720 regardless of the manifest's default_size (observed on PICO OS 6.0.0).
 
 ## Gotcha: a message posted just before window.open can vanish {#L4-s9}
 
@@ -1316,10 +1316,10 @@ You should see:
 Installed as a Web App (monitor icon, titled Install app, just left of the star → Install; wait up to 60 s; if the panels are still missing, close and reopen the app once): stepped rows, an approaching formation, flinching hits, shots flying in and out of depth. The corner badge reads "Web app · WebSpatial on".
 ```
 
-![Spatial Invaders installed as a Web App, mid-game: score 20, one invader gone from row 2, a player shot and an enemy shot in flight; the shields and buttons stand forward of the glass and overhang its bottom edge (captured with the earlier, deeper settings)](media/23-lab4-web-app-midgame.webp)
+![Spatial Invaders installed as a Web App and playing, current build: five stepped rows, the shields, the ship below them and the control column on the right, all in view](media/acc-p4-v3-playing.webp)
 *PICO OS 6 emulator, shown with PICO's clearance for this workshop*
 
-> **Speaker notes:** By hand: npm run dev:xr in the lab folder, adb reverse tcp:5314 tcp:5314 (solution) or 5304 (start), then http://localhost:<port>/ in the PICO Browser. 10.0.2.2 loads but was not a secure context in our test (no install); use localhost. Glass still empty after 60 s with createSpatialized2DElement failed in the console? Close and reopen the app (the solution auto-reloads once). Keep depths modest: a plane lifted far toward you, low in the window, projects below the window's bottom edge in the default view (the ship vanished at 260; it now sits at 120). For a clip: pico-cli capture record -t 15 -o captures/invaders.mp4.
+> **Speaker notes:** By hand: npm run dev:xr in the lab folder, adb reverse tcp:5314 tcp:5314 (solution) or 5304 (start), then http://localhost:<port>/ in the PICO Browser. 10.0.2.2 loads but was not a secure context in our test (no install); use localhost. Glass still empty after 60 s with createSpatialized2DElement failed in the console? Close and reopen the app (the solution auto-reloads once). The controls now sit in a right-hand column beside a 560 px playfield. Keep depths modest: a plane lifted far toward you, low in the window, projects below the window's bottom edge in the default view (the ship vanished at 260; it now sits at 120). For a clip: pico-cli capture record -t 15 -o captures/invaders.mp4.
 
 ## Checkpoint: invaders in depth {#L4-s11}
 
@@ -1586,6 +1586,7 @@ Take the list home and tick it honestly.
 | Still unreachable | Wrong port, or the firewall blocks Node on private networks |
 | Knowledge MCP stopped answering | `pico-cli setup` ran while sessions were open; restart Claude Code |
 | Install fails, logcat says `manifest is empty` | Manifest icons rejected (seen with one SVG icon): ship PNG icons with real `sizes` (192, 512, 1024 + maskable) |
+| Web app closes on its own | At 4 GB the low-memory killer: close other web apps before launching a lab |
 | One screenshot is mostly black | Capture artefact, not your page: use `node setup/snap.mjs` (burst) |
 | HUD misses a message sent as it opened | Chrome drops a BroadcastChannel post made in the same task as `window.open`: post, then `setTimeout(() => window.open(url, name), 100)` |
 

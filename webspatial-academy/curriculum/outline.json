@@ -22,7 +22,8 @@
       "The PICO Emulator is PICO-licensed; this workshop's attendees are cleared by PICO. Check with PICO before publishing OS screenshots outside the workshop.",
       "Real PICO OS 6 device: HTTP dev URLs need adb shell am broadcast -p com.picoxr.webappservice -a com.picoxr.webappservice.action.TOGGLE_DEBUG_MODE --ez enable true",
       "npx @webspatial/starter (0.1.0) scaffolds an SDK ^1.5.0 (1.x) project: use the labs (2.0.0) instead",
-      "Windows PowerShell 5.1 rejects && and has no grep: run commands on separate lines; after any winget install, close and reopen the terminal"
+      "Windows PowerShell 5.1 rejects && and has no grep: run commands on separate lines; after any winget install, close and reopen the terminal",
+      "At hw.ramSize=4096, close other web apps before launching a lab (the low-memory killer stopped p4 12 s after launch)"
     ],
     "lab": "setup/",
     "commands": [
@@ -207,7 +208,7 @@
       "writeBack(el, z): round to one decimal, clamp at 0, skip unchanged, el.style['--xr-back']; no CSS transitions; no querySelector",
       "Player shots recede 120 -> front row depth; enemy shots come row depth -> 120",
       "Buttons use plain onClick (a pinch on a spatial button arrives as a click); never onSpatialTap on a <button>: it logs 'Unknown event handler property' even in the PICO runtime. Spatial events are for <Model>, <Reality> entities and enable-xr divs",
-      "Scenes: 'hud' 360x480 and 'halloffame' 420x560 via initScene(..., { type: 'window' }); game sized by manifest xr_main_scene 900x1000",
+      "Scenes: 'hud' 360x480 and 'halloffame' 420x560 via initScene(..., { type: 'window' }); game size requested in manifest xr_main_scene 900x1000, but on PICO OS 6.0.0 windows opened at 1280x720 regardless: fit pages in 1280x720 without scrolling",
       "BroadcastChannel 'invaders': hello / state / gameover / intent(pause|restart); HUD-level state on change only",
       "Gotcha (reproduced in this lab): a post in the same task as window.open of a new window is dropped for open windows in Chrome; setTimeout(() => openScene('halloffame'), 100)",
       "initScene before boot is a silent no-op in SDK 2.0: register scenes in <SpatialBoot onReady={registerScenes}> (VERIFIED: p3 volume opened flat 1280x720 otherwise)",

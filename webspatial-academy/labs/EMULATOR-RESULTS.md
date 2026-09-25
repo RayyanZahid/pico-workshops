@@ -54,6 +54,23 @@ a running server otherwise. `--url http://localhost:5501/` also worked.
 | vite-min | `xr-monitor.html` | PASS | `acc-vitemin-xr-monitor-app.png`; 14 spatial hosts; 0 errors |
 | vite-min | `eager-lean.html` (eager entry, no boot) | PASS | `acc-vitemin-eager-lean-app.png`; 20 spatial hosts; 0 errors |
 
+**Re-test on current builds, 16:51-16:59** (after labs-builder's fixes: p4 depths/flat buttons/flat HUD,
+p2 flat schedule rows, p3 plain viewer bar, favicon):
+
+| Lab | Checkpoint | Result | Evidence |
+|---|---|---|---|
+| p4 | New depths live, 0 console errors (no `onSpatialTap` error) | PASS | rows 11.4/31.4/51.4/71.4/91.4, ship 120; 13 targets, 0 errors |
+| p4 | Ship + ◀ Fire ▶ visible in the default view | FAIL | `acc-p4-v2-ready.png`: window is 1280x720 but the document is 863 px tall; Fire at y=767 and the ship sit below the window edge. Fix: taller `xr_main_scene.default_size` (reinstall) or a layout that fits 720 |
+| p4 | Ship + buttons visible after the 17:0x layout fix (controls column right of a 560 px playfield) | PASS | `acc-p4-v3-fits-720.png` (= `acc-p4-v3-playing.png`), `acc-p4-v3-ready.png`: document 720 = window 720, Fire at y=105, ship drawn just under the playfield (depth 120 projects it slightly low but inside the view); 0 console errors |
+| p4 | Fire while moving → hits register | PASS | score 0 → 20 → 40, invaders removed (`acc-p4-v2-midgame.png`); synthetic `KeyboardEvent`s on `window` via CDP |
+| p4 | HUD window renders and stays in sync | PASS | `acc-p4-v2-hud-window.png`: "SPATIAL INVADERS · HUD 40 · LIVES ▲▲▲ · WAVE 1 · playing" |
+| p4 | Pause from the HUD | PASS | HUD "Pause / resume" → HUD state reads "paused" (`acc-p4-v2-hud-paused.png`) |
+| p4 | Game over → HUD; hall of fame | NOT RUN | time |
+| p2 | Schedule rows visible | NOT RUN | app killed by the guest's low-memory killer 12 s after launch (`lowmemorykiller: Kill 'com.picoxr.webapp.localhost.dmpmfigf' ... to free 698476kB`) at `hw.ramSize=4096` |
+| p3 | Viewer bar visible, no `createSpatialized2DElement failed` | NOT RUN | time |
+| all | Window scenes open at main-window size in the main slot, ignoring `defaultSize` | OBSERVED (OS placement) | p2 schedule 520x640, p4 HUD 360x480, p5 stall 420x360 all shown main-sized |
+| all | Guest memory at `hw.ramSize=4096` | RISK | low-memory killer killed p4 (16:51:38) and p2 (16:57:14) web apps with other apps resident; close other web apps first, or use 6144 when the host allows |
+
 **Vibe XR kit** (`PORT=5601 node serve/serve.mjs`, `adb reverse`, PICO Browser tab). The target is the
 PICO 4 Ultra; these are notes on the OS 6 emulator, not failures.
 

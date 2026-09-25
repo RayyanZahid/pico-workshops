@@ -1,6 +1,8 @@
 // Playfield geometry, in CSS px. Game logic and collisions are pure 2D.
 export const W = 720
-export const H = 640
+// The installed PICO web app opened at 1280 x 720 whatever the manifest asked for, so the
+// whole game (header + playfield + controls beside it) is sized to fit 720 px of height.
+export const H = 560
 
 // Formation: the classic 5 x 11.
 export const COLS = 11

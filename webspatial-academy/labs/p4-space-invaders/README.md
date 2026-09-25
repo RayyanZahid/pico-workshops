@@ -41,6 +41,8 @@ All values are `--xr-back` in px (its only unit; one decimal; never negative), m
 
 **11 planes while playing, 12 while the overlay shows**, against 230+ if every sprite and block were spatial. The docs publish no per-scene plane limit, so treat roughly 15 as a budget habit, not a hard number. Measure it with `pico-cli perf` in L5.
 
+**Fit the window.** The installed web app opened at 1280 × 720, so the game uses a 560 px playfield with the controls in a column beside it. With the controls underneath, the Fire button sat at y = 767, off the bottom of the window.
+
 **Keep depths modest.** The first version used a ship at 260, shields at 210 and 30 px row steps. In the emulator's default view, the ship and the buttons projected **below the window's bottom edge**: a plane lifted far toward you, low in the window, lands lower in the view. The depths above keep everything inside the window's footprint while the rows still read as stepped.
 
 **Emulator-verified 2026-09-24** (installed web app, PICO OS 6.0.0): the rows render visibly stepped, with front rows larger. The shields float in front of the playfield, the formation marches, shots fly, and hits land (`assets/emulator/22-lab4-web-app-rows-stepped.png`, `23-lab4-web-app-midgame.png`). Two things were learned the hard way:

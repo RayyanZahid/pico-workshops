@@ -51,6 +51,11 @@ Three rules the emulator taught us (2026-09-24), all built into the solutions:
 - **Never put an `enable-xr` element inside another `enable-xr` element.** The nested one got an empty 0 x 0 document and never rendered.
 - **A first cold launch can leave the glass empty.** The runtime answered slower than the SDK's 30 s timeout. A reload fixes it, and every solution now reloads itself once when that happens (`src/spatialRetry.ts`). If panels are still missing after 60 s, close and reopen the app.
 
+Two more things about the emulator:
+
+- **Installed web apps opened at 1280 × 720**, whatever `xr_main_scene.default_size` asked for, and second windows opened at main-window size. Design each lab page to fit 1280 × 720 without scrolling.
+- **Close other web apps before you launch one.** At the emulator's 4 GB RAM setting, Android's low-memory killer stopped the p4 app 12 s after launch while other web apps were still resident.
+
 Every lab page shows a **runtime badge** in the bottom-right corner: "Browser tab · flat" or "Web app · WebSpatial on". It uses PICO's own `display-mode` check. If nothing floats, look at the badge first.
 
 ## What "WebSpatial-ready" means in these labs

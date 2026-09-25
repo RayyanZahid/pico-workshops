@@ -563,6 +563,7 @@ export function Game() {
         )}
       </div>
 
+      <aside className="side">
       <div className="controls">
         {(['left', 'fire', 'right'] as const).map((b) => (
           <button
@@ -575,7 +576,8 @@ export function Game() {
             {b === 'left' ? '◀' : b === 'right' ? '▶' : 'Fire'}
           </button>
         ))}
-        <span className="spacer" />
+      </div>
+      <div className="controls">
         <button className="pico-btn pico-btn--ghost" type="button" onClick={togglePause}>
           Pause
         </button>
@@ -591,6 +593,7 @@ export function Game() {
         <kbd className="pico-kbd">Enter</kbd> start · <kbd className="pico-kbd">P</kbd> pause · <kbd className="pico-kbd">M</kbd>{' '}
         sound
       </p>
+      </aside>
     </div>
   )
 }

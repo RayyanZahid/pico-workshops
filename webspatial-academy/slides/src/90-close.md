@@ -50,6 +50,7 @@ eyebrow: Troubleshooting · Setup, emulator, network
 | Still unreachable | Wrong port, or the firewall blocks Node on private networks |
 | Knowledge MCP stopped answering | `pico-cli setup` ran while sessions were open; restart Claude Code |
 | Install fails, logcat says `manifest is empty` | Manifest icons rejected (seen with one SVG icon): ship PNG icons with real `sizes` (192, 512, 1024 + maskable) |
+| Web app closes on its own | At 4 GB the low-memory killer: close other web apps before launching a lab |
 | One screenshot is mostly black | Capture artefact, not your page: use `node setup/snap.mjs` (burst) |
 | HUD misses a message sent as it opened | Chrome drops a BroadcastChannel post made in the same task as `window.open`: post, then `setTimeout(() => window.open(url, name), 100)` |
 

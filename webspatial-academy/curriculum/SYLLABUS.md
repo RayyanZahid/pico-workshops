@@ -94,7 +94,7 @@ Do one level per sitting. Don't start a level until the previous lab's "done whe
 - [ ] Take any React site and ship a spatial version whose desktop build is byte-for-byte the same experience.
 - [ ] Predict, before you run it, which plane an element with `--xr-back` will float in front of.
 - [ ] Say which `--xr-*` property applies to which element type, and what unit it takes, without looking.
-- [ ] Configure the start scene in the manifest and every other scene with `initScene`, and explain why the start scene can't use `initScene`.
+- [ ] Configure the start scene in the manifest and every other scene with `initScene`, and explain why the start scene can't use `initScene`. Know that on PICO OS 6.0.0 windows were observed opening at 1280×720 regardless, and design pages to fit it without scrolling.
 - [ ] Put a GLB in a volume with a poster, an error path and a flat fallback, and keep it under a size you can defend.
 - [ ] Build a three-scene app whose state survives any scene being closed and reopened.
 - [ ] Get a Chrome DevTools console on a scene running in the emulator.
