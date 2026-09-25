@@ -65,9 +65,9 @@ p2 flat schedule rows, p3 plain viewer bar, favicon):
 | p4 | Fire while moving → hits register | PASS | score 0 → 20 → 40, invaders removed (`acc-p4-v2-midgame.png`); synthetic `KeyboardEvent`s on `window` via CDP |
 | p4 | HUD window renders and stays in sync | PASS | `acc-p4-v2-hud-window.png`: "SPATIAL INVADERS · HUD 40 · LIVES ▲▲▲ · WAVE 1 · playing" |
 | p4 | Pause from the HUD | PASS | HUD "Pause / resume" → HUD state reads "paused" (`acc-p4-v2-hud-paused.png`) |
-| p4 | Game over → HUD; hall of fame | NOT RUN | time |
-| p2 | Schedule rows visible | NOT RUN | app killed by the guest's low-memory killer 12 s after launch (`lowmemorykiller: Kill 'com.picoxr.webapp.localhost.dmpmfigf' ... to free 698476kB`) at `hw.ramSize=4096` |
-| p3 | Viewer bar visible, no `createSpatialized2DElement failed` | NOT RUN | time |
+| p4 | Game over → HUD; hall of fame | NOT REACHED | Started a game with the HUD open and left it idle 2.5 min (17:06-17:09): lives stayed 3, no game over. Needs a deliberate lose path or a longer run |
+| p2 | Schedule rows visible | PASS (17:03) | `acc-p2-v2-schedule-window.png`: six rows (09:30 Doors … Demo hour) on the window glass, 0 console errors. Earlier NOT RUN attempt: app killed by the guest's low-memory killer |
+| p3 | Viewer bar visible, no `createSpatialized2DElement failed` | PASS in the volume (17:05); main launcher card FAILED on this launch | `acc-p3-v2-volume-bar.png`: bar under the avocado reads "ready · yaw 0° · scale 1.00× · Orbit: off · Reset", no error in `?scene=viewer`. The MAIN document logged `Uncaught Error: createSpatialized2DElement failed` for the launcher card (cold-start case) |
 | all | Window scenes open at main-window size in the main slot, ignoring `defaultSize` | OBSERVED (OS placement) | p2 schedule 520x640, p4 HUD 360x480, p5 stall 420x360 all shown main-sized |
 | all | Guest memory at `hw.ramSize=4096` | RISK | low-memory killer killed p4 (16:51:38) and p2 (16:57:14) web apps with other apps resident; close other web apps first, or use 6144 when the host allows |
 
